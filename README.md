@@ -14,14 +14,14 @@ You need another Dataframe with columns `i` and `j` which contains the citations
 from `i` to `j`.
 
 ```python
-import citerank as cr
+from datarank import compute_rho_transitions, estimate_datarank
 
 rho, transitions = \
-    cr.compute_rho_transitions(vertices, edges, pub_decay_time=5, data_decay_time=10)
-datarank = cr.estimate_datarank(rho, transitions, alpha=0.2)
+    compute_rho_transitions(vertices, edges, pub_decay_time=5, data_decay_time=10)
+dataranks = estimate_datarank(rho, transitions, alpha=0.2)
 
 # show the edges with most value
-datarank.orderBy('value', ascending=False).show()
+dataranks.orderBy('value', ascending=False).show()
 ```
 
 
