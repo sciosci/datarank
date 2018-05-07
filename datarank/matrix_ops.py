@@ -32,8 +32,14 @@ def vector_plus_vector(v1, v2):
 
 
 def compute_rho_transitions(vertices, edges, pub_decay_time, data_decay_time):
-    """Compute the initial distribution rho"""
-    raise NotImplementedError
+    """Compute the initial distribution rho and transitions"""
+    distribution = fn.when(fn.col('type') == 'data', fn.exp(-fn.col('age') / fn.lit(data_decay_time))). \
+        otherwise(fn.exp(-fn.col('age') / fn.lit(pub_decay_time)))
+    rho = vertices.select('i', distribution.alias('value'))
+
+    transitions = edges.groupBy('i').count().join(edges, 'i'). \
+        selectExpr('j as i', 'i as j', '1/count as value')
+    return rho, transitions
 
 
 def estimate_datarank(rho, transitions, alpha, tol=0.01, max_iter=5, checkpoint_interval=2, verbose=False):
