@@ -4,16 +4,29 @@
 \begin_header
 \save_transient_properties true
 \origin unavailable
-\textclass llncs
+\textclass acmart
 \begin_preamble
-%\usepackage{mathptmx}
-\usepackage{newtxtext,newtxmath}
+% For algorithm2e
+\renewcommand{\algorithmcfname}{ALGORITHM}
+\SetAlFnt{\small}
+\SetAlCapFnt{\small}
+\SetAlCapNameFnt{\small}
+\SetAlCapHSkip{0pt}
+\IncMargin{-\parindent}
 \end_preamble
-\use_default_options true
-\master 12pt
+\options format=sigconf, review=false, screen=true
+\use_default_options false
+\begin_modules
+InStar
+algorithm2e
+\end_modules
 \maintain_unincluded_children false
+\begin_local_layout
+Format 60
+PackageOptions algorithm2e ruled
+\end_local_layout
 \language english
-\language_package default
+\language_package auto
 \inputencoding auto
 \fontencoding global
 \font_roman "default" "default"
@@ -37,7 +50,7 @@
 \spacing single
 \use_hyperref false
 \papersize default
-\use_geometry false
+\use_geometry true
 \use_package amsmath 1
 \use_package amssymb 1
 \use_package cancel 1
@@ -48,9 +61,9 @@
 \use_package stackrel 1
 \use_package stmaryrd 1
 \use_package undertilde 1
-\cite_engine basic
-\cite_engine_type default
-\biblio_style plain
+\cite_engine natbib
+\cite_engine_type numerical
+\biblio_style plainnat
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
@@ -82,79 +95,196 @@
 
 \begin_body
 
+\begin_layout In Preamble
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Metadata information:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout ACM Year
+2018
+\end_layout
+
+\begin_layout Copyright Year
+2018
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+acmConference[DATA:SEARCH'18]{International Workshop on Data Search }{July
+ 2018}{Ann Arbor, Michigan}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Set Copyright
+rightsretained
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+acmcopyright,rightsretained,usgov,usgovmixed,cagov,cagovmixed
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Title
-DataRank: giving credit to scientific datasets using citation networks
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+DataRank
+\end_layout
+
+\end_inset
+
+DataRank: giving importance to scientific datasets using publication citations
 \end_layout
 
 \begin_layout Author
 Daniel E.
- Acuña 
-\begin_inset ERT
+ Acuna
+\begin_inset Formula $^{*}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Sarah Bratt
+\end_layout
+
+\begin_layout Author
+Tong Zeng
+\end_layout
+
+\begin_layout Affiliation
+\begin_inset Flex Institution
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-and
-\end_layout
-
-\end_inset
-
- Sarah Bratt
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-and
-\end_layout
-
-\end_inset
-
- Tong Zeng
-\end_layout
-
-\begin_layout Institute
 School of Information Studies, Syracuse University
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-email{deacuna@syr.edu}
 \end_layout
 
 \end_inset
 
 
+\begin_inset Flex Street Address
+status open
+
+\begin_layout Plain Layout
+312 Hinds Hall
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex City
+status open
+
+\begin_layout Plain Layout
+Syracuse
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex State
+status open
+
+\begin_layout Plain Layout
+NY
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex Postal Code
+status open
+
+\begin_layout Plain Layout
+13244
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex Country
+status open
+
+\begin_layout Plain Layout
+USA
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Email
+deacuna@syr.edu
 \end_layout
 
 \begin_layout Abstract
-Proper credit assignment is one of the primary sources of credit by scientists.
- This has been one of the primary means for retrieving information that
- are both relevant and impactful.
- Datasets however are a distinct scientific asset that is becoming more
- common yet there is little practice of citing datasets.
- Most scientific articles cite other articles but they do not cite datasets.
- While some attempts have been made to traing scientists to become more
- aware of how important it is to cite datasets, these practices are still
- largely lacking.
- In this work, we report on preliminary work that adapts network algorithms
+Information retrieval systems based on network properties have shown success
+ for a number of applications, Google's PageRank being probably one of the
+ best well-known.
+ The success of these systems depends on nodes 
+\begin_inset Quotes eld
+\end_inset
+
+citing
+\begin_inset Quotes erd
+\end_inset
+
+ other nodes.
+ This is a well-known and old practice in science when citing scientific
+ articles.
+ However, when scientists publish datasets, then there is comparatively
+ much less emphasis in performing dataset citations.
+ In this work, we adapt a network flow algorithm that accounts for the presence
+ of datasets and which assigns a 
+\begin_inset Quotes eld
+\end_inset
+
+score
+\begin_inset Quotes erd
+\end_inset
+
+ to them based on how other 
+\end_layout
+
+\begin_layout Abstract
+In this work, we report on preliminary work that adapts network algorithms
  to translate publication citations into data citations.
  We validate our method with real data and dataset usage.
  We show that it is possible to properly give credit to data submissions
  that do not have many direct citations but that are however is high use
  by the scientific community.
  We discuss the implications of our work and future directions.
+\end_layout
+
+\begin_layout ShortAuthors
+Acuna et al.
 \end_layout
 
 \begin_layout Section
@@ -179,7 +309,7 @@ Getting credit publishing scientific articles and datasets should be equally
 \end_layout
 
 \begin_layout Standard
-Credit assignment is important in science
+Credit assignmnent
 \end_layout
 
 \begin_layout Standard
@@ -298,7 +428,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename /Users/danielacuna/Documents/workspace/datarank/figures/fig1.pdf
+	filename ../figures/fig1.pdf
 	lyxscale 50
 	width 8cm
 
@@ -325,10 +455,6 @@ Predictability of the hits per data submission
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -342,12 +468,85 @@ Discovering
 Discussion and conclusion
 \end_layout
 
+\begin_layout Acknowledgments
+\start_of_appendix
+The authors would like to thank the Dr.
+ Kim Pruitt from National Center for Biotechnology Information, NLM, NIH,
+ DHHS.
+\end_layout
+
+\begin_layout Acknowledgments
+The work is supported by the 
+\begin_inset Flex Grant Sponsor
+status open
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+NSF:SMA
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+National Science Foundation
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 3
+status open
+
+\begin_layout Plain Layout
+https://www.nsf.gov/awardsearch/showAward?AWD_ID=1646763
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ under Grant No.:
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Flex Grant Number
+status open
+
+\begin_layout Plain Layout
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+NSF:SMA
+\end_layout
+
+\end_inset
+
+1646763
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 btprint "btPrintCited"
 bibfiles "bibliography"
-options "spiebib"
+options "ACM-Reference-Format"
 
 \end_inset
 
