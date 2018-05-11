@@ -1,0 +1,358 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass llncs
+\begin_preamble
+%\usepackage{mathptmx}
+\usepackage{newtxtext,newtxmath}
+\end_preamble
+\use_default_options true
+\master 12pt
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+DataRank: giving credit to scientific datasets using citation networks
+\end_layout
+
+\begin_layout Author
+Daniel E.
+ Acuña 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+and
+\end_layout
+
+\end_inset
+
+ Sarah Bratt
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+and
+\end_layout
+
+\end_inset
+
+ Tong Zeng
+\end_layout
+
+\begin_layout Institute
+School of Information Studies, Syracuse University
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+email{deacuna@syr.edu}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+Proper credit assignment is one of the primary sources of credit by scientists.
+ This has been one of the primary means for retrieving information that
+ are both relevant and impactful.
+ Datasets however are a distinct scientific asset that is becoming more
+ common yet there is little practice of citing datasets.
+ Most scientific articles cite other articles but they do not cite datasets.
+ While some attempts have been made to traing scientists to become more
+ aware of how important it is to cite datasets, these practices are still
+ largely lacking.
+ In this work, we report on preliminary work that adapts network algorithms
+ to translate publication citations into data citations.
+ We validate our method with real data and dataset usage.
+ We show that it is possible to properly give credit to data submissions
+ that do not have many direct citations but that are however is high use
+ by the scientific community.
+ We discuss the implications of our work and future directions.
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+Getting credit publishing scientific articles and datasets should be equally
+ important if the same amount of effort is to be put into these two tasks.
+ Previous researchers, however, have shown that citations to datasets is
+ still not practiced as much as it should be [cite].
+ A couple of the problems is that historically archiving and sharing of
+ datasets has been much more difficult than sharing of scientific articles.
+ Also, the sizes of datasets have kept increasing.
+ However, citing dataset should still be important because dataset allow
+ other scientists to create reproducible content [cite].
+ In this article, we develop a method for assigning credit to dataset from
+ the citation network of publications.
+ Therefore, it does not rely on scientists explicitly citing dataset more
+ than just the initial scientists.
+ Giving credit to properly created dataset could therefore be made feasiable.
+\end_layout
+
+\begin_layout Standard
+Credit assignment is important in science
+\end_layout
+
+\begin_layout Standard
+Datasets are an increasingly important asset of scientific production yet
+ they do not get the credit they deserve.
+ Several attempts have been made to correct this.
+ Some of these attempts attempt to define alternatives to typical citation
+ networks by looking at what is called 
+\emph on
+altmetrics
+\emph default
+ [cite].
+ For example, 
+\emph on
+impactstory 
+\emph default
+[cite] is a company that aims at producing things that are important.
+\end_layout
+
+\begin_layout Standard
+Requesting scientists to modify their behavior takes a long time to apply.
+\end_layout
+
+\begin_layout Standard
+In this article, we adapt the work done in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "walker2007ranking"
+
+\end_inset
+
+.
+ In particular, our method estimate the average length of a random walker
+ to the graph network, which considers that the obsolenseance rate of publicatio
+ns and datsets is different.
+ Using a dataset of genbank submissions and the publications associated
+ with them and the network of publications from the Microsoft Academic Graph,
+ we estimate the rank of the datasets.
+ We crossvalidate by using the actual visits to the web pages containing
+ the description of the datasets — almost as close to reality as we could
+ get.
+ When compared to the simple citations that we are able to predict for the
+ submissions, we show that our method is significatnly better at making
+ the visits prediction.
+ We discuss the implications of our method for future projects.
+\end_layout
+
+\begin_layout Section
+Materials and methods
+\end_layout
+
+\begin_layout Subsection
+Dataset
+\end_layout
+
+\begin_layout Standard
+We obtained a dataset of genbank data paired with the citation to these
+ datasets, usually by the authors of the dataset.
+ We additionally obtained the network of citations from Microsoft Academic
+ Graph (MAG).
+ A portion of these publications had their DOI associated with them.
+ Because the genbank dataset only had the Pubmed IDs of the publications,
+ we had to additionally find the link between the Pubmed IDs and the DOI.
+\end_layout
+
+\begin_layout Standard
+We hope to find that the measure of important we estiamte is related to
+ something important about the submissions.
+ In our case, we will use the visits to the submissions as a proxy for such
+ important.
+ The National Institutes of Health gratiously provided such data for the
+ month of September 2012 for the top 200 Nucelotied genbank entries.
+ With this information, we will be able to partially validated how our estimatio
+n of important is related to something external.
+ 
+\end_layout
+
+\begin_layout Subsection
+A network model of datasets and publications
+\end_layout
+
+\begin_layout Standard
+We adapt the network model proposed in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "walker2007ranking"
+literal "false"
+
+\end_inset
+
+.
+ In that model, each vertex in the graph was a publication but in our case
+ a vertex can be either a publication or a dataset.
+ Our goal is propagate.
+ 
+\end_layout
+
+\begin_layout Section
+Results
+\end_layout
+
+\begin_layout Subsection
+Optimizing parameters to maximize 
+\begin_inset Formula $R^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /Users/danielacuna/Documents/workspace/datarank/figures/fig1.pdf
+	lyxscale 50
+	width 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Predictability-of-the"
+
+\end_inset
+
+Predictability of the hits per data submission
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Discovering
+\end_layout
+
+\begin_layout Section
+Discussion and conclusion
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "bibliography"
+options "spiebib"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
