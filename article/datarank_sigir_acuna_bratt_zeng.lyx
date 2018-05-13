@@ -260,27 +260,16 @@ citing
  This is a well-known and old practice in science when citing scientific
  articles.
  However, when scientists publish datasets, then there is comparatively
- much less emphasis in performing dataset citations.
- In this work, we adapt a network flow algorithm that accounts for the presence
- of datasets and which assigns a 
-\begin_inset Quotes eld
-\end_inset
-
-score
-\begin_inset Quotes erd
-\end_inset
-
- to them based on how other 
-\end_layout
-
-\begin_layout Abstract
-In this work, we report on preliminary work that adapts network algorithms
- to translate publication citations into data citations.
- We validate our method with real data and dataset usage.
- We show that it is possible to properly give credit to data submissions
- that do not have many direct citations but that are however is high use
- by the scientific community.
- We discuss the implications of our work and future directions.
+ much less emphasis on performing dataset citations.
+ In this work, we adapt a network flow algorithm that simulates a random
+ wallker traversing the network.
+ Importantly, the algorithm initialize the initial probability of nodes
+ distinctively for publications and datasets.
+ We apply this algorithm to combined network of publications and genbank
+ datasets.
+ We found that our method is able to predict better the actual usage of
+ their dataset from the users than simply user the number of direct citations.
+ We discuss the implications of our work for information retrieval.
 \end_layout
 
 \begin_layout ShortAuthors
@@ -369,7 +358,14 @@ Dataset
 We obtained a dataset of genbank data paired with the citation to these
  datasets, usually by the authors of the dataset.
  We additionally obtained the network of citations from Microsoft Academic
- Graph (MAG).
+ Graph (MAG, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Sinha_2015"
+
+\end_inset
+
+).
  A portion of these publications had their DOI associated with them.
  Because the genbank dataset only had the Pubmed IDs of the publications,
  we had to additionally find the link between the Pubmed IDs and the DOI.
@@ -381,7 +377,14 @@ We hope to find that the measure of important we estiamte is related to
  In our case, we will use the visits to the submissions as a proxy for such
  important.
  The National Institutes of Health gratiously provided such data for the
- month of September 2012 for the top 200 Nucelotied genbank entries.
+ month of September 2012 for the top 200 Nucelotied genbank entries 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "benson2008genbank"
+
+\end_inset
+
+.
  With this information, we will be able to partially validated how our estimatio
 n of important is related to something external.
  
@@ -400,18 +403,201 @@ literal "false"
 
 \end_inset
 
-.
+, called CiteRank.
+ This method is inspired by PageRank by solves the issue that citation networks
+ are always directed back in time.
  In that model, each vertex in the graph was a publication but in our case
  a vertex can be either a publication or a dataset.
  Our goal is propagate.
  
 \end_layout
 
+\begin_layout Standard
+The original CiteRank simulates a set of researchers traversing publications
+ through the citation networks.
+ It ranks publications by essentially estimating the average path length
+ taken by researchers who randomly start from a publication as a function
+ of the publication's age and have a probability of stopping at each node.
+ Mathematically, it defines a traffict function 
+\begin_inset Formula $T_{i}(\tau_{\text{pub}},\alpha)$
+\end_inset
+
+ for a given paper.
+ A starting paper is selected randomly with a probability that exponentially
+ decays with a characteristic 
+\begin_inset Formula $\tau_{\text{paper}}$
+\end_inset
+
+.
+ Each time the research moves, it can stop with a probability 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ or continue the search through the citation network with a probability
+ 
+\begin_inset Formula $1-\alpha$
+\end_inset
+
+.
+ The predicted traffict 
+\begin_inset Formula $T_{i}$
+\end_inset
+
+ is proportional to the rate at which the paper is accessed.
+ 
+\end_layout
+
+\begin_layout Standard
+The concrete funcional form that CiteRank proposes is as follows.
+ The probability of starting at the 
+\begin_inset Formula $i$
+\end_inset
+
+th node is 
+\begin_inset Formula 
+\begin{equation}
+\rho_{i}^{\text{CiteRank}}=\exp\left(-\frac{\text{age}_{i}}{\tau_{\text{pub}}}\right)\label{eq:starting-probability}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Then, CiteRank defines a transition matrix from the citation network as
+ follows 
+\begin_inset Formula 
+\begin{equation}
+W_{ij}=\begin{cases}
+\frac{1}{k_{j}^{\text{out}}} & \text{if \ensuremath{j} cites \ensuremath{i}}\\
+0 & \text{o.w.}
+\end{cases}\label{eq:transition-probability}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $k_{j}^{\text{out}}$
+\end_inset
+
+ is the out-degree of the 
+\begin_inset Formula $j$
+\end_inset
+
+th paper.
+\end_layout
+
+\begin_layout Standard
+The average path length to all papers in the network starting from 
+\begin_inset Formula $\rho$
+\end_inset
+
+ is defined as 
+\begin_inset Formula 
+\begin{equation}
+T=I\cdot\rho+(1-\alpha)W\cdot\rho+(1-\alpha)^{2}W^{2}\rho+\cdots\label{eq:average-path-length}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This series can be practically solved until some threshold is achieve after
+ adding the 
+\begin_inset Formula $n$
+\end_inset
+
+th iteration.
+ The parameters 
+\begin_inset Formula $\tau_{\text{paper}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ are typically found by cross validation by using some validation of the
+ traffict as predictable of something external.
+\end_layout
+
+\begin_layout Standard
+In this article, we do a simple extension of the previously described procedure
+ in what we call 
+\emph on
+DataRank
+\emph default
+.
+ The extension considers that the probability of staring at any single node
+ should depend on whether the node is a publication or a datasets.
+ This is, publications and datasets may vary in their relevant period, with
+ publications generally becoming obsolete sooner than publications.
+ Mathematically, we redefine the starting probability of the 
+\begin_inset Formula $i$
+\end_inset
+
+th node as 
+\begin_inset Formula 
+\begin{equation}
+\rho_{i}^{\text{DataRank}}=\begin{cases}
+\exp\left(-\frac{\text{age}_{i}}{\tau_{\text{pub}}}\right) & \text{if \ensuremath{i} is a publication}\\
+\exp\left(-\frac{\text{age}_{i}}{\tau_{\text{dataset}}}\right) & \text{\text{if \ensuremath{i} is a dataset}}
+\end{cases}\label{eq:data-rank-starting}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now, we estimate the traffict in a similar fashion but now the traffict
+ of a node 
+\begin_inset Formula $T_{i}^{\text{DataRank}}(\tau_{\text{pub}},\tau_{\text{dataset}},\alpha)$
+\end_inset
+
+ depends on tree parameters that should be found by crossvalidation with
+ the rest of the components of the method remaining the same (e.g., 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:transition-probability"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:average-path-length"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+\end_layout
+
 \begin_layout Section
 Results
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Standard
+We propose a new method to rank scientific datasets by bootstrapping on
+ the information already containe in the publication citation network.
+ We test our method on a genetic sequencing dataset known as GenBank and
+ we validated that the DataRank—our method—is more predictive of the real
+ traffict to the GenBank entries than the number of publications the dataset
+ has received.
+ This new proposed method bootstrap on information already available to
+ scientists.
+\end_layout
+
+\begin_layout Standard
 Optimizing parameters to maximize 
 \begin_inset Formula $R^{2}$
 \end_inset
@@ -460,7 +646,7 @@ Predictability of the hits per data submission
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Standard
 Discovering
 \end_layout
 
