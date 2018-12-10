@@ -24,6 +24,7 @@ def compute_rho_transitions_bf(vertices, edges, pub_decay_time, data_decay_time)
 def estimate_datarank(rho, transitions_in, transitions_out, alpha, beta, tol=0.01, max_iter=5, checkpoint_interval=2, verbose=False):
     """Estimate datarank based on initial distribution `rho` and transition matrix `M`"""
     rho.persist(StorageLevel.MEMORY_AND_DISK)
+	transitions_in.persist(StorageLevel.MEMORY_AND_DISK)
     transitions_out.persist(StorageLevel.MEMORY_AND_DISK)
     datarank = rho
     current_transitions_in = transitions_in
@@ -52,5 +53,6 @@ def estimate_datarank(rho, transitions_in, transitions_out, alpha, beta, tol=0.0
             break
 
     rho.unpersist()
+	transitions_in.unpersist()
     transitions_out.unpersist()
     return datarank
