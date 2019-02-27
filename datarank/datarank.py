@@ -1,5 +1,6 @@
 from pyspark.sql import functions as fn
-from .matrix_ops import matrix_dot_vector, vector_times_scalar, vector_plus_vector, vector_sub_vector
+#from .matrix_ops import matrix_dot_vector, vector_times_scalar, vector_plus_vector, vector_sub_vector
+from matrix_ops import matrix_dot_vector, vector_times_scalar, vector_plus_vector, vector_sub_vector
 from pyspark.storagelevel import StorageLevel
 
 __all__ = ['compute_rho_transitions', 'estimate_datarank']
@@ -25,7 +26,8 @@ def estimate_datarank(rho, transitions, alpha, tol=0.01, max_iter=5, checkpoint_
     current_sum_term = rho
     for i in range(1, max_iter + 1):
         rho_forward = matrix_dot_vector(current_transitions, current_sum_term)
-        current_sum_term = vector_times_scalar(rho_forward, (1 - alpha) ** i)
+        #current_sum_term = vector_times_scalar(rho_forward, (1 - alpha) ** i)
+        current_sum_term = vector_times_scalar(rho_forward, (1 - alpha))
         new_datarank = vector_plus_vector(datarank, current_sum_term)
         if i % checkpoint_interval == 0:
             new_datarank = new_datarank.persist(StorageLevel.MEMORY_AND_DISK)
