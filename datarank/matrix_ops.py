@@ -4,8 +4,8 @@ from pyspark.sql import functions as fn
 
 def matrix_dot_vector(m, v):
     """Compute m*v where m is a matrix and v is a vector"""
-    return m.join(v.selectExpr('i as j'), on='j'). \
-        groupBy('i').agg(fn.sum('value').alias('value'))
+    return m.join(v.selectExpr('i as j', 'value as v_value'), on='j'). \
+        groupBy('i').agg(fn.sum(fn.col('value') * fn.col('v_value')).alias('value'))
 
 
 def vector_times_scalar(m, scalar):
