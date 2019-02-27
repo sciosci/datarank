@@ -33,10 +33,12 @@ def estimate_datarank(rho, transitions_in, transitions_out, alpha, beta, tol=0.0
     current_sum_term_backward = rho
     for i in range(1, max_iter + 1):
         rho_forward = matrix_dot_vector(current_transitions_out, current_sum_term_forward)
-        current_sum_term_forward = vector_times_scalar(rho_forward, (alpha)**i)
+        #current_sum_term_forward = vector_times_scalar(rho_forward, (alpha)**i)
+        current_sum_term_forward = vector_times_scalar(rho_forward, (alpha))
 
         rho_backward = matrix_dot_vector(current_transitions_in, current_sum_term_backward)
-        current_sum_term_backward = vector_times_scalar(rho_backward, (beta)**i)
+        #current_sum_term_backward = vector_times_scalar(rho_backward, (beta)**i)
+        current_sum_term_backward = vector_times_scalar(rho_backward, (beta))
 
         new_datarank = vector_plus_vector(datarank, current_sum_term_forward)
         new_datarank = vector_plus_vector(new_datarank, current_sum_term_backward)
