@@ -160,6 +160,10 @@ DataRank
 DataRank: giving importance to scientific datasets using publication citations
 \end_layout
 
+\begin_layout Title
+DataRank: assigning cerdit to scientific datasets using citations network
+\end_layout
+
 \begin_layout Author
 Daniel E.
  Acuna
@@ -634,7 +638,7 @@ Now, we estimate the traffict in a similar fashion but now the traffict
 \begin_inset Formula $T_{i}^{\text{DataRank}}(\tau_{\text{pub}},\tau_{\text{dataset}},\alpha)$
 \end_inset
 
- depends on tree parameters that should be found by crossvalidation with
+ depends on three parameters that should be found by crossvalidation with
  the rest of the components of the method remaining the same (e.g., 
 \begin_inset CommandInset ref
 LatexCommand formatted
