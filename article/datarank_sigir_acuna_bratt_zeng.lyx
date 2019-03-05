@@ -408,11 +408,12 @@ Dataset
 \begin_layout Standard
 We obtained a dataset of genbank data paired with the citation to these
  datasets, usually by the authors of the dataset.
- We additionally obtained the network of citations from Microsoft Academic
- Graph (MAG, 
+ We additionally obtained the network of citations from OpenCitation Corpus(OCC,
+ 
 \begin_inset CommandInset citation
-LatexCommand cite
-key "Sinha_2015"
+LatexCommand citep
+key "peroni2015setting"
+literal "false"
 
 \end_inset
 
