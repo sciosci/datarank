@@ -418,7 +418,8 @@ literal "false"
 \end_inset
 
 ).
- A portion of these publications had their DOI associated with them.
+ it cotains almost 450 million DOI-to-DOI(Digital Object Identifiers ) citation
+ links.
  Because the genbank dataset only had the Pubmed IDs of the publications,
  we had to additionally find the link between the Pubmed IDs and the DOI.
 \end_layout
@@ -431,8 +432,9 @@ We hope to find that the measure of important we estiamte is related to
  The National Institutes of Health gratiously provided such data for the
  month of September 2012 for the top 200 Nucelotied genbank entries 
 \begin_inset CommandInset citation
-LatexCommand cite
-key "benson2008genbank"
+LatexCommand citep
+key "benson2012genbank"
+literal "false"
 
 \end_inset
 
