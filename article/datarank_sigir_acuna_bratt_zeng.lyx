@@ -300,8 +300,8 @@ Design/methodology/approach
 \series bold
 Findings
 \series default
- - We conducted our experiments on two networks, one is open citation network,
- the other is a combined network of open citaion and genbank dataset.
+ - We conducted our experiments on two networks, one is OpenCitation network,
+ the other is a combined network of OpenCitation and GenBank dataset.
  both of the experiments' results show that our new algorithm have a more
  accurate assessment for datasets than Google's classic PageRank.
 \end_layout
@@ -320,7 +320,7 @@ Originality/value
 \series bold
 Keywords
 \series default
- DataRank Open citation genBank
+ DataRank OpenCitation GenBank
 \end_layout
 
 \begin_layout ShortAuthors
