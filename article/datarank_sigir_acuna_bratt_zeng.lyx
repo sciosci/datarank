@@ -272,6 +272,57 @@ citing
  We discuss the implications of our work for information retrieval.
 \end_layout
 
+\begin_layout Abstract
+
+\series bold
+Purpose
+\series default
+ - The purpose of this article is to raise concerns about dataset citations,
+ which showes comparatively much less emphasis, while compared with articles
+ citations.
+\end_layout
+
+\begin_layout Abstract
+
+\series bold
+Design/methodology/approach
+\series default
+ - We adapt a network flow algorithm DataRank that simulates a random wallker
+ traversing the network.
+ Importantly, the algorithm initialize the initial probability of nodes
+ distinctively for publications and datasets, correlation was used to measure
+ the relationship between the amount of nodes' download, and the value of
+ nodes.
+\end_layout
+
+\begin_layout Abstract
+
+\series bold
+Findings
+\series default
+ - We conducted our experiments on two networks, one is open citation network,
+ the other is a combined network of open citaion and genbank dataset.
+ both of the experiments' results show that our new algorithm have a more
+ accurate assessment for datasets than Google's classic PageRank.
+\end_layout
+
+\begin_layout Abstract
+
+\series bold
+Originality/value
+\series default
+ - A reasonable evaluation of the datasets will allow more and more authors
+ to disclose their data results and be happy to maintain their datasets.
+\end_layout
+
+\begin_layout Abstract
+
+\series bold
+Keywords
+\series default
+ DataRank Open citation genBank
+\end_layout
+
 \begin_layout ShortAuthors
 Acuna et al.
 \end_layout
@@ -387,7 +438,6 @@ key "benson2008genbank"
 .
  With this information, we will be able to partially validated how our estimatio
 n of important is related to something external.
- 
 \end_layout
 
 \begin_layout Subsection
@@ -444,7 +494,6 @@ The original CiteRank simulates a set of researchers traversing publications
 \end_inset
 
  is proportional to the rate at which the paper is accessed.
- 
 \end_layout
 
 \begin_layout Standard
