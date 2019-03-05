@@ -406,7 +406,18 @@ Dataset
 \end_layout
 
 \begin_layout Standard
-We obtained a dataset of genbank data paired with the citation to these
+GenBank is an open access dataset that contains annotated collection of
+ all publicly available nucleotide sequences for almost 260 000 formally
+ described species
+\begin_inset CommandInset citation
+LatexCommand citep
+key "benson2012genbank"
+literal "false"
+
+\end_inset
+
+.
+ We obtained a dataset of genbank data paired with the citation to these
  datasets, usually by the authors of the dataset.
  We additionally obtained the network of citations from OpenCitation Corpus(OCC,
  
@@ -419,9 +430,9 @@ literal "false"
 
 ).
  it cotains almost 450 million DOI-to-DOI(Digital Object Identifiers ) citation
- links.
- Because the genbank dataset only had the Pubmed IDs of the publications,
- we had to additionally find the link between the Pubmed IDs and the DOI.
+ links.Because the genbank dataset only had the Pubmed IDs of the publications,
+ in our second experiment, we had to additionally find the link between
+ the Pubmed IDs and the DOI.
 \end_layout
 
 \begin_layout Standard
@@ -429,8 +440,21 @@ We hope to find that the measure of important we estiamte is related to
  something important about the submissions.
  In our case, we will use the visits to the submissions as a proxy for such
  important.
- The National Institutes of Health gratiously provided such data for the
- month of September 2012 for the top 200 Nucelotied genbank entries 
+ a portion DOI in OCC comes from FigShare
+\begin_inset CommandInset citation
+LatexCommand citep
+key "singh2011figshare"
+literal "false"
+
+\end_inset
+
+, an online open access repository where researchers can preserve and share
+ their research outputs, including figures, datasets and media.
+ We can crawl the visits of every submission through its webesite(https://stats.f
+igshare.com/total/downloads/article).
+ Meanwhile, the National Institutes of Health gratiously provided such data
+ for the month of September 2012 for the top 200 Nucelotied genbank entries
+ 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "benson2012genbank"
@@ -438,9 +462,9 @@ literal "false"
 
 \end_inset
 
-.
- With this information, we will be able to partially validated how our estimatio
-n of important is related to something external.
+ .
+ With all these informations, we will be able to partially validated how
+ our estimation of important is related to something external.
 \end_layout
 
 \begin_layout Subsection
