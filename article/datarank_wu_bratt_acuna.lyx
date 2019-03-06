@@ -4,29 +4,14 @@
 \begin_header
 \save_transient_properties true
 \origin unavailable
-\textclass acmart
+\textclass article
 \begin_preamble
-% For algorithm2e
-\renewcommand{\algorithmcfname}{ALGORITHM}
-\SetAlFnt{\small}
-\SetAlCapFnt{\small}
-\SetAlCapNameFnt{\small}
-\SetAlCapHSkip{0pt}
-\IncMargin{-\parindent}
+\usepackage{mathptmx}
 \end_preamble
-\options format=sigconf, review=false, screen=true
-\use_default_options false
-\begin_modules
-InStar
-algorithm2e
-\end_modules
+\use_default_options true
 \maintain_unincluded_children false
-\begin_local_layout
-Format 60
-PackageOptions algorithm2e ruled
-\end_local_layout
 \language english
-\language_package auto
+\language_package default
 \inputencoding auto
 \fontencoding global
 \font_roman "default" "default"
@@ -50,7 +35,7 @@ PackageOptions algorithm2e ruled
 \spacing single
 \use_hyperref false
 \papersize default
-\use_geometry true
+\use_geometry false
 \use_package amsmath 1
 \use_package amssymb 1
 \use_package cancel 1
@@ -62,8 +47,8 @@ PackageOptions algorithm2e ruled
 \use_package stmaryrd 1
 \use_package undertilde 1
 \cite_engine natbib
-\cite_engine_type numerical
-\biblio_style plainnat
+\cite_engine_type authoryear
+\biblio_style apalike
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
@@ -95,157 +80,57 @@ PackageOptions algorithm2e ruled
 
 \begin_body
 
-\begin_layout In Preamble
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Metadata information:
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout ACM Year
-2018
-\end_layout
-
-\begin_layout Copyright Year
-2018
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-acmConference[DATA:SEARCH'18]{International Workshop on Data Search }{July
- 2018}{Ann Arbor, Michigan}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Set Copyright
-rightsretained
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-acmcopyright,rightsretained,usgov,usgovmixed,cagov,cagovmixed
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Title
-\begin_inset Argument 1
-status open
 
-\begin_layout Plain Layout
+\shape smallcaps
 DataRank
-\end_layout
-
-\end_inset
-
-DataRank: giving importance to scientific datasets using publication citations
-\end_layout
-
-\begin_layout Title
-DataRank: assigning cerdit to scientific datasets using citations network
+\shape default
+: assigning credit to scientific datasets using citations networks
 \end_layout
 
 \begin_layout Author
+Longfeng Wu, Sarah Bratt
+\begin_inset Formula $^{1}$
+\end_inset
+
+, 
+\begin_inset Newline newline
+\end_inset
+
 Daniel E.
  Acuna
-\begin_inset Formula $^{*}$
+\begin_inset Formula $^{1,}$
 \end_inset
 
 
-\end_layout
-
-\begin_layout Author
-Sarah Bratt
-\end_layout
-
-\begin_layout Author
-Tong Zeng
-\end_layout
-
-\begin_layout Affiliation
-\begin_inset Flex Institution
+\begin_inset Foot
 status open
 
 \begin_layout Plain Layout
-School of Information Studies, Syracuse University
-\end_layout
-
-\end_inset
-
-
-\begin_inset Flex Street Address
+Corresponding author: 
+\begin_inset Flex URL
 status open
 
 \begin_layout Plain Layout
-312 Hinds Hall
-\end_layout
 
-\end_inset
-
-
-\begin_inset Flex City
-status open
-
-\begin_layout Plain Layout
-Syracuse
-\end_layout
-
-\end_inset
-
-
-\begin_inset Flex State
-status open
-
-\begin_layout Plain Layout
-NY
-\end_layout
-
-\end_inset
-
-
-\begin_inset Flex Postal Code
-status open
-
-\begin_layout Plain Layout
-13244
-\end_layout
-
-\end_inset
-
-
-\begin_inset Flex Country
-status open
-
-\begin_layout Plain Layout
-USA
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Email
 deacuna@syr.edu
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Date
+\begin_inset Formula $^{1}$
+\end_inset
+
+School of Information Studies, Syracuse University
 \end_layout
 
 \begin_layout Abstract
@@ -263,16 +148,28 @@ citing
  other nodes.
  This is a well-known and old practice in science when citing scientific
  articles.
- However, when scientists publish datasets, then there is comparatively
- much less emphasis on performing dataset citations.
+ However, there is comparatively much less emphasis on performing dataset
+ citations.
  In this work, we adapt a network flow algorithm that simulates a random
- wallker traversing the network.
- Importantly, the algorithm initialize the initial probability of nodes
- distinctively for publications and datasets.
- We apply this algorithm to combined network of publications and genbank
- datasets.
- We found that our method is able to predict better the actual usage of
- their dataset from the users than simply user the number of direct citations.
+ walker traversing the citation network.
+ Importantly, the random walker has distinctive behavior when moving to
+ a publication node compared to dataset node.
+ Called 
+\shape smallcaps
+DataRank
+\shape default
+, we apply our algorithm to a combined network of publications and Genbank
+ datasets, and Figshare datasets.
+ We compared 
+\shape smallcaps
+DataRank
+\shape default
+ to 
+\shape smallcaps
+PageRank
+\shape default
+ and other variations, and we show that our method is better able to predict
+ actual download and web visits of the dataset than alternatives.
  We discuss the implications of our work for information retrieval.
 \end_layout
 
@@ -281,9 +178,8 @@ citing
 \series bold
 Purpose
 \series default
- - The purpose of this article is to raise concerns about dataset citations,
- which showes comparatively much less emphasis, while compared with articles
- citations.
+ - The purpose of this article is to better credit dataset usage through
+ the analysis of citation networks.
 \end_layout
 
 \begin_layout Abstract
@@ -291,12 +187,13 @@ Purpose
 \series bold
 Design/methodology/approach
 \series default
- - We adapt a network flow algorithm DataRank that simulates a random wallker
- traversing the network.
- Importantly, the algorithm initialize the initial probability of nodes
- distinctively for publications and datasets, correlation was used to measure
- the relationship between the amount of nodes' download, and the value of
- nodes.
+ - We adapt a network flow algorithm which we call 
+\shape smallcaps
+DataRank
+\shape default
+ to simulate a random walker traversing the network.
+ We evaluate a number of algorithms on their ability to predict actual downloads
+ and web visits to the datasets.
 \end_layout
 
 \begin_layout Abstract
@@ -304,10 +201,18 @@ Design/methodology/approach
 \series bold
 Findings
 \series default
- - We conducted our experiments on two networks, one is OpenCitation network,
- the other is a combined network of OpenCitation and GenBank dataset.
- both of the experiments' results show that our new algorithm have a more
- accurate assessment for datasets than Google's classic PageRank.
+ - We conducted our experiments on two networks, one is OpenCitation network
+ and FigShare datasets and the other is a combined network of OpenCitation
+ and GenBank dataset.
+ In both of these experiments, 
+\shape smallcaps
+DataRank
+\shape default
+ is more accurate at predicting actual usage than Google's classic 
+\shape smallcaps
+PageRank
+\shape default
+.
 \end_layout
 
 \begin_layout Abstract
@@ -315,8 +220,8 @@ Findings
 \series bold
 Originality/value
 \series default
- - A reasonable evaluation of the datasets will allow more and more authors
- to disclose their data results and be happy to maintain their datasets.
+ - A reasonable evaluation of the datasets will allow to properly give credit
+ to datasets if they are not cited.
 \end_layout
 
 \begin_layout Abstract
@@ -324,11 +229,7 @@ Originality/value
 \series bold
 Keywords
 \series default
- DataRank OpenCitation GenBank
-\end_layout
-
-\begin_layout ShortAuthors
-Acuna et al.
+ DataRank OpenCitation GenBank FigShare
 \end_layout
 
 \begin_layout Section
@@ -349,11 +250,11 @@ Getting credit publishing scientific articles and datasets should be equally
  the citation network of publications.
  Therefore, it does not rely on scientists explicitly citing dataset more
  than just the initial scientists.
- Giving credit to properly created dataset could therefore be made feasiable.
+ Giving credit to properly created dataset could therefore be made feasible.
 \end_layout
 
 \begin_layout Standard
-Credit assignmnent
+Credit assignment
 \end_layout
 
 \begin_layout Standard
@@ -365,12 +266,12 @@ Datasets are an increasingly important asset of scientific production yet
 \emph on
 altmetrics
 \emph default
- [cite].
+.
  For example, 
 \emph on
-impactstory 
+impactstory
 \emph default
-[cite] is a company that aims at producing things that are important.
+ is a company that aims at producing things that are important.
 \end_layout
 
 \begin_layout Standard
@@ -387,16 +288,16 @@ key "walker2007ranking"
 
 .
  In particular, our method estimate the average length of a random walker
- to the graph network, which considers that the obsolenseance rate of publicatio
-ns and datsets is different.
+ to the graph network, which considers that the obsolescence rate of publication
+s and datasets is different.
  Using a dataset of genbank submissions and the publications associated
  with them and the network of publications from the Microsoft Academic Graph,
  we estimate the rank of the datasets.
- We crossvalidate by using the actual visits to the web pages containing
+ We cross-validate by using the actual visits to the web pages containing
  the description of the datasets — almost as close to reality as we could
  get.
  When compared to the simple citations that we are able to predict for the
- submissions, we show that our method is significatnly better at making
+ submissions, we show that our method is significantly better at making
  the visits prediction.
  We discuss the implications of our method for future projects.
 \end_layout
@@ -433,14 +334,14 @@ literal "false"
 \end_inset
 
 ).
- it cotains almost 450 million DOI-to-DOI(Digital Object Identifiers ) citation
- links.Because the genbank dataset only had the Pubmed IDs of the publications,
- in our second experiment, we had to additionally find the link between
- the Pubmed IDs and the DOI.
+ It contains almost 450 million DOI-to-DOI(Digital Object Identifiers )
+ citation links.Because the genbank dataset only had the Pubmed IDs of the
+ publications, in our second experiment, we had to additionally find the
+ link between the Pubmed IDs and the DOI.
 \end_layout
 
 \begin_layout Standard
-We hope to find that the measure of important we estiamte is related to
+We hope to find that the measure of important we estimate is related to
  something important about the submissions.
  In our case, we will use the visits to the submissions as a proxy for such
  important.
@@ -454,9 +355,9 @@ literal "false"
 
 , an online open access repository where researchers can preserve and share
  their research outputs, including figures, datasets and media.
- We can crawl the visits of every submission through its webesite(https://stats.f
+ We can crawl the visits of every submission through its website (https://stats.f
 igshare.com/total/downloads/article).
- Meanwhile, the National Institutes of Health gratiously provided such data
+ Meanwhile, the National Institutes of Health graciously provided such data
  for the month of September 2012 for the top 200 Nucelotied genbank entries
  
 \begin_inset CommandInset citation
@@ -499,7 +400,7 @@ The original CiteRank simulates a set of researchers traversing publications
  It ranks publications by essentially estimating the average path length
  taken by researchers who randomly start from a publication as a function
  of the publication's age and have a probability of stopping at each node.
- Mathematically, it defines a traffict function 
+ Mathematically, it defines a traffic function 
 \begin_inset Formula $T_{i}(\tau_{\text{pub}},\alpha)$
 \end_inset
 
@@ -520,7 +421,7 @@ The original CiteRank simulates a set of researchers traversing publications
 \end_inset
 
 .
- The predicted traffict 
+ The predicted traffic 
 \begin_inset Formula $T_{i}$
 \end_inset
 
@@ -528,7 +429,7 @@ The original CiteRank simulates a set of researchers traversing publications
 \end_layout
 
 \begin_layout Standard
-The concrete funcional form that CiteRank proposes is as follows.
+The concrete functional form that CiteRank proposes is as follows.
  The probability of starting at the 
 \begin_inset Formula $i$
 \end_inset
@@ -600,15 +501,15 @@ th iteration.
 \end_inset
 
  are typically found by cross validation by using some validation of the
- traffict as predictable of something external.
+ traffic as predictable of something external.
 \end_layout
 
 \begin_layout Standard
 In this article, we do a simple extension of the previously described procedure
  in what we call 
-\emph on
+\shape smallcaps
 DataRank
-\emph default
+\shape default
 .
  The extension considers that the probability of staring at any single node
  should depend on whether the node is a publication or a datasets.
@@ -633,12 +534,12 @@ th node as
 \end_layout
 
 \begin_layout Standard
-Now, we estimate the traffict in a similar fashion but now the traffict
- of a node 
+Now, we estimate the traffic in a similar fashion but now the traffic of
+ a node 
 \begin_inset Formula $T_{i}^{\text{DataRank}}(\tau_{\text{pub}},\tau_{\text{dataset}},\alpha)$
 \end_inset
 
- depends on three parameters that should be found by crossvalidation with
+ depends on three parameters that should be found by cross-validation with
  the rest of the components of the method remaining the same (e.g., 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -668,11 +569,14 @@ Results
 
 \begin_layout Standard
 We propose a new method to rank scientific datasets by bootstrapping on
- the information already containe in the publication citation network.
+ the information already contains in the publication citation network.
  We test our method on a genetic sequencing dataset known as GenBank and
- we validated that the DataRank—our method—is more predictive of the real
- traffict to the GenBank entries than the number of publications the dataset
- has received.
+ we validated that the 
+\shape smallcaps
+DataRank
+\shape default
+—our method—is more predictive of the real traffic to the GenBank entries
+ than the number of publications the dataset has received.
  This new proposed method bootstrap on information already available to
  scientists.
 \end_layout
@@ -734,77 +638,16 @@ Discovering
 Discussion and conclusion
 \end_layout
 
-\begin_layout Acknowledgments
-\start_of_appendix
+\begin_layout Section*
+Acknowledgements
+\end_layout
+
+\begin_layout Standard
 The authors would like to thank the Dr.
  Kim Pruitt from National Center for Biotechnology Information, NLM, NIH,
  DHHS.
-\end_layout
-
-\begin_layout Acknowledgments
-The work is supported by the 
-\begin_inset Flex Grant Sponsor
-status open
-
-\begin_layout Plain Layout
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-NSF:SMA
-\end_layout
-
-\end_inset
-
-
-\begin_inset Argument 2
-status open
-
-\begin_layout Plain Layout
-National Science Foundation
-\end_layout
-
-\end_inset
-
-
-\begin_inset Argument 3
-status open
-
-\begin_layout Plain Layout
-https://www.nsf.gov/awardsearch/showAward?AWD_ID=1646763
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
- under Grant No.:
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset Flex Grant Number
-status open
-
-\begin_layout Plain Layout
-\begin_inset Argument 2
-status open
-
-\begin_layout Plain Layout
-NSF:SMA
-\end_layout
-
-\end_inset
-
-1646763
-\end_layout
-
-\end_inset
-
-.
+ Daniel E.
+ Acuna was partially funded by the National Science Foundation awards #1800956.
 \end_layout
 
 \begin_layout Standard
@@ -812,7 +655,7 @@ NSF:SMA
 LatexCommand bibtex
 btprint "btPrintCited"
 bibfiles "bibliography"
-options "ACM-Reference-Format"
+options "apalike"
 
 \end_inset
 
