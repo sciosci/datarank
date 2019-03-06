@@ -311,6 +311,12 @@ Dataset
 \end_layout
 
 \begin_layout Standard
+
+\series bold
+GenBank
+\end_layout
+
+\begin_layout Standard
 GenBank is an open access dataset that contains annotated collection of
  all publicly available nucleotide sequences for almost 260 000 formally
  described species
@@ -322,10 +328,60 @@ literal "false"
 \end_inset
 
 .
- We obtained a dataset of genbank data paired with the citation to these
- datasets, usually by the authors of the dataset.
- We additionally obtained the network of citations from OpenCitation Corpus(OCC,
- 
+ The figure below shows the format of GenBank's sample data.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename E:/WLF/research/datarank/dataProcess/datarank/figures/genbank3.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+sample data of genbank
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+the sample data has many fields as listed, but in our task, we only take
+ ACCESSION(the identifier in genbank), REFERENCE's relevant information.
+ The last citation in the REFERENCE , the one's title is 'Direct Submission',
+ often contains information about the submitter of the sequence.
+ We can also extract the time when this sequence is submitted.We obtained
+ a dataset of genbank data paired with the citation to these datasets, usually
+ by the authors of the dataset through the field of REFERENCE.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+OpenCitation Corpus
+\end_layout
+
+\begin_layout Standard
+OpenCitation Corpus(OCC) is the OpenCitations Index of Crossref open DOI-to-DOI
+ references
 \begin_inset CommandInset citation
 LatexCommand citep
 key "peroni2015setting"
@@ -333,19 +389,20 @@ literal "false"
 
 \end_inset
 
-).
+.
  It contains almost 450 million DOI-to-DOI(Digital Object Identifiers )
- citation links.Because the genbank dataset only had the Pubmed IDs of the
- publications, in our second experiment, we had to additionally find the
- link between the Pubmed IDs and the DOI.
+ citation links.
 \end_layout
 
 \begin_layout Standard
-We hope to find that the measure of important we estimate is related to
- something important about the submissions.
- In our case, we will use the visits to the submissions as a proxy for such
- important.
- a portion DOI in OCC comes from FigShare
+
+\series bold
+FigShare
+\end_layout
+
+\begin_layout Standard
+FigShare is an online open access repository where researchers can preserve
+ and share their research outputs, including figures, datasets and media
 \begin_inset CommandInset citation
 LatexCommand citep
 key "singh2011figshare"
@@ -353,8 +410,22 @@ literal "false"
 
 \end_inset
 
-, an online open access repository where researchers can preserve and share
- their research outputs, including figures, datasets and media.
+.
+\end_layout
+
+\begin_layout Standard
+We additionally obtained the network of citations from OpenCitation Corpus.Becaus
+e the genbank dataset only had the Pubmed IDs of the publications, in our
+ second experiment, we had to additionally find the link between the Pubmed
+ IDs and the DOI.
+\end_layout
+
+\begin_layout Standard
+We hope to find that the measure of important we estimate is related to
+ something important about the submissions.
+ In our case, we will use the visits to the submissions as a proxy for such
+ important.
+ a portion DOI in OCC comes from FigShare.
  We can crawl the visits of every submission through its website (https://stats.f
 igshare.com/total/downloads/article).
  Meanwhile, the National Institutes of Health graciously provided such data
