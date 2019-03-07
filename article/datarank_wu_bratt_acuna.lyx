@@ -340,6 +340,7 @@ status open
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename E:/WLF/research/datarank/dataProcess/datarank/figures/genbank3.png
+	width 100text%
 
 \end_inset
 
@@ -365,7 +366,8 @@ sample data of genbank
 
 \begin_layout Standard
 the sample data has many fields as listed, but in our task, we only take
- ACCESSION(the identifier in genbank), REFERENCE's relevant information.
+ ACCESSION(the identifier in genbank), REFERENCE's relevant information(authors,
+ title, journal and pubmed).
  The last citation in the REFERENCE , the one's title is 'Direct Submission',
  often contains information about the submitter of the sequence.
  We can also extract the time when this sequence is submitted.We obtained
