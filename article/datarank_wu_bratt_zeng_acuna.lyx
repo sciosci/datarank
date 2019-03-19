@@ -380,11 +380,20 @@ sample data of genbank
 the sample data has many fields as listed, but in our task, we only take
  ACCESSION(the identifier in genbank), REFERENCE's relevant information(authors,
  title, journal and pubmed).
- The last citation in the REFERENCE , the one's title is 'Direct Submission',
+ The last citation in the REFERENCE, the one's title is 'Direct Submission',
  often contains information about the submitter of the sequence.
  We can also extract the time when this sequence is submitted.We obtained
  a dataset of genbank data paired with the citation to these datasets, usually
  by the authors of the dataset through the field of REFERENCE.
+\end_layout
+
+\begin_layout Standard
+We've downloaded a genbank database of 212,260,377 gene sequences(version
+ 230), and at the end of processing, includes extract valid information
+ and transfer Pubmed IDs to DOI, because the genbank dataset only had the
+ Pubmed IDs of the publications, we had to additionally find the link between
+ the Pubmed IDs and the DOI.
+ at last, we've got 32,353,710 citations and 26,010,724 gene sequences.
 \end_layout
 
 \begin_layout Standard
@@ -404,8 +413,35 @@ literal "false"
 \end_inset
 
 .
+ It using the technologies of semantic web to create an open repository
+ for scholarly citation data that publishers have made available.
+ It is dedicated to providing accurate citation data that others can freely
+ build upon, enhance and reuse for any purpose, without the restriction
+ of copyright and database accession
+\begin_inset CommandInset citation
+LatexCommand citep
+key "shotton2013publishing"
+literal "false"
+
+\end_inset
+
+.
  It contains almost 450 million DOI-to-DOI(Digital Object Identifiers )
- citation links.
+ citation links and is believed that it's the largest truly open corpus
+ of RDF-based citation data available on the network
+\begin_inset CommandInset citation
+LatexCommand citep
+key "peroni2017one"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+After processing, we fianlly got 441,432,288 citations and 83,698,796 unique
+ resources.
 \end_layout
 
 \begin_layout Standard
@@ -428,18 +464,11 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-We additionally obtained the network of citations from OpenCitation Corpus.Becaus
-e the genbank dataset only had the Pubmed IDs of the publications, in our
- second experiment, we had to additionally find the link between the Pubmed
- IDs and the DOI.
-\end_layout
-
-\begin_layout Standard
 We hope to find that the measure of important we estimate is related to
  something important about the submissions.
  In our case, we will use the visits to the submissions as a proxy for such
  important.
- a portion DOI in OCC comes from FigShare.
+ a portion DOI in OCC comes from FigShare(949).
  We can crawl the visits of every submission through its website (https://stats.f
 igshare.com/total/downloads/article).
  Meanwhile, the National Institutes of Health graciously provided such data
@@ -455,6 +484,56 @@ literal "false"
  .
  With all these informations, we will be able to partially validated how
  our estimation of important is related to something external.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename E:/WLF/research/datarank/dataProcess/datarank/figures/F1B_figshare_downloads_nodes.pdf
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename E:/WLF/research/datarank/dataProcess/datarank/figures/F1B_genbank_downloads_nodes.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+pdf of downloads
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Construction of the citation network
+\end_layout
+
+\begin_layout Standard
+We obtained the network of citations from OpenCitation Corpus.
 \end_layout
 
 \begin_layout Subsection
