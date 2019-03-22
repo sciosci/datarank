@@ -377,23 +377,26 @@ sample data of genbank
 \end_layout
 
 \begin_layout Standard
-the sample data has many fields as listed, but in our task, we only take
- ACCESSION(the identifier in genbank), REFERENCE's relevant information(authors,
- title, journal and pubmed).
- The last citation in the REFERENCE, the one's title is 'Direct Submission',
- often contains information about the submitter of the sequence.
- We can also extract the time when this sequence is submitted.We obtained
- a dataset of genbank data paired with the citation to these datasets, usually
- by the authors of the dataset through the field of REFERENCE.
+the sample data has many fields as listed in Figure1, but in our task, we
+ only take ACCESSION(the identifier in genbank) and REFERENCE's relevant
+ information(authors, title, journal and pubmed) into considertaion.
+ The last citation in the REFERENCE, with which the title is 'Direct Submission'
+, often contains information about the submitter of the sequence, meanwhile
+ we can also extract the time when this sequence is submitted by the field
+ of JOURNAL, which is necessary in our algorithm.
+ Ingore the last citation, we obtain a dataset of genbank data paired with
+ the citation to these datasets, usually by the authors of the dataset through
+ the field of REFERENCE.
 \end_layout
 
 \begin_layout Standard
 We've downloaded a genbank database of 212,260,377 gene sequences(version
  230), and at the end of processing, includes extract valid information
  and transfer Pubmed IDs to DOI, because the genbank dataset only had the
- Pubmed IDs of the publications, we had to additionally find the link between
+ Pubmed IDs of the publications, we have to additionally find the link between
  the Pubmed IDs and the DOI.
- at last, we've got 32,353,710 citations and 25,888,648 gene sequences.
+ at last, we've got 32,353,710 citations and 25,888,648 gene sequences,
+ which supply us with the citation between papers and datasets.
 \end_layout
 
 \begin_layout Standard
@@ -427,8 +430,8 @@ literal "false"
 
 .
  It contains almost 450 million DOI-to-DOI(Digital Object Identifiers )
- citation links and is believed that it's the largest truly open corpus
- of RDF-based citation data available on the network
+ citation links and is generally believed that it's the largest truly open
+ corpus of RDF-based citation data available on the network
 \begin_inset CommandInset citation
 LatexCommand citep
 key "peroni2017one"
@@ -440,8 +443,59 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-After processing, we fianlly got 441,432,288 citations and 44,229,769 unique
- resources.
+Because OCC already formatted in the form of citation between two DOI.
+ for example, if there are three DOIs: 
+\begin_inset Formula $D_{i},D_{j}$
+\end_inset
+
+and 
+\begin_inset Formula $D_{k}$
+\end_inset
+
+, 
+\begin_inset Formula $D_{i}$
+\end_inset
+
+ cites both 
+\begin_inset Formula $D_{j}$
+\end_inset
+
+ and 
+\begin_inset Formula $D_{k}$
+\end_inset
+
+, we will get two records in OCC, the first one is 
+\begin_inset Formula $D_{i}$
+\end_inset
+
+ to 
+\begin_inset Formula $D_{j}$
+\end_inset
+
+, and second is 
+\begin_inset Formula $D_{i}$
+\end_inset
+
+ to 
+\begin_inset Formula $D_{k}$
+\end_inset
+
+, this kind of data form transforms the citation into a relationship between
+ nodes well.
+ Under this circumstance, the only thing we need to do is to make sure when
+ the node, that's to say DOI, is created.
+ We acquire this information through OpenCitation and Microsoft Academic
+ Graph(MAG)
+\begin_inset CommandInset citation
+LatexCommand citep
+key "sinha2015overview"
+literal "false"
+
+\end_inset
+
+.
+ After such kind of selection, we fianlly got 441,432,288 citations and
+ 44,229,769 unique resources.
 \end_layout
 
 \begin_layout Standard
@@ -451,8 +505,9 @@ FigShare
 \end_layout
 
 \begin_layout Standard
-FigShare is an online open access repository where researchers can preserve
- and share their research outputs, including figures, datasets and media
+FigShare is an online open access multidisciplinary repository where researchers
+ can deposit and share their electronic information, including figures,
+ datasets and media
 \begin_inset CommandInset citation
 LatexCommand citep
 key "singh2011figshare"
@@ -461,18 +516,28 @@ literal "false"
 \end_inset
 
 .
+ Different categories, different types of resource to be uploaded to FigShare,
+ and is the mainstream representative of such versatile resources.
+ FigShare aims to encourage people to share data, so the amount of free
+ storage space for private use is limited, but when it comes to public use,
+ like sharing resources, the free storage space is unlimited.
+ When a user makes an uploaded resource publicly available, FigShare will
+ immediately assign a DOI to this resource.
+ Each DOI of figshare has a special mark, that is, the string of 'figshare'
+ is embedded in DOI, like 'https://doi.org/10.6084/m9.figshare.6741260', so
+ we can easily determine whether the DOI is from figshare.
 \end_layout
 
 \begin_layout Standard
 We hope to find that the measure of important we estimate is related to
  something important about the submissions.
- In our case, we will use the visits to the submissions as a proxy for such
- important.
- a portion DOI in OCC comes from FigShare(949).
- We can crawl the visits of every submission through its website (https://stats.f
-igshare.com/total/downloads/article).
+ In our case, we will use the downloads of the submissions as a proxy for
+ such importantance.
+ A portion DOI (about 949) in OCC comes from FigShare.
+ We can crawl the downloads and creation time of every figshare DOI through
+ its website (https://stats.figshare.com/total/downloads/article).
  Meanwhile, the National Institutes of Health graciously provided such data
- for the month of September 2012 for the top 200 Nucelotied genbank entries
+ for the month of September 2012 for the top 1000 Nucelotied genbank entries
  
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -487,6 +552,11 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
+Based on the downloads data of figshare and genbank, we draw probability
+ density functions(pdf) of them respectively in Figure2.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -495,12 +565,14 @@ status open
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename E:/WLF/research/datarank/dataProcess/datarank/figures/F1B_figshare_downloads_nodes.pdf
+	width 48text%
 
 \end_inset
 
 
 \begin_inset Graphics
 	filename E:/WLF/research/datarank/dataProcess/datarank/figures/F1B_genbank_downloads_nodes.pdf
+	width 48text%
 
 \end_inset
 
@@ -511,15 +583,11 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-pdf of downloads
+Probability density function of downloads
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
