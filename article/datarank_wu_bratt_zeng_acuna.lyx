@@ -554,6 +554,15 @@ literal "false"
 \begin_layout Standard
 Based on the downloads data of figshare and genbank, we draw probability
  density functions(pdf) of them respectively in Figure2.
+ Because of the limited amount of data, the disturbance of small downloads
+ is relatively large, which we can clearly see from the figures.
+ The latter part of the data tends to be flat, mainly due to the long tail
+ phenomenon, which means comparing with normal datasets, datasets that have
+ been frequently downloaded are pretty small.
+ Exclude these two pieces of data, we can find that the points in the figure
+ clearly show a linear correlation.
+ This means the download probability of a dataset is predictable, which
+ makes our mission possible.
 \end_layout
 
 \begin_layout Standard
@@ -623,7 +632,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename E:/WLF/research/datarank/dataProcess/datarank/figures/F1A_sampleData_arrow-crop.pdf
+	filename E:/WLF/research/datarank/dataProcess/datarank/figures/F1A_sampleData_colored.pdf
 
 \end_inset
 
