@@ -494,8 +494,8 @@ literal "false"
 \end_inset
 
 .
- After such kind of selection, we fianlly got 441,432,288 citations and
- 44,229,769 unique resources.
+ All nodes without the field of year are excluded, after such kind of selection,
+ we fianlly got 441,432,288 citations and 44,229,769 unique resources.
 \end_layout
 
 \begin_layout Standard
@@ -614,14 +614,13 @@ We constructed a directed network of citations primarily on the basis of
  OpenCitation Corpus, additionally, we combine some other citation between
  dataset and paper extracted from GenBank as we methioned before, which
  eventually turn out to be a tremendous citation network.
- In this citation network, references indicate the direction of the edge,
- and each node represent one dataset or paper.
+ In this citation network, each node represent one dataset or paper, the
+ edges with direction illustrate the citation relations between nodes.
 \end_layout
 
 \begin_layout Standard
 For the purpose of exploring this network more intuitively, we sample about
- 1 thousand nodes 1.5 thousand edges from network and as shown in Figure
- 3.
+ 1 thousand nodes 1.5 thousand edges from network and show it in Figure 3.
 \end_layout
 
 \begin_layout Standard
@@ -663,6 +662,8 @@ In Figure 3, different color means different type of resources, red nodes
  From Figure 3, we can easily find out four patterns when papers cites datasets(
 dataset can't cite anything): one-to-one, one-to-many, many-to-one and many-to-m
 any.
+ The network can provide a better understanding of how knowledge is diffused,
+ and directions of edges repersent the direction of knowledge flow.
 \end_layout
 
 \begin_layout Subsection
