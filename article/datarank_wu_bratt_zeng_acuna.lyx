@@ -351,7 +351,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename E:/WLF/research/datarank/dataProcess/datarank/figures/genbank3.png
+	filename ../figures/genbank3.png
 	width 100text%
 
 \end_inset
@@ -573,14 +573,14 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename E:/WLF/research/datarank/dataProcess/datarank/figures/F1B_figshare_downloads_nodes.pdf
+	filename ../figures/F1B_figshare_downloads_nodes.pdf
 	width 48text%
 
 \end_inset
 
 
 \begin_inset Graphics
-	filename E:/WLF/research/datarank/dataProcess/datarank/figures/F1B_genbank_downloads_nodes.pdf
+	filename ../figures/F1B_genbank_downloads_nodes.pdf
 	width 48text%
 
 \end_inset
@@ -631,7 +631,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename E:/WLF/research/datarank/dataProcess/datarank/figures/F1A_sampleData_colored.pdf
+	filename ../figures/F1A_sampleData_colored.pdf
 
 \end_inset
 
@@ -723,7 +723,13 @@ The original CiteRank simulates a set of researchers traversing publications
 \end_layout
 
 \begin_layout Standard
-The concrete functional form that CiteRank proposes is as follows.
+The concrete functional form that 
+\series bold
+\shape smallcaps
+DataRank
+\series default
+\shape default
+ proposes is as follows.
  The probability of starting at the 
 \begin_inset Formula $i$
 \end_inset
@@ -740,8 +746,13 @@ th node is
 \end_layout
 
 \begin_layout Standard
-Then, CiteRank defines a transition matrix from the citation network as
- follows 
+Then, 
+\series bold
+\shape smallcaps
+DataRank
+\series default
+\shape default
+ defines a transition matrix from the citation network as follows 
 \begin_inset Formula 
 \begin{equation}
 W_{ij}=\begin{cases}
@@ -855,6 +866,27 @@ noprefix "false"
 \end_inset
 
 ).
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape smallcaps
+DataRank-FB:
+\shape default
+ describe the modification of the original datarank.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Page rank: (one dumping factor)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Modified-page rank: (with two damping factors)
 \end_layout
 
 \begin_layout Section
