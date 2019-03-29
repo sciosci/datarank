@@ -1037,6 +1037,69 @@ PageRank
 \end_layout
 
 \begin_layout Standard
+PagaRank is an well known and widely used webpage ranking algorithm proposed
+ by Google, it uses topological structure of the web to determines the importanc
+e of a webpage.
+ The mathematical formation of PangRank is:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $PR(p_{i})=\frac{1-d}{N}+d\underset{p_{j}\in M(p_{i})}{\sum\frac{PR(p_{j})}{L(p_{j})}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $p_{1},p_{2},\cdots,p_{N}$
+\end_inset
+
+are the webpages whose importance need to be calculated, 
+\begin_inset Formula $M(p_{i})$
+\end_inset
+
+ is the set of webpages that has a link to page 
+\begin_inset Formula $p_{i}$
+\end_inset
+
+, 
+\begin_inset Formula $L(p_{j})$
+\end_inset
+
+ is the number of outbound links on webpage 
+\begin_inset Formula $p_{j}$
+\end_inset
+
+, and 
+\begin_inset Formula $N$
+\end_inset
+
+is the total number of webpages.
+ The parameter 
+\begin_inset Formula $d$
+\end_inset
+
+ is a dampening factor which ranges from 0 to 1, and is usually set to 0.85
+\begin_inset CommandInset citation
+LatexCommand citep
+key "brin1998anatomy"
+literal "false"
+
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "page1999pagerank"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
 
 \series bold
 Modified PageRank: (with two damping factors)
