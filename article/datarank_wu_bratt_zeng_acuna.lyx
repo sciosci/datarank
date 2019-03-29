@@ -698,7 +698,6 @@ DataRank
  In that model, each vertex in the graph was a publication but in our case
  a vertex can be either a publication or a dataset.
  Our goal is propagate a vertex's impact through its citation.
- 
 \end_layout
 
 \begin_layout Standard
@@ -933,21 +932,114 @@ noprefix "false"
 
 \series bold
 \shape smallcaps
-DataRank-FB:
+DataRank-FB
+\end_layout
+
+\begin_layout Standard
+In 
+\series bold
+\shape smallcaps
+DataRank
+\series default
 \shape default
- describe the modification of the original datarank.
+, Each time the research moves, there are two options, one is to stop with
+ a probability 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, the other one is to continue the search through the citation network with
+ a probability 
+\begin_inset Formula $1-\alpha$
+\end_inset
+
+.
+ But actually, there may exist a third choice, to continue its search through
+ paper who cites it.
+ In other words, the research can moving on in two directions: forwardly
+ and backwardly.
+ we call this modeified method 
+\shape smallcaps
+DataRank-FB.
+ 
+\shape default
+In this method, one may stop with a probability 
+\begin_inset Formula $\alpha-\beta$
+\end_inset
+
+, continue search forwardly with a probability 1 - 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, and backwardly with a probability 
+\begin_inset Formula $\beta$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Then
+\series bold
+\shape smallcaps
+, 
+\series default
+\shape default
+we define another transition matrix from the citation network as follows
+ 
+\begin_inset Formula 
+\begin{equation}
+M_{ij}=\begin{cases}
+\frac{1}{k_{j}^{\text{in}}} & \text{if \ensuremath{j} cited by \ensuremath{i}}\\
+0 & \text{o.w.}
+\end{cases}\label{eq:transition-probability-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+also we update the average path length to all papers in the network starting
+ from 
+\begin_inset Formula $\rho$
+\end_inset
+
+ as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+T=I\cdot\rho+(1-\alpha)W\cdot\rho+\beta M\cdot\rho+(1-\alpha)^{2}W^{2}\rho+\beta^{2}M^{2}\rho+\cdots\label{eq:average-path-length-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In 
+\series bold
+\shape smallcaps
+DataRank-FB
+\series default
+\shape default
+, we assume that researcher is either forward or backward, without the intersect
+ion between them.
 \end_layout
 
 \begin_layout Standard
 
 \series bold
-Page rank: (one dumping factor)
+PageRank
 \end_layout
 
 \begin_layout Standard
 
 \series bold
-Modified-page rank: (with two damping factors)
+Modified PageRank: (with two damping factors)
 \end_layout
 
 \begin_layout Section
