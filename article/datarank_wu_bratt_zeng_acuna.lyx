@@ -1039,8 +1039,24 @@ PageRank
 \begin_layout Standard
 PagaRank is an well known and widely used webpage ranking algorithm proposed
  by Google, it uses topological structure of the web to determines the importanc
-e of a webpage.
- The mathematical formation of PangRank is:
+e of a webpage which is totally independent of its content
+\begin_inset CommandInset citation
+LatexCommand citep
+key "bianchini2005inside"
+literal "false"
+
+\end_inset
+
+.
+ It's an iterative algorithm.
+ Firstly, it builds a network of the web through the link between webpages,
+ each webpage will be assigned an initial value evenly, then updates the
+ value of each webpage based on the link relations, which will eventually
+ converge on a certain value.
+\end_layout
+
+\begin_layout Standard
+The mathematical formation of PangRank is:
 \end_layout
 
 \begin_layout Standard
@@ -1100,9 +1116,72 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
+The importance of a page depends on the number of its in-degreee(how many
+ pages who has a link into it), and the importance of pages who cite it.
+\end_layout
+
+\begin_layout Standard
 
 \series bold
-Modified PageRank: (with two damping factors)
+Modified PageRank:
+\end_layout
+
+\begin_layout Standard
+Considering that we have two types of resources in the network, we use the
+ following method to modify the iterative process of the classical PageRank
+ algorthm:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $PR(p_{i})=\frac{1-d_{data}}{N_{data}}+\frac{1-d_{pub}}{N_{pub}}+d_{data}\underset{p_{j}\in M^{data}(p_{i})}{\sum\frac{PR(p_{j})}{L(p_{j})}}+d_{pub}\underset{p_{k}\in M^{pub}(p_{i})}{\sum\frac{PR(p_{k})}{L(p_{k})}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $p_{1},p_{2},\cdots,p_{N}$
+\end_inset
+
+are still the nodes whose importance need to be calculated, 
+\begin_inset Formula $M^{data}(p_{i})$
+\end_inset
+
+ is the set of datasets that has a link to page 
+\begin_inset Formula $p_{i}$
+\end_inset
+
+, 
+\begin_inset Formula $M^{pub}(p_{i})$
+\end_inset
+
+ is the set of papers that has a link to page 
+\begin_inset Formula $p_{i}$
+\end_inset
+
+, 
+\begin_inset Formula $L(p_{j})$
+\end_inset
+
+ is the number of outbound links on webpage 
+\begin_inset Formula $p_{j}$
+\end_inset
+
+, and 
+\begin_inset Formula $N_{data},N_{pub}$
+\end_inset
+
+is the total size of datasets and paper collections respectively.
+ The parameter 
+\begin_inset Formula $d_{data}$
+\end_inset
+
+ is a damping factor for datasets and 
+\begin_inset Formula $d_{pub}$
+\end_inset
+
+ is a damping factor for paper sets.
 \end_layout
 
 \begin_layout Section
@@ -1113,22 +1192,19 @@ Results
 We propose a new method to rank scientific datasets by bootstrapping on
  the information already contains in the publication citation network.
  We test our method on a genetic sequencing dataset known as GenBank and
- we validated that the 
+ a online open access repository called FigShare, and we validated that
+ the 
 \shape smallcaps
 DataRank
 \shape default
-—our method—is more predictive of the real traffic to the GenBank entries
+—our method—is more predictive of the real traffic to the dataset entries
  than the number of publications the dataset has received.
  This new proposed method bootstrap on information already available to
  scientists.
 \end_layout
 
 \begin_layout Standard
-Optimizing parameters to maximize 
-\begin_inset Formula $R^{2}$
-\end_inset
-
-
+Optimizing parameters to maximize the correlation coefficient.
 \end_layout
 
 \begin_layout Standard
@@ -1140,9 +1216,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../figures/fig1.pdf
-	lyxscale 50
-	width 8cm
+	filename ../figures/result_compare.pdf
 
 \end_inset
 
