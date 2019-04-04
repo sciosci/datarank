@@ -1037,7 +1037,7 @@ PageRank
 \end_layout
 
 \begin_layout Standard
-PagaRank is an well known and widely used webpage ranking algorithm proposed
+PageRank is an well known and widely used webpage ranking algorithm proposed
  by Google, it uses topological structure of the web to determines the importanc
 e of a webpage which is totally independent of its content
 \begin_inset CommandInset citation
@@ -1056,7 +1056,7 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-The mathematical formation of PangRank is:
+The mathematical formation of PageRank is:
 \end_layout
 
 \begin_layout Standard
@@ -1216,7 +1216,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../figures/result_compare.pdf
+	filename ../figures/F5_result_compare.pdf
 
 \end_inset
 
@@ -1247,7 +1247,70 @@ Predictability of the hits per data submission
 \end_layout
 
 \begin_layout Standard
-Discovering
+In Figure5, dr and dr_v2 means DataRank and DataRank-FB,
+\series bold
+\shape smallcaps
+ 
+\series default
+\shape default
+orig represents a special set of parameters for DataRank
+\series bold
+\shape smallcaps
+,
+\series default
+\shape default
+ which is that paper and dataset have same value of decay time.
+ pr and pr_v2 are PagaRank and Modified PagaRank respectively.
+\end_layout
+
+\begin_layout Standard
+From this Figure, we can clearly see that our method can better predict
+ the real impact of datasets than PageRank.
+\end_layout
+
+\begin_layout Standard
+We can also learn that decay time of paper and dataset also have some impact
+ on the predictive performance of the algorithm.
+ So we plot the difference in decay time and the correlation coefficient
+ in Figure 6.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ../figures/F6_decay_diff_coeff.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+difference in decay time and correlation coefficient plot
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This plot shows that there is a linear realtion between decay time and correlati
+on coefficient, though different dataset might have different slopes, even
+ it's possible that the symbols are opposite.
 \end_layout
 
 \begin_layout Section
