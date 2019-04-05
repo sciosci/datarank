@@ -1060,7 +1060,11 @@ The mathematical formation of PageRank is:
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $PR(p_{i})=\frac{1-d}{N}+d\underset{p_{j}\in M(p_{i})}{\sum\frac{PR(p_{j})}{L(p_{j})}}$
+\begin_inset Formula 
+\begin{equation}
+PR(p_{i})=\frac{1-d}{N}+d\underset{p_{j}\in M(p_{i})}{\sum\frac{PR(p_{j})}{L(p_{j})}}\label{eq:pagerank-algorithm}
+\end{equation}
+
 \end_inset
 
 
@@ -1133,7 +1137,11 @@ Considering that we have two types of resources in the network, we use the
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $PR(p_{i})=\frac{1-d_{data}}{N_{data}}+\frac{1-d_{pub}}{N_{pub}}+d_{data}\underset{p_{j}\in M^{data}(p_{i})}{\sum\frac{PR(p_{j})}{L(p_{j})}}+d_{pub}\underset{p_{k}\in M^{pub}(p_{i})}{\sum\frac{PR(p_{k})}{L(p_{k})}}$
+\begin_inset Formula 
+\begin{equation}
+PR(p_{i})=\frac{1-d_{data}}{N_{data}}+\frac{1-d_{pub}}{N_{pub}}+d_{data}\underset{p_{j}\in M^{data}(p_{i})}{\sum\frac{PR(p_{j})}{L(p_{j})}}+d_{pub}\underset{p_{k}\in M^{pub}(p_{i})}{\sum\frac{PR(p_{k})}{L(p_{k})}}\label{eq:modified-pagerank}
+\end{equation}
+
 \end_inset
 
 
@@ -1314,7 +1322,94 @@ on coefficient, though different dataset might have different slopes, even
 \end_layout
 
 \begin_layout Section
-Discussion and conclusion
+Discussion
+\end_layout
+
+\begin_layout Standard
+[Restate the result]
+\end_layout
+
+\begin_layout Standard
+[Result 1:Fig 2] Our first result shows that XXXXXX.
+ A previous study of XXXX found similar trends.
+ However, in our results, XXXXXX is different.
+\end_layout
+
+\begin_layout Standard
+[Result 2:Fig 3] Our first result shows that XXXXXX.
+ A previous study of XXXX found similar trends.
+ However, in our results, XXXXXX is different.
+\end_layout
+
+\begin_layout Section
+Conclusion
+\end_layout
+
+\begin_layout Standard
+Understanding how datasets are used is an important topic in science.
+ Datasets are becoming crucial for the reproduction of results and the accelerat
+ion of scientific discoveries.
+ Scientists, however, tend to dismiss citing datasets and therefore we do
+ not have a proper measurement of how impactful datasets are.
+ Our method uses the publication-publication citation network to propagate
+ the impact to the publication-dataset citation network.
+ By using two databases of real dataset networks, our method is able to
+ predict the actual usage of these datasets more accurately than other methods.
+ Our results suggest that datasets have different citation dynamics to those
+ of publications.
+ In particular, they have a longer decay time.
+ In sum, our study provides a prescriptive model to understand how citations
+ interact in publication and dataset citation networks, and provides a concrete
+ method for correlating the rank to actual usage.
+\end_layout
+
+\begin_layout Standard
+There are some shortcomings in our study.
+ In our Genbank dataset, we do not have a great deal of information on actual
+ usage.
+ There are XXXX datasets but we only have usage for about XXX of them.
+ For the Figshare dataset, while we do have a significantly larger dataset
+ of usage, the datasets do not seem to be cited as often as in Genbank.
+ However, the dynamics of both datasets are similar, leading us to beliave
+ that they are representative of the nature of citation behavior in datasets
+ and publications.
+ In the future, we will explore other data citation tracking datasets such
+ XXX, XXX, XXX, and XXX.
+ Thus, this shortcomings are somewhat dimished.
+\end_layout
+
+\begin_layout Standard
+We found that the nature of the correlation between datarank and usage was
+ predictive but unintuitive.
+ Specifically, for some parameter choices, datarank had the puzzling effect
+ of finding high but negative correlation between the rank and the usage
+ amount.
+ We use a predictive model to avoid this issue but we would like to explore
+ the reasons behind the negative correlation.
+\end_layout
+
+\begin_layout Standard
+Our study advances an analysis of datasets and publications with novel ideas
+ from network analysis.
+ Our work puts together ideas from other popular network flow estimation
+ algorithms such as PageRank [cite] and XXXXX [paper like datarank but without
+ two types of nodes].
+ Our method predicts significantly better the usage of datasets and also
+ it provides interpretable parameters.
+ For example, even when the two datasets are of different nature, we found
+ that the best parameters coicide in that the best decay time for datasets
+ is around XX years whereas for datasets is around XX year.
+ Therefore, this novel analysis is good.
+\end_layout
+
+\begin_layout Standard
+Science needs better ways of keep track of dataset usage.
+ While scientists might potentially take a great amount of time to change
+ their citation behavior, we could use techniques such as the one put forth
+ in this article.
+ Ultimately, the need for tracking datasets is only going to be become more
+ important and therefore we either need to adapt to this or miss the opportunity
+ to make datasets first class citizents in science.
 \end_layout
 
 \begin_layout Section*
