@@ -1367,7 +1367,7 @@ ion of scientific discoveries.
 There are some shortcomings in our study.
  In our Genbank dataset, we do not have a great deal of information on actual
  usage.
- There are XXXX datasets but we only have usage for about XXX of them.
+ There are 1000 records but we only have used for about 255 of them.
  For the Figshare dataset, while we do have a significantly larger dataset
  of usage, the datasets do not seem to be cited as often as in Genbank.
  However, the dynamics of both datasets are similar, leading us to beliave
@@ -1392,13 +1392,20 @@ We found that the nature of the correlation between datarank and usage was
 Our study advances an analysis of datasets and publications with novel ideas
  from network analysis.
  Our work puts together ideas from other popular network flow estimation
- algorithms such as PageRank [cite] and XXXXX [paper like datarank but without
- two types of nodes].
+ algorithms such as PageRank
+\begin_inset CommandInset citation
+LatexCommand citep
+key "brin1998anatomy"
+literal "false"
+
+\end_inset
+
+ and XXXXX [paper like datarank but without two types of nodes].
  Our method predicts significantly better the usage of datasets and also
  it provides interpretable parameters.
  For example, even when the two datasets are of different nature, we found
- that the best parameters coicide in that the best decay time for datasets
- is around XX years whereas for datasets is around XX year.
+ that the best parameters coicide in that the best decay time for publication
+ is around 1 years whereas for datasets is around 20 year.
  Therefore, this novel analysis is good.
 \end_layout
 
