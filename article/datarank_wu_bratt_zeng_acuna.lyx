@@ -1330,6 +1330,41 @@ Discussion
 \end_layout
 
 \begin_layout Standard
+In Figure 5, our algorithm demonstrates better predictive ability for data
+ downloads compared with PageRank and modified PageRank.
+ Though there are many scholars agree and disagree with the use of citation
+ to assess research ability and influence
+\begin_inset CommandInset citation
+LatexCommand citep
+key "hall2001nber"
+literal "false"
+
+\end_inset
+
+, but in general, citation number or ranking are considered to have a direct
+ connection with the research ability and influence, especially when compared
+ with peer review
+\begin_inset CommandInset citation
+LatexCommand citep
+key "meho2007impact,piwowar2007sharing"
+literal "false"
+
+\end_inset
+
+.
+ However, when comes to datasets, most research publications fail to provide
+ a normative or clear citation to dataset
+\begin_inset CommandInset citation
+LatexCommand citep
+key "altman2013evolution"
+literal "false"
+
+\end_inset
+
+, so we choose downloads data as a substitution for citation numbers.
+\end_layout
+
+\begin_layout Standard
 [Result 1:Fig 2] Our first result shows that XXXXXX.
  A previous study of XXXX found similar trends.
  However, in our results, XXXXXX is different.
