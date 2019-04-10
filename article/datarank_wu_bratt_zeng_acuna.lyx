@@ -1261,7 +1261,7 @@ In Figure5, dr and dr_v2 means DataRank and DataRank-FB,
  
 \series default
 \shape default
-orig represents a special set of parameters for DataRank
+orig represents a special set of parameter for DataRank
 \series bold
 \shape smallcaps
 ,
@@ -1326,17 +1326,13 @@ Discussion
 \end_layout
 
 \begin_layout Standard
-[Restate the result]
-\end_layout
-
-\begin_layout Standard
 In Figure 5, our algorithm demonstrates better predictive ability for data
  downloads compared with PageRank and modified PageRank.
  Though there are many scholars agree and disagree with the use of citation
  to assess research ability and influence
 \begin_inset CommandInset citation
 LatexCommand citep
-key "hall2001nber"
+key "moed1985use,diamond1986citation,martin1996use,seglen1997impact,wallin2005bibliometric"
 literal "false"
 
 \end_inset
@@ -1362,18 +1358,81 @@ literal "false"
 \end_inset
 
 , so we choose downloads data as a substitution for citation numbers.
+ We choose the correlation coefficient as the metric to measure the connection
+ between the algorithm's result and actual value.
 \end_layout
 
 \begin_layout Standard
-[Result 1:Fig 2] Our first result shows that XXXXXX.
- A previous study of XXXX found similar trends.
- However, in our results, XXXXXX is different.
+In our experiments, both results show that our algorithm works better than
+ other algorithms.
+ In order to minimize the difference in pubications' year and type, our
+ algorithm use the year and type of a publication to initialize the value
+ of a node.
+ A previous study of patent also tries to eliminate all the effects caused
+ by year, field and year-field interaction through dividing the number of
+ citation received by a certain patent by the corresponding year-field average
+ number of citation of patents of each cohort in each field
+\begin_inset CommandInset citation
+LatexCommand citep
+key "hall2001nber"
+literal "false"
+
+\end_inset
+
+.
+ This study wants to provide a solution for the comparability of citation
+ counts at different times and different disciplines, however this needs
+ more analysis of variance components.
 \end_layout
 
 \begin_layout Standard
-[Result 2:Fig 3] Our first result shows that XXXXXX.
- A previous study of XXXX found similar trends.
- However, in our results, XXXXXX is different.
+PageRank is an well known ranking algorithm to determines the importance
+ of a webpage
+\begin_inset CommandInset citation
+LatexCommand citep
+key "page1999pagerank"
+literal "false"
+
+\end_inset
+
+, it only uses the topological structure of the network without considering
+ other information of a webpage, such as content, topic etc.
+ Considering the fact that there are two different types of nodes in our
+ network, we extend the classical PageRank algorithm to accommodate two
+ data types, which we call it Modified PageRank.
+ Modified PageRank seems to have a slight imporvement over PageRank(0.159
+ over 0.157 in genbank and 0.0509 over 0.0504 in figshare).
+\end_layout
+
+\begin_layout Standard
+There is no significant difference bwteeen the results of DataRank and DataRank-
+FB(0.239 in genbank and 0.091 in figsahre).
+ That is to say, in the process of importance propagation through citation,
+ the effect of backward propagation is negligible comapred with forward
+ propagation, which also coincides with our perception.
+\end_layout
+
+\begin_layout Standard
+We also analyze the impact of different decay time.
+ In Figure 5, orig is a special set of parameter for DataRank
+\series bold
+\shape smallcaps
+,
+\series default
+\shape default
+ in which paper and dataset have same decay time.
+ The best result shows that the decay time of dataset is 20 years and paper
+ is 1 year, this means that compared with paper, datasets are more durable.
+ In Figure 6, we can clearly see that the greater the difference in the
+ decay time of paper and datasets, the more significant the correlation
+ coefficient will be.
+ Though the trend differs in genbank and figshare, this may related to some
+ intrinsic attributes of the dataset itself.
+ Because As a third party open source website, figshare allows the user
+ upload anything without limitation, whereas genbank will check the gene
+ sequence and some other basic information about the gene sequence submitted
+ by the submitter to ensure the normalization of the dataset.
+ This innate character can partially accounts for the phenomenon.
 \end_layout
 
 \begin_layout Section
