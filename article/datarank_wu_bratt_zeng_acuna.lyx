@@ -265,7 +265,15 @@ literal "false"
  datasets has been much more difficult than sharing of scientific articles.
  Also, the sizes of datasets have kept increasing.
  However, citing dataset should still be important because dataset allow
- other scientists to create reproducible content [cite].
+ other scientists to create reproducible content or carry out further research
+\begin_inset CommandInset citation
+LatexCommand citep
+key "altman2013evolution"
+literal "false"
+
+\end_inset
+
+.
  In this article, we develop a method for assigning credit to dataset from
  the citation network of publications.
  Therefore, it does not rely on scientists explicitly citing dataset more
@@ -274,12 +282,38 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-Credit assignment
+Requesting scientists to modify their behavior takes a long time to apply.
+ Firstly scholars are not used to cite datasets, they tend to cite an article
+ describing the dataset or subsets of data or even just mention the dataset
+ without explicit reference[cite].
+ Secondly datasets sharing will cost a lot of time and labor, even explicitly
+ requirements are asked by the publisher, Some articles still fail to provide
+ datasets
+\begin_inset CommandInset citation
+LatexCommand citep
+key "alsheikh2011public"
+literal "false"
+
+\end_inset
+
+.
+ Worsely, as the age of the article grows, datasets loss is severe, which
+ leading to a rapid decline in the availability of research datasets
+\begin_inset CommandInset citation
+LatexCommand citep
+key "vines2014availability"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-Datasets are an increasingly important asset of scientific production yet
- they do not get the credit they deserve.
+To the first question, a lot of efforts has been made, make up standards
+ for citing data, assign specific DOIs etc.
+ However, as an increasingly important asset of scientific production, datasets
+ yet do not get the credit they deserve.
  Several attempts have been made to correct this.
  Some of these attempts attempt to define alternatives to typical citation
  networks by looking at what is called 
@@ -292,10 +326,6 @@ altmetrics
 impactstory
 \emph default
  is a company that aims at producing things that are important.
-\end_layout
-
-\begin_layout Standard
-Requesting scientists to modify their behavior takes a long time to apply.
 \end_layout
 
 \begin_layout Standard
