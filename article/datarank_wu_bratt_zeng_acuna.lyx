@@ -252,7 +252,15 @@ Introduction
 Getting credit publishing scientific articles and datasets should be equally
  important if the same amount of effort is to be put into these two tasks.
  Previous researchers, however, have shown that citations to datasets is
- still not practiced as much as it should be [cite].
+ still not practiced as much as it should be
+\begin_inset CommandInset citation
+LatexCommand citep
+key "task2013out,belter2014measuring,robinson2016analyzing"
+literal "false"
+
+\end_inset
+
+.
  A couple of the problems is that historically archiving and sharing of
  datasets has been much more difficult than sharing of scientific articles.
  Also, the sizes of datasets have kept increasing.
@@ -1326,9 +1334,29 @@ Discussion
 \end_layout
 
 \begin_layout Standard
-In Figure 5, our algorithm demonstrates better predictive ability for data
- downloads compared with PageRank and modified PageRank.
- Though there are many scholars agree and disagree with the use of citation
+The goal of this paper is to better evaluate the importance of datasets
+ through citation network.
+ Compared with the mature citation mechanism of articles, the reference
+ of the datasets is just in its infancy.
+ The challenges of datasets citation are mainly from two aspects: No clear
+ standards for datasets citation and lack of incentive for dataset sharing.
+ There are several proposals trying to solve the first problem 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "callaghan2014joint,altman2015introduction,mooney2012anatomy"
+literal "false"
+
+\end_inset
+
+while not much investigate on the second one, thus this research is dedicated
+ to relief the second problem.
+ Sharing datasets is a time-consuming and labor-consuming task, one way
+ to promote this kind of work is to establish a suitable evalutaion system
+ so that scholars will feel that time and labor they invest can pay off.
+\end_layout
+
+\begin_layout Standard
+Though there are many scholars agree and disagree with the use of citation
  to assess research ability and influence
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -1357,9 +1385,21 @@ literal "false"
 
 \end_inset
 
-, so we choose downloads data as a substitution for citation numbers.
+, so we choose downloads data as a substitution for citation numbers, this
+ is common metric for datasets
+\begin_inset CommandInset citation
+LatexCommand citep
+key "belter2014measuring"
+literal "false"
+
+\end_inset
+
+.
  We choose the correlation coefficient as the metric to measure the connection
  between the algorithm's result and actual value.
+ In Figure 5, our algorithm demonstrates better predictive ability for data
+ downloads compared with PageRank and modified PageRank.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1383,6 +1423,38 @@ literal "false"
  This study wants to provide a solution for the comparability of citation
  counts at different times and different disciplines, however this needs
  more analysis of variance components.
+ Another dataset or repository(as mentioned in article) evaluation method
+ was carried out by Clarivate Analytics editors on the Data Citation Index(DCI)
+ database
+\begin_inset CommandInset citation
+LatexCommand citep
+key "reuters2012repository"
+literal "false"
+
+\end_inset
+
+.
+ They consider factors like its publishing standards, editorial content
+ and citation information about it etc, mainly on subject, editorial content
+ and repository attributes, geographic orign and scope to determine its
+ strengths and weakness.
+ However, they are more concerned about the integrity or standardization
+ of the dataset rather than the content of dataset itself.
+ The NERC Science Information Strategy Data Citation and Publication project
+ suggest using DOIs for citing datasets
+\begin_inset CommandInset citation
+LatexCommand citep
+key "callaghan2012making"
+literal "false"
+
+\end_inset
+
+, because most scholars have already got used to use DOIs for citing papers,
+ it's easy to convert from citing papers to citing datasets, then we can
+ use various pre-exisiting citation metrics, without having to invent new
+ ones.
+ But reference to dataset is still unclear, this means more work needs to
+ be done.
 \end_layout
 
 \begin_layout Standard
@@ -1464,12 +1536,12 @@ There are some shortcomings in our study.
  There are 1000 records but we only have used for about 255 of them.
  For the Figshare dataset, while we do have a significantly larger dataset
  of usage, the datasets do not seem to be cited as often as in Genbank.
- However, the dynamics of both datasets are similar, leading us to beliave
+ However, the dynamics of both datasets are similar, leading us to believe
  that they are representative of the nature of citation behavior in datasets
  and publications.
  In the future, we will explore other data citation tracking datasets such
- XXX, XXX, XXX, and XXX.
- Thus, this shortcomings are somewhat dimished.
+ as XXX, XXX, XXX, and XXX.
+ Thus, this shortcomings are somewhat diminished.
 \end_layout
 
 \begin_layout Standard
