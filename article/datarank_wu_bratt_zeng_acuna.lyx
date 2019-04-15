@@ -285,7 +285,15 @@ literal "false"
 Requesting scientists to modify their behavior takes a long time to apply.
  Firstly scholars are not used to cite datasets, they tend to cite an article
  describing the dataset or subsets of data or even just mention the dataset
- without explicit reference[cite].
+ without explicit reference
+\begin_inset CommandInset citation
+LatexCommand citep
+key "force2014encouraging"
+literal "false"
+
+\end_inset
+
+.
  Secondly datasets sharing will cost a lot of time and labor, even explicitly
  requirements are asked by the publisher, Some articles still fail to provide
  datasets
@@ -310,22 +318,57 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-To the first question, a lot of efforts has been made, make up standards
- for citing data, assign specific DOIs etc.
+To the first question, a lot of efforts has been made, developing standards
+ for datasets reference
+\begin_inset CommandInset citation
+LatexCommand citep
+key "altman2015introduction,callaghan2014joint,mooney2012anatomy"
+literal "false"
+
+\end_inset
+
+, assigning specific DOIs to datasets to mitigate differences between datasets
+ and articles
+\begin_inset CommandInset citation
+LatexCommand citep
+key "callaghan2012making"
+literal "false"
+
+\end_inset
+
+etc.
  However, as an increasingly important asset of scientific production, datasets
- yet do not get the credit they deserve.
- Several attempts have been made to correct this.
- Some of these attempts attempt to define alternatives to typical citation
- networks by looking at what is called 
-\emph on
-altmetrics
-\emph default
+ yet do not get the credit they deserve
+\begin_inset CommandInset citation
+LatexCommand citep
+key "sieber1995not,darby2012enabling"
+literal "false"
+
+\end_inset
+
 .
- For example, 
-\emph on
-impactstory
-\emph default
- is a company that aims at producing things that are important.
+ Some attempts have been made to correct this.
+ A survey demonstrates that formal citaton is considered by scholars to
+ be the way of crediting a dataset
+\begin_inset CommandInset citation
+LatexCommand citep
+key "kratz2015researcher"
+literal "false"
+
+\end_inset
+
+.
+ Data Citation Index database tries to take a lot of factors into account,
+ such as standards of publishing, content of editorial and citation information
+ of datasets etc for the editors to measure the strength of datasets
+\begin_inset CommandInset citation
+LatexCommand citep
+key "reuters2012repository"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1370,16 +1413,9 @@ The goal of this paper is to better evaluate the importance of datasets
  of the datasets is just in its infancy.
  The challenges of datasets citation are mainly from two aspects: No clear
  standards for datasets citation and lack of incentive for dataset sharing.
- There are several proposals trying to solve the first problem 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "callaghan2014joint,altman2015introduction,mooney2012anatomy"
-literal "false"
-
-\end_inset
-
-while not much investigate on the second one, thus this research is dedicated
- to relief the second problem.
+ There are several proposals trying to solve the first problem while not
+ much investigate on the second one, thus this research is dedicated to
+ relief the second problem.
  Sharing datasets is a time-consuming and labor-consuming task, one way
  to promote this kind of work is to establish a suitable evalutaion system
  so that scholars will feel that time and labor they invest can pay off.
@@ -1429,7 +1465,6 @@ literal "false"
  between the algorithm's result and actual value.
  In Figure 5, our algorithm demonstrates better predictive ability for data
  downloads compared with PageRank and modified PageRank.
- 
 \end_layout
 
 \begin_layout Standard
@@ -1469,7 +1504,9 @@ literal "false"
  and repository attributes, geographic orign and scope to determine its
  strengths and weakness.
  However, they are more concerned about the integrity or standardization
- of the dataset rather than the content of dataset itself.
+ of the dataset rather than the content of dataset itself and meanwhile
+ it relies on professional background knowledge and is difficult to implement
+ on a large scale.
  The NERC Science Information Strategy Data Citation and Publication project
  suggest using DOIs for citing datasets
 \begin_inset CommandInset citation
@@ -1570,7 +1607,7 @@ There are some shortcomings in our study.
  that they are representative of the nature of citation behavior in datasets
  and publications.
  In the future, we will explore other data citation tracking datasets such
- as XXX, XXX, XXX, and XXX.
+ as PANGEA, Animal QTLdb, and UK Data Archive.
  Thus, this shortcomings are somewhat diminished.
 \end_layout
 
