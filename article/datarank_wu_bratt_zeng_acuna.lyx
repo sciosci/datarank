@@ -251,7 +251,7 @@ Introduction
 \begin_layout Standard
 Getting credit publishing scientific articles and datasets should be equally
  important if the same amount of effort is to be put into these two tasks.
- Previous researchers, however, have shown that citations to datasets is
+ Previous researchers, however, have shown that citations to datasets are
  still not practiced as much as it should be
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -264,7 +264,7 @@ literal "false"
  A couple of the problems is that historically archiving and sharing of
  datasets has been much more difficult than sharing of scientific articles.
  Also, the sizes of datasets have kept increasing.
- However, citing dataset should still be important because dataset allow
+ However, citing dataset should still be important because datasets allow
  other scientists to create reproducible content or carry out further research
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -278,14 +278,14 @@ literal "false"
  the citation network of publications.
  Therefore, it does not rely on scientists explicitly citing dataset more
  than just the initial scientists.
- Giving credit to properly created dataset could therefore be made feasible.
+ Giving credit to properly created dataset could, therefore, be made feasible.
 \end_layout
 
 \begin_layout Standard
 Requesting scientists to modify their behavior takes a long time to apply.
- Firstly scholars are not used to cite datasets, they tend to cite an article
- describing the dataset or subsets of data or even just mention the dataset
- without explicit reference
+ Firstly scholars are not used to citing datasets, they tend to cite an
+ article describing the dataset or subsets of data or even just mention
+ the dataset without explicit reference
 \begin_inset CommandInset citation
 LatexCommand citep
 key "force2014encouraging"
@@ -294,7 +294,7 @@ literal "false"
 \end_inset
 
 .
- Secondly datasets sharing will cost a lot of time and labor, even explicitly
+ Secondly, datasets sharing will cost a lot of time and labor, even explicitly
  requirements are asked by the publisher, Some articles still fail to provide
  datasets
 \begin_inset CommandInset citation
@@ -336,7 +336,7 @@ literal "false"
 
 \end_inset
 
-etc.
+, etc.
  However, as an increasingly important asset of scientific production, datasets
  yet do not get the credit they deserve
 \begin_inset CommandInset citation
@@ -348,7 +348,7 @@ literal "false"
 
 .
  Some attempts have been made to correct this.
- A survey demonstrates that formal citaton is considered by scholars to
+ A survey demonstrates that formal citation is considered by scholars to
  be the way of crediting a dataset
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -359,8 +359,9 @@ literal "false"
 
 .
  Data Citation Index database tries to take a lot of factors into account,
- such as standards of publishing, content of editorial and citation information
- of datasets etc for the editors to measure the strength of datasets
+ such as standards of publishing, the content of editorial and citation
+ information of datasets, etc for the editors to measure the strength of
+ datasets
 \begin_inset CommandInset citation
 LatexCommand citep
 key "reuters2012repository"
@@ -380,10 +381,10 @@ key "walker2007ranking"
 \end_inset
 
 .
- In particular, our method estimate the average length of a random walker
+ In particular, our method estimates the average length of a random walker
  to the graph network, which considers that the obsolescence rate of publication
 s and datasets is different.
- Using a dataset of genbank submissions and the publications associated
+ Using a dataset of GenBank submissions and the publications associated
  with them and the network of publications from the Microsoft Academic Graph,
  we estimate the rank of the datasets.
  We cross-validate by using the actual visits to the web pages containing
@@ -410,8 +411,8 @@ GenBank
 \end_layout
 
 \begin_layout Standard
-GenBank is an open access dataset that contains annotated collection of
- all publicly available nucleotide sequences for almost 260 000 formally
+GenBank is an open access dataset that contains an annotated collection
+ of all publicly available nucleotide sequences for almost 260 000 formally
  described species
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -459,25 +460,55 @@ sample data of genbank
 
 \begin_layout Standard
 the sample data has many fields as listed in Figure1, but in our task, we
- only take ACCESSION(the identifier in genbank) and REFERENCE's relevant
- information(authors, title, journal and pubmed) into considertaion.
+ only take ACCESSION(the identifier in GenBank) and REFERENCE's relevant
+ information(authors, title, journal and pubmed) into consideration.
  The last citation in the REFERENCE, with which the title is 'Direct Submission'
-, often contains information about the submitter of the sequence, meanwhile
+, often contains information about the submitter of the sequence, meanwhile,
  we can also extract the time when this sequence is submitted by the field
- of JOURNAL, which is necessary in our algorithm.
- Ingore the last citation, we obtain a dataset of genbank data paired with
+ of JOURNAL, which is necessary for our algorithm.
+ Ignore the last citation, we obtain a dataset of GenBank data paired with
  the citation to these datasets, usually by the authors of the dataset through
  the field of REFERENCE.
 \end_layout
 
 \begin_layout Standard
-We've downloaded a genbank database of 212,260,377 gene sequences(version
+We've downloaded a GenBank database of 212,260,377 gene sequences(version
  230), and at the end of processing, includes extract valid information
- and transfer Pubmed IDs to DOI, because the genbank dataset only had the
+ and transfer Pubmed IDs to DOI, because the GenBank dataset only had the
  Pubmed IDs of the publications, we have to additionally find the link between
  the Pubmed IDs and the DOI.
  at last, we've got 32,353,710 citations and 25,888,648 gene sequences,
  which supply us with the citation between papers and datasets.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+FigShare
+\end_layout
+
+\begin_layout Standard
+FigShare is an online open access multidisciplinary repository where researchers
+ can deposit and share their electronic information, including figures,
+ datasets, and media
+\begin_inset CommandInset citation
+LatexCommand citep
+key "singh2011figshare"
+literal "false"
+
+\end_inset
+
+.
+ Different categories, different types of resource to be uploaded to FigShare,
+ and is the mainstream representative of such versatile resources.
+ FigShare aims to encourage people to share data, so the amount of free
+ storage space for private use is limited, but when it comes to public use,
+ like sharing resources, the free storage space is unlimited.
+ When a user makes an uploaded resource publicly available, FigShare will
+ immediately assign a DOI to this resource.
+ Each DOI of figshare has a special mark, that is, the string of 'FigShare'
+ is embedded in DOI, like 'https://doi.org/10.6084/m9.figshare.6741260', so
+ we can easily determine whether the DOI is from FigShare.
 \end_layout
 
 \begin_layout Standard
@@ -575,50 +606,20 @@ literal "false"
 \end_inset
 
 .
- All nodes without the field of year are excluded, after such kind of selection,
- we fianlly got 441,432,288 citations and 44,229,769 unique resources.
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-FigShare
-\end_layout
-
-\begin_layout Standard
-FigShare is an online open access multidisciplinary repository where researchers
- can deposit and share their electronic information, including figures,
- datasets and media
-\begin_inset CommandInset citation
-LatexCommand citep
-key "singh2011figshare"
-literal "false"
-
-\end_inset
-
-.
- Different categories, different types of resource to be uploaded to FigShare,
- and is the mainstream representative of such versatile resources.
- FigShare aims to encourage people to share data, so the amount of free
- storage space for private use is limited, but when it comes to public use,
- like sharing resources, the free storage space is unlimited.
- When a user makes an uploaded resource publicly available, FigShare will
- immediately assign a DOI to this resource.
- Each DOI of figshare has a special mark, that is, the string of 'figshare'
- is embedded in DOI, like 'https://doi.org/10.6084/m9.figshare.6741260', so
- we can easily determine whether the DOI is from figshare.
+ All nodes without the field of the year are excluded, after such kind of
+ selection, we finally got 441,432,288 citations and 44,229,769 unique resources.
 \end_layout
 
 \begin_layout Standard
 We hope to find that the measure of important we estimate is related to
  something important about the submissions.
  In our case, we will use the downloads of the submissions as a proxy for
- such importantance.
+ such importance.
  A portion DOI (about 949) in OCC comes from FigShare.
- We can crawl the downloads and creation time of every figshare DOI through
+ We can crawl the downloads and creation time of every FigShare DOI through
  its website (https://stats.figshare.com/total/downloads/article).
  Meanwhile, the National Institutes of Health graciously provided such data
- for the month of September 2012 for the top 1000 Nucelotied genbank entries
+ for the month of September 2012 for the top 1000 Nucleotide GenBank entries
  
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -627,13 +628,13 @@ literal "false"
 
 \end_inset
 
- .
- With all these informations, we will be able to partially validated how
+.
+ With all these information, we will be able to partially validated how
  our estimation of important is related to something external.
 \end_layout
 
 \begin_layout Standard
-Based on the downloads data of figshare and genbank, we draw probability
+Based on the downloads data of FigShare and GenBank, we draw probability
  density functions(pdf) of them respectively in Figure2.
  Because of the limited amount of data, the disturbance of small downloads
  is relatively large, which we can clearly see from the figures.
@@ -693,22 +694,24 @@ Construction of the citation network
 \begin_layout Standard
 We constructed a directed network of citations primarily on the basis of
  OpenCitation Corpus, additionally, we combine some other citation between
- dataset and paper extracted from GenBank as we methioned before, which
+ dataset and paper extracted from GenBank as we mentioned before, which
  eventually turn out to be a tremendous citation network.
- In this citation network, each node represent one dataset or paper, the
+ In this citation network, each node represents one dataset or paper, the
  edges with direction illustrate the citation relations between nodes.
  OpenCitation Corpus consists of 441,432,288 citations and 44,229,769 unique
- resources, including 949 resources and 1335 citations from figshare.
+ resources, including 949 resources and 1335 citations from FigShare.
  After Integrated with GenBank, we finally get 473,785,998 citations and
  70,138,538 unique resources.
  On average, each paper will be cited by 9.98 papers, but when it switches
- to figshare and genbank, the number drop dramatically, low as 1.41 and 1.25.
+ to FigShare and GenBank, the number drops dramatically, low as 1.41 and
+ 1.25.
  This also proves less emphasis on performing dataset citations.
 \end_layout
 
 \begin_layout Standard
 For the purpose of exploring this network more intuitively, we sample about
- 1 thousand nodes 1.5 thousand edges from network and show it in Figure 3.
+ 1 thousand nodes 1.5 thousand edges from the network and show it in Figure
+ 3.
 \end_layout
 
 \begin_layout Standard
@@ -744,14 +747,14 @@ network of sample data
 \end_layout
 
 \begin_layout Standard
-In Figure 3, different color means different type of resources, red nodes
+In Figure 3, different color means a different type of resources, red nodes
  represent for papers while green nodes represent for datasets, the lighter
  color indicates the older the resource is.
- From Figure 3, we can easily find out four patterns when papers cites datasets(
-dataset can't cite anything): one-to-one, one-to-many, many-to-one and many-to-m
-any.
+ From Figure 3, we can easily find out four patterns when papers cite datasets(d
+ataset can't cite anything): one-to-one, one-to-many, many-to-one and many-to-ma
+ny.
  The network can provide a better understanding of how knowledge is diffused,
- and directions of edges repersent the direction of knowledge flow.
+ and directions of edges represent the direction of knowledge flow.
 \end_layout
 
 \begin_layout Subsection
@@ -767,29 +770,17 @@ literal "false"
 
 \end_inset
 
-, called 
-\series bold
-\shape smallcaps
-DataRank
-\series default
-\shape default
 .
  This method is inspired by PageRank by solves the issue that citation networks
  are always directed back in time.
- In that model, each vertex in the graph was a publication but in our case
+ In that model, each vertex in the graph was a publication but in our case,
  a vertex can be either a publication or a dataset.
- Our goal is propagate a vertex's impact through its citation.
+ Our goal is to propagate a vertex's impact through its citation.
 \end_layout
 
 \begin_layout Standard
-The original 
-\series bold
-\shape smallcaps
-DataRank
-\series default
-\shape default
- simulates a set of researchers traversing publications through the citation
- networks.
+This method simulates a set of researchers traversing publications through
+ the citation networks.
  It ranks publications by essentially estimating the average path length
  taken by researchers who randomly start from a publication as a function
  of the publication's age and have a probability of stopping at each node.
@@ -822,13 +813,7 @@ DataRank
 \end_layout
 
 \begin_layout Standard
-The concrete functional form that 
-\series bold
-\shape smallcaps
-DataRank
-\series default
-\shape default
- proposes is as follows.
+The concrete functional form that it proposes is as follows.
  The probability of starting at the 
 \begin_inset Formula $i$
 \end_inset
@@ -836,7 +821,7 @@ DataRank
 th node is 
 \begin_inset Formula 
 \begin{equation}
-\rho_{i}^{\text{DataRank}}=\exp\left(-\frac{\text{age}_{i}}{\tau_{\text{pub}}}\right)\label{eq:starting-probability}
+\rho_{i}=\exp\left(-\frac{\text{age}_{i}}{\tau_{\text{pub}}}\right)\label{eq:starting-probability}
 \end{equation}
 
 \end_inset
@@ -845,13 +830,11 @@ th node is
 \end_layout
 
 \begin_layout Standard
-Then, 
-\series bold
+Then,
 \shape smallcaps
-DataRank
-\series default
+ 
 \shape default
- defines a transition matrix from the citation network as follows 
+it defines a transition matrix from the citation network as follows 
 \begin_inset Formula 
 \begin{equation}
 W_{ij}=\begin{cases}
@@ -890,7 +873,7 @@ T=I\cdot\rho+(1-\alpha)W\cdot\rho+(1-\alpha)^{2}W^{2}\rho+\cdots\label{eq:averag
 \end_layout
 
 \begin_layout Standard
-This series can be practically solved until some threshold is achieve after
+This series can be practically solved until some threshold is achieved after
  adding the 
 \begin_inset Formula $n$
 \end_inset
@@ -906,6 +889,13 @@ th iteration.
 
  are typically found by cross validation by using some validation of the
  traffic as predictable of something external.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape smallcaps
+DataRank
 \end_layout
 
 \begin_layout Standard
@@ -939,10 +929,10 @@ th node as
 
 \begin_layout Standard
 This initialize process also shown in Figure4.
- Size of node represent its value, different color means different type,
- red nodes are papers, while greeen nodes are datasets.
- After initialiing, nodes of same type and same age have same value, and
- the younger a node is, the bigger its value.
+ Size of the node represents its value, different color means different
+ type, red nodes are papers, while green nodes are datasets.
+ After initializing, nodes of the same type and same age have the same value,
+ and the younger a node is the bigger its value.
 \begin_inset Float figure
 wide false
 sideways false
@@ -1036,9 +1026,9 @@ DataRank
 .
  But actually, there may exist a third choice, to continue its search through
  paper who cites it.
- In other words, the research can moving on in two directions: forwardly
- and backwardly.
- we call this modeified method 
+ In other words, the research can move on in two directions: forwardly and
+ backwardly.
+ we call this modified method 
 \shape smallcaps
 DataRank-FB.
  
@@ -1081,7 +1071,7 @@ M_{ij}=\begin{cases}
 \end_layout
 
 \begin_layout Standard
-also we update the average path length to all papers in the network starting
+also, we update the average path length to all papers in the network starting
  from 
 \begin_inset Formula $\rho$
 \end_inset
@@ -1107,8 +1097,12 @@ In
 DataRank-FB
 \series default
 \shape default
-, we assume that researcher is either forward or backward, without the intersect
-ion between them.
+, we assume that the researcher is either forward or backward, without the
+ intersection between them.
+\end_layout
+
+\begin_layout Subsection
+Other network models
 \end_layout
 
 \begin_layout Standard
@@ -1118,9 +1112,9 @@ PageRank
 \end_layout
 
 \begin_layout Standard
-PageRank is an well known and widely used webpage ranking algorithm proposed
- by Google, it uses topological structure of the web to determines the importanc
-e of a webpage which is totally independent of its content
+PageRank is a well known and widely used webpage ranking algorithm proposed
+ by Google, it uses the topological structure of the web to determines the
+ importance of a webpage which is totally independent of its content
 \begin_inset CommandInset citation
 LatexCommand citep
 key "bianchini2005inside"
@@ -1181,7 +1175,7 @@ is the total number of webpages.
 \begin_inset Formula $d$
 \end_inset
 
- is a dampening factor which ranges from 0 to 1, and is usually set to 0.85
+ is a dampening factor which ranges from 0 to 1 and is usually set to 0.85
 \begin_inset CommandInset citation
 LatexCommand citep
 key "brin1998anatomy"
@@ -1201,7 +1195,7 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-The importance of a page depends on the number of its in-degreee(how many
+The importance of a page depends on the number of its in-degree(how many
  pages who has a link into it), and the importance of pages who cite it.
 \end_layout
 
@@ -1342,14 +1336,14 @@ In Figure5, dr and dr_v2 means DataRank and DataRank-FB,
  
 \series default
 \shape default
-orig represents a special set of parameter for DataRank
+orig represents a special set of the parameter for DataRank
 \series bold
 \shape smallcaps
 ,
 \series default
 \shape default
- which is that paper and dataset have same value of decay time.
- pr and pr_v2 are PagaRank and Modified PagaRank respectively.
+ which is that paper and dataset have the same value of decay time.
+ pr and pr_v2 are PageRank and Modified PageRank respectively.
 \end_layout
 
 \begin_layout Standard
@@ -1358,8 +1352,8 @@ From this Figure, we can clearly see that our method can better predict
 \end_layout
 
 \begin_layout Standard
-We can also learn that decay time of paper and dataset also have some impact
- on the predictive performance of the algorithm.
+We can also learn that the decay time of paper and dataset also have some
+ impact on the predictive performance of the algorithm.
  So we plot the difference in decay time and the correlation coefficient
  in Figure 6.
 \end_layout
@@ -1397,7 +1391,7 @@ difference in decay time and correlation coefficient plot
 \end_layout
 
 \begin_layout Standard
-This plot shows that there is a linear realtion between decay time and correlati
+This plot shows that there is a linear relation between decay time and correlati
 on coefficient, though different dataset might have different slopes, even
  it's possible that the symbols are opposite.
 \end_layout
@@ -1408,7 +1402,7 @@ Discussion
 
 \begin_layout Standard
 The goal of this paper is to better evaluate the importance of datasets
- through citation network.
+ through the citation network.
  Compared with the mature citation mechanism of articles, the reference
  of the datasets is just in its infancy.
  The challenges of datasets citation are mainly from two aspects: No clear
@@ -1417,7 +1411,7 @@ The goal of this paper is to better evaluate the importance of datasets
  much investigate on the second one, thus this research is dedicated to
  relief the second problem.
  Sharing datasets is a time-consuming and labor-consuming task, one way
- to promote this kind of work is to establish a suitable evalutaion system
+ to promote this kind of work is to establish a suitable evaluation system
  so that scholars will feel that time and labor they invest can pay off.
 \end_layout
 
@@ -1452,7 +1446,7 @@ literal "false"
 \end_inset
 
 , so we choose downloads data as a substitution for citation numbers, this
- is common metric for datasets
+ is a common metric for datasets
 \begin_inset CommandInset citation
 LatexCommand citep
 key "belter2014measuring"
@@ -1463,20 +1457,20 @@ literal "false"
 .
  We choose the correlation coefficient as the metric to measure the connection
  between the algorithm's result and actual value.
- In Figure 5, our algorithm demonstrates better predictive ability for data
- downloads compared with PageRank and modified PageRank.
+ In Figure 5, our algorithm demonstrates a better predictive ability for
+ data downloads compared with PageRank and modified PageRank.
 \end_layout
 
 \begin_layout Standard
 In our experiments, both results show that our algorithm works better than
  other algorithms.
- In order to minimize the difference in pubications' year and type, our
- algorithm use the year and type of a publication to initialize the value
+ In order to minimize the difference in publications' year and type, our
+ algorithm uses the year and type of a publication to initialize the value
  of a node.
- A previous study of patent also tries to eliminate all the effects caused
- by year, field and year-field interaction through dividing the number of
- citation received by a certain patent by the corresponding year-field average
- number of citation of patents of each cohort in each field
+ A previous study of the patent also tries to eliminate all the effects
+ caused by year, field and year-field interaction through dividing the number
+ of citation received by a certain patent by the corresponding year-field
+ average number of citation of patents of each cohort in each field
 \begin_inset CommandInset citation
 LatexCommand citep
 key "hall2001nber"
@@ -1486,9 +1480,9 @@ literal "false"
 
 .
  This study wants to provide a solution for the comparability of citation
- counts at different times and different disciplines, however this needs
+ counts at different times and different disciplines, however, this needs
  more analysis of variance components.
- Another dataset or repository(as mentioned in article) evaluation method
+ Another dataset or repository(as mentioned in the article) evaluation method
  was carried out by Clarivate Analytics editors on the Data Citation Index(DCI)
  database
 \begin_inset CommandInset citation
@@ -1500,9 +1494,9 @@ literal "false"
 
 .
  They consider factors like its publishing standards, editorial content
- and citation information about it etc, mainly on subject, editorial content
- and repository attributes, geographic orign and scope to determine its
- strengths and weakness.
+ and citation information about it, etc, mainly on the subject, editorial
+ content and repository attributes, geographic origin and scope to determine
+ its strengths and weakness.
  However, they are more concerned about the integrity or standardization
  of the dataset rather than the content of dataset itself and meanwhile
  it relies on professional background knowledge and is difficult to implement
@@ -1516,16 +1510,16 @@ literal "false"
 
 \end_inset
 
-, because most scholars have already got used to use DOIs for citing papers,
+, because most scholars have already got used to using DOIs for citing papers,
  it's easy to convert from citing papers to citing datasets, then we can
- use various pre-exisiting citation metrics, without having to invent new
+ use various pre-existing citation metrics, without having to invent new
  ones.
- But reference to dataset is still unclear, this means more work needs to
- be done.
+ But the reference to a dataset is still unclear, this means more work needs
+ to be done.
 \end_layout
 
 \begin_layout Standard
-PageRank is an well known ranking algorithm to determines the importance
+PageRank is a well-known ranking algorithm to determines the importance
  of a webpage
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -1535,43 +1529,43 @@ literal "false"
 \end_inset
 
 , it only uses the topological structure of the network without considering
- other information of a webpage, such as content, topic etc.
+ other information of a webpage, such as content, topic, etc.
  Considering the fact that there are two different types of nodes in our
  network, we extend the classical PageRank algorithm to accommodate two
  data types, which we call it Modified PageRank.
- Modified PageRank seems to have a slight imporvement over PageRank(0.159
- over 0.157 in genbank and 0.0509 over 0.0504 in figshare).
+ Modified PageRank seems to have a slight improvement over PageRank(0.159
+ over 0.157 in GenBank and 0.0509 over 0.0504 in FigShare).
 \end_layout
 
 \begin_layout Standard
-There is no significant difference bwteeen the results of DataRank and DataRank-
-FB(0.239 in genbank and 0.091 in figsahre).
+There is no significant difference between the results of DataRank and DataRank-
+FB(0.239 in GenBank and 0.091 in FigShare).
  That is to say, in the process of importance propagation through citation,
- the effect of backward propagation is negligible comapred with forward
+ the effect of backward propagation is negligible compared with forwarding
  propagation, which also coincides with our perception.
 \end_layout
 
 \begin_layout Standard
 We also analyze the impact of different decay time.
- In Figure 5, orig is a special set of parameter for DataRank
+ In Figure 5, orig is a special set of the parameter for DataRank
 \series bold
 \shape smallcaps
 ,
 \series default
 \shape default
- in which paper and dataset have same decay time.
+ in which paper and dataset have the same decay time.
  The best result shows that the decay time of dataset is 20 years and paper
  is 1 year, this means that compared with paper, datasets are more durable.
  In Figure 6, we can clearly see that the greater the difference in the
  decay time of paper and datasets, the more significant the correlation
  coefficient will be.
- Though the trend differs in genbank and figshare, this may related to some
- intrinsic attributes of the dataset itself.
+ Though the trend differs in GenBank and FigShare, this may be related to
+ some intrinsic attributes of the dataset itself.
  Because As a third party open source website, figshare allows the user
- upload anything without limitation, whereas genbank will check the gene
+ upload anything without limitation, whereas GenBank will check the gene
  sequence and some other basic information about the gene sequence submitted
  by the submitter to ensure the normalization of the dataset.
- This innate character can partially accounts for the phenomenon.
+ This innate character can partially account for the phenomenon.
 \end_layout
 
 \begin_layout Section
@@ -1585,14 +1579,14 @@ ion of scientific discoveries.
  Scientists, however, tend to dismiss citing datasets and therefore we do
  not have a proper measurement of how impactful datasets are.
  Our method uses the publication-publication citation network to propagate
- the impact to the publication-dataset citation network.
+ the impact of the publication-dataset citation network.
  By using two databases of real dataset networks, our method is able to
  predict the actual usage of these datasets more accurately than other methods.
  Our results suggest that datasets have different citation dynamics to those
  of publications.
  In particular, they have a longer decay time.
  In sum, our study provides a prescriptive model to understand how citations
- interact in publication and dataset citation networks, and provides a concrete
+ interact in publication and dataset citation networks and provide a concrete
  method for correlating the rank to actual usage.
 \end_layout
 
@@ -1608,14 +1602,14 @@ There are some shortcomings in our study.
  and publications.
  In the future, we will explore other data citation tracking datasets such
  as PANGEA, Animal QTLdb, and UK Data Archive.
- Thus, this shortcomings are somewhat diminished.
+ Thus, these shortcomings are somewhat diminished.
 \end_layout
 
 \begin_layout Standard
 We found that the nature of the correlation between datarank and usage was
  predictive but unintuitive.
  Specifically, for some parameter choices, datarank had the puzzling effect
- of finding high but negative correlation between the rank and the usage
+ of finding a high but negative correlation between the rank and the usage
  amount.
  We use a predictive model to avoid this issue but we would like to explore
  the reasons behind the negative correlation.
@@ -1637,19 +1631,19 @@ literal "false"
  Our method predicts significantly better the usage of datasets and also
  it provides interpretable parameters.
  For example, even when the two datasets are of different nature, we found
- that the best parameters coicide in that the best decay time for publication
- is around 1 years whereas for datasets is around 20 year.
+ that the best parameters coincide in that the best decay time for publication
+ is around 1 year whereas for datasets is around 20 year.
  Therefore, this novel analysis is good.
 \end_layout
 
 \begin_layout Standard
-Science needs better ways of keep track of dataset usage.
+Science needs better ways to keep track of dataset usage.
  While scientists might potentially take a great amount of time to change
  their citation behavior, we could use techniques such as the one put forth
  in this article.
- Ultimately, the need for tracking datasets is only going to be become more
+ Ultimately, the need for tracking datasets is only going to become more
  important and therefore we either need to adapt to this or miss the opportunity
- to make datasets first class citizents in science.
+ to make datasets first class citizens in science.
 \end_layout
 
 \begin_layout Section*
