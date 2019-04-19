@@ -655,14 +655,14 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename ../figures/F1B_figshare_downloads_nodes.pdf
+	filename ../figures/F1B_figshare_downloads_lr.pdf
 	width 48text%
 
 \end_inset
 
 
 \begin_inset Graphics
-	filename ../figures/F1B_genbank_downloads_nodes.pdf
+	filename ../figures/F1B_genbank_downloads_lr.pdf
 	width 48text%
 
 \end_inset
@@ -733,7 +733,15 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-network of sample data
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:network-of-sample"
+
+\end_inset
+
+In this figure, different color means a different type of resources, red
+ nodes represent for papers while green nodes represent for datasets, the
+ lighter color indicates the older the resource is.
 \end_layout
 
 \end_inset
@@ -747,12 +755,18 @@ network of sample data
 \end_layout
 
 \begin_layout Standard
-In Figure 3, different color means a different type of resources, red nodes
- represent for papers while green nodes represent for datasets, the lighter
- color indicates the older the resource is.
- From Figure 3, we can easily find out four patterns when papers cite datasets(d
-ataset can't cite anything): one-to-one, one-to-many, many-to-one and many-to-ma
-ny.
+From 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:network-of-sample"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, we can easily find out four patterns when papers cite datasets(dataset
+ can't cite anything): one-to-one, one-to-many, many-to-one and many-to-many.
  The network can provide a better understanding of how knowledge is diffused,
  and directions of edges represent the direction of knowledge flow.
 \end_layout
@@ -928,11 +942,20 @@ th node as
 \end_layout
 
 \begin_layout Standard
-This initialize process also shown in Figure4.
- Size of the node represents its value, different color means different
- type, red nodes are papers, while green nodes are datasets.
- After initializing, nodes of the same type and same age have the same value,
- and the younger a node is the bigger its value.
+This initialize process also shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Initialize-the-value"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ After initializing, we can easily found that nodes of the same type and
+ same age have the same value, and meanwhile, the younger a node is the
+ bigger its value.
 \begin_inset Float figure
 wide false
 sideways false
@@ -952,7 +975,15 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Initialize the value of node
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Initialize-the-value"
+
+\end_inset
+
+this figure shows nodes' value after initializing process.
+ Size of the node represents its value, different color means different
+ type, red nodes are papers, while green nodes are datasets.
 \end_layout
 
 \end_inset
@@ -1287,7 +1318,11 @@ DataRank
 \end_layout
 
 \begin_layout Standard
-Optimizing parameters to maximize the correlation coefficient.
+Optimizing parameters to maximize the 
+\begin_inset Formula $R^{2}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1299,7 +1334,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../figures/F5_result_compare.pdf
+	filename ../figures/F5_result_r_square.pdf
 
 \end_inset
 
@@ -1316,21 +1351,8 @@ name "fig:Predictability-of-the"
 
 \end_inset
 
-Predictability of the hits per data submission
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-In Figure5, dr and dr_v2 means DataRank and DataRank-FB,
+this figure shows the predictability of the hits of each model.dr and dr_v2
+ means DataRank and DataRank-FB,
 \series bold
 \shape smallcaps
  
@@ -1346,9 +1368,29 @@ orig represents a special set of the parameter for DataRank
  pr and pr_v2 are PageRank and Modified PageRank respectively.
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
-From this Figure, we can clearly see that our method can better predict
- the real impact of datasets than PageRank.
+In 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Predictability-of-the"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, we can clearly see that our method can better predict the real impact
+ of datasets than PageRank.
 \end_layout
 
 \begin_layout Standard
@@ -1377,7 +1419,13 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-difference in decay time and correlation coefficient plot
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:difference-in-decay"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1391,8 +1439,18 @@ difference in decay time and correlation coefficient plot
 \end_layout
 
 \begin_layout Standard
-This plot shows that there is a linear relation between decay time and correlati
-on coefficient, though different dataset might have different slopes, even
+This 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:difference-in-decay"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows that there is a linear relation between decay time and correlation
+ coefficient, though different dataset might have different slopes, even
  it's possible that the symbols are opposite.
 \end_layout
 
@@ -1455,8 +1513,12 @@ literal "false"
 \end_inset
 
 .
- We choose the correlation coefficient as the metric to measure the connection
- between the algorithm's result and actual value.
+ We choose the 
+\begin_inset Formula $R^{2}$
+\end_inset
+
+ as the metric to measure the connection between the algorithm's result
+ and actual value.
  In Figure 5, our algorithm demonstrates a better predictive ability for
  data downloads compared with PageRank and modified PageRank.
 \end_layout
