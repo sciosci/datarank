@@ -85,7 +85,7 @@
 \shape smallcaps
 DataRank
 \shape default
-: assigning credit to scientific datasets using citations networks
+: assigning credit to scientific datasets using citation networks
 \end_layout
 
 \begin_layout Author
@@ -146,31 +146,60 @@ School of Information Management, Nanjing University, Nanjing, China
 \end_layout
 
 \begin_layout Abstract
-Information retrieval systems based on network properties have shown success
- for a number of applications, Google's PageRank being probably one of the
- best well-known.
- The success of these systems depends on nodes 
+Information retrieval (IR) algorithms such as Google's PageRank exploit
+ the properties of directed document networks to locate, attribute value
+ or 
 \begin_inset Quotes eld
 \end_inset
 
-citing
+credit,
 \begin_inset Quotes erd
 \end_inset
 
- other nodes.
- This is a well-known and old practice in science when citing scientific
- articles.
- However, there is comparatively much less emphasis on performing dataset
- citations.
- In this work, we adapt a network flow algorithm that simulates a random
- walker traversing the citation network.
+ and subsequently rank digital objects.
+ IR ranking systems operate by leveraging the linking behavior of the objects
+ (
+\begin_inset Quotes eld
+\end_inset
+
+nodes
+\begin_inset Quotes erd
+\end_inset
+
+), where the aggregate network structures and dyadic node-to-node citation
+ behavior can be computed to derive the score, relative value, and rank
+ of the individual nodes in the network.
+ In the context of scientific docuemnts, this directed node-to-node linking
+ behavior is known 
+\begin_inset Quotes eld
+\end_inset
+
+citation
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Citation of scientific articles is a well-established field, with novel
+ methodological approaches to scoring and ranking scientific publications
+ emerging (Jevin West [in Cronin and Sugimoto] 2014).
+ However, the majority of documents in citation networks are publications,
+ such as journal articles and indexed-conference proceedings.
+ Comparatively little work is done on other digital objects used in the
+ scientifc enterprise such as datasets and software, in IR systems and citations
+ networks of science.
+ The intellectual products lack the technical and social infrasturcture
+ that enables well-indexed journal articles and open science structured
+ metadata of publications to be included in the mainstream citation network.
+ Systematically including datasets is a published on the web national research
+ investments In this work, we adapt a network flow algorithm that simulates
+ a random walker traversing the citation network.
  Importantly, the random walker has distinctive behavior when moving to
- a publication node compared to dataset node.
- Called 
+ a publication node compared to dataset node, called 
 \shape smallcaps
 DataRank
 \shape default
-, we apply our algorithm to a combined network of publications and Genbank
+.
+ We apply our algorithm to a combined network of publications and Genbank
  datasets, and Figshare datasets.
  We compared 
 \shape smallcaps
@@ -255,7 +284,7 @@ Getting credit publishing scientific articles and datasets should be equally
  still not practiced as much as it should be
 \begin_inset CommandInset citation
 LatexCommand citep
-key "task2013out,belter2014measuring,robinson2016analyzing"
+key "task2013out,belter2014measuring,robinson2016analyzing,park2018informal"
 literal "false"
 
 \end_inset
@@ -318,8 +347,28 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-To the first question, a lot of efforts has been made, developing standards
- for datasets reference
+However, as an increasingly important asset of scientific production, datasets
+ yet do not get the credit they deserve
+\begin_inset CommandInset citation
+LatexCommand citep
+key "sieber1995not,darby2012enabling"
+literal "false"
+
+\end_inset
+
+.
+ A survey demonstrates that formal citation is considered by scholars to
+ be the way of crediting a dataset
+\begin_inset CommandInset citation
+LatexCommand citep
+key "kratz2015researcher"
+literal "false"
+
+\end_inset
+
+.
+ A lot of attempts has been made to promote this process, such as developing
+ standards for datasets reference
 \begin_inset CommandInset citation
 LatexCommand citep
 key "altman2015introduction,callaghan2014joint,mooney2012anatomy"
@@ -336,40 +385,18 @@ literal "false"
 
 \end_inset
 
+, identifying datasets used in articles but not properly referenced automaticall
+y
+\begin_inset CommandInset citation
+LatexCommand citep
+key "boland2012identifying,kafkas2013database,ghavimi2016identifying"
+literal "false"
+
+\end_inset
+
 , etc.
- However, as an increasingly important asset of scientific production, datasets
- yet do not get the credit they deserve
-\begin_inset CommandInset citation
-LatexCommand citep
-key "sieber1995not,darby2012enabling"
-literal "false"
-
-\end_inset
-
-.
- Some attempts have been made to correct this.
- A survey demonstrates that formal citation is considered by scholars to
- be the way of crediting a dataset
-\begin_inset CommandInset citation
-LatexCommand citep
-key "kratz2015researcher"
-literal "false"
-
-\end_inset
-
-.
- Data Citation Index database tries to take a lot of factors into account,
- such as standards of publishing, the content of editorial and citation
- information of datasets, etc for the editors to measure the strength of
- datasets
-\begin_inset CommandInset citation
-LatexCommand citep
-key "reuters2012repository"
-literal "false"
-
-\end_inset
-
-.
+ As another aspect of these efforts, we use citation network to assign each
+ dataset the credit it deserves.
 \end_layout
 
 \begin_layout Standard
@@ -445,7 +472,13 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-sample data of genbank
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:sample-data-of"
+
+\end_inset
+
+sample data of GenBank
 \end_layout
 
 \end_inset
@@ -459,9 +492,19 @@ sample data of genbank
 \end_layout
 
 \begin_layout Standard
-the sample data has many fields as listed in Figure1, but in our task, we
- only take ACCESSION(the identifier in GenBank) and REFERENCE's relevant
- information(authors, title, journal and pubmed) into consideration.
+the sample data has many fields as listed in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:sample-data-of"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, but in our task, we only take ACCESSION(the identifier in GenBank) and
+ REFERENCE's relevant information(authors, title, journal and pubmed) into
+ consideration.
  The last citation in the REFERENCE, with which the title is 'Direct Submission'
 , often contains information about the submitter of the sequence, meanwhile,
  we can also extract the time when this sequence is submitted by the field
@@ -635,10 +678,20 @@ literal "false"
 
 \begin_layout Standard
 Based on the downloads data of FigShare and GenBank, we draw probability
- density functions(pdf) of them respectively in Figure2.
+ density functions(pdf) of them respectively in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:pdf-of-figshare"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
  Because of the limited amount of data, the disturbance of small downloads
- is relatively large, which we can clearly see from the figures.
- The latter part of the data tends to be flat, mainly due to the long tail
+ is relatively large, which we can clearly see from the figures's left side.
+ The right part of the data tends to be flat, mainly due to the long tail
  phenomenon, which means comparing with normal datasets, datasets that have
  been frequently downloaded are pretty small.
  Exclude these two pieces of data, we can find that the points in the figure
@@ -674,6 +727,12 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:pdf-of-figshare"
+
+\end_inset
+
 Probability density function of downloads
 \end_layout
 
@@ -710,8 +769,17 @@ We constructed a directed network of citations primarily on the basis of
 
 \begin_layout Standard
 For the purpose of exploring this network more intuitively, we sample about
- 1 thousand nodes 1.5 thousand edges from the network and show it in Figure
- 3.
+ 1 thousand nodes 1.5 thousand edges from the network and show it in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:network-of-sample"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1315,10 +1383,7 @@ DataRank
  than the number of publications the dataset has received.
  This new proposed method bootstrap on information already available to
  scientists.
-\end_layout
-
-\begin_layout Standard
-Optimizing parameters to maximize the 
+ Optimizing parameters to maximize the 
 \begin_inset Formula $R^{2}$
 \end_inset
 
@@ -1689,7 +1754,15 @@ literal "false"
 
 \end_inset
 
- and XXXXX [paper like datarank but without two types of nodes].
+ and Dylan Walker's algorithm
+\begin_inset CommandInset citation
+LatexCommand citep
+key "walker2007ranking"
+literal "false"
+
+\end_inset
+
+.
  Our method predicts significantly better the usage of datasets and also
  it provides interpretable parameters.
  For example, even when the two datasets are of different nature, we found
