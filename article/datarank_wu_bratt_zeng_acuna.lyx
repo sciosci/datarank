@@ -214,65 +214,6 @@ PageRank
  We discuss the implications of our work for information retrieval.
 \end_layout
 
-\begin_layout Abstract
-
-\series bold
-Purpose
-\series default
- - The purpose of this article is to better credit dataset usage through
- the analysis of citation networks.
-\end_layout
-
-\begin_layout Abstract
-
-\series bold
-Design/methodology/approach
-\series default
- - We adapt a network flow algorithm which we call 
-\shape smallcaps
-DataRank
-\shape default
- to simulate a random walker traversing the network.
- We evaluate a number of algorithms on their ability to predict actual downloads
- and web visits to the datasets.
-\end_layout
-
-\begin_layout Abstract
-
-\series bold
-Findings
-\series default
- - We conducted our experiments on two networks, one is OpenCitation network
- and FigShare datasets and the other is a combined network of OpenCitation
- and GenBank dataset.
- In both of these experiments, 
-\shape smallcaps
-DataRank
-\shape default
- is more accurate at predicting actual usage than Google's classic 
-\shape smallcaps
-PageRank
-\shape default
-.
-\end_layout
-
-\begin_layout Abstract
-
-\series bold
-Originality/value
-\series default
- - A reasonable evaluation of the datasets will allow to properly give credit
- to datasets if they are not cited.
-\end_layout
-
-\begin_layout Abstract
-
-\series bold
-Keywords
-\series default
- DataRank OpenCitation GenBank FigShare
-\end_layout
-
 \begin_layout Section
 Introduction
 \end_layout
