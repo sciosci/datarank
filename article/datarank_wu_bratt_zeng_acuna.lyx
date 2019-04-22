@@ -83,9 +83,9 @@
 \begin_layout Title
 
 \shape smallcaps
-DataRank
+A
 \shape default
-: assigning credit to scientific datasets using citation networks
+ssigning credit to scientific datasets using article citation networks
 \end_layout
 
 \begin_layout Author
@@ -146,72 +146,57 @@ School of Information Management, Nanjing University, Nanjing, China
 \end_layout
 
 \begin_layout Abstract
-Information retrieval (IR) algorithms such as Google's PageRank exploit
- the properties of directed document networks to locate, attribute value
- or 
-\begin_inset Quotes eld
-\end_inset
-
-credit,
-\begin_inset Quotes erd
-\end_inset
-
- and subsequently rank digital objects.
- IR ranking systems operate by leveraging the linking behavior of the objects
- (
-\begin_inset Quotes eld
-\end_inset
-
-nodes
-\begin_inset Quotes erd
-\end_inset
-
-), where the aggregate network structures and dyadic node-to-node citation
- behavior can be computed to derive the score, relative value, and rank
- of the individual nodes in the network.
- In the context of scientific docuemnts, this directed node-to-node linking
- behavior is known 
-\begin_inset Quotes eld
-\end_inset
-
-citation
-\begin_inset Quotes erd
-\end_inset
-
-.
- Citation of scientific articles is a well-established field, with novel
- methodological approaches to scoring and ranking scientific publications
- emerging (Jevin West [in Cronin and Sugimoto] 2014).
- However, the majority of documents in citation networks are publications,
- such as journal articles and indexed-conference proceedings.
- Comparatively little work is done on other digital objects used in the
- scientifc enterprise such as datasets and software, in IR systems and citations
- networks of science.
- The intellectual products lack the technical and social infrasturcture
- that enables well-indexed journal articles and open science structured
- metadata of publications to be included in the mainstream citation network.
- Systematically including datasets is a published on the web national research
- investments In this work, we adapt a network flow algorithm that simulates
- a random walker traversing the citation network.
- Importantly, the random walker has distinctive behavior when moving to
- a publication node compared to dataset node, called 
+A citation is a well-established mechanism for connecting scientific artifacts.
+ Citation networks are used by citation analysis for a variety of reasons,
+ prominently to give credit to other scientist's work.
+ However, because of current practices, scientists tend to only cite publication
+s, leaving out other types of artifacts such as datasets.
+ As the reuse and experimentation with datasets becomes more important for
+ the scientific enterprise, datasets are therefore not properly accounted
+ for during citation analysis .
+ In this article, we examine several approaches for assigning credit to
+ datasets assuming that citation networks have biases against them.
+ In particular, we propose a network flow measure, called 
 \shape smallcaps
 DataRank
 \shape default
-.
- We apply our algorithm to a combined network of publications and Genbank
- datasets, and Figshare datasets.
- We compared 
+, that treats publication and datasets differently while assigning credit.
+ 
 \shape smallcaps
 DataRank
 \shape default
+ is a random walker that 1) starts at a node with exponentially decaying
+ probability as a function of age and 2) jumps to nodes differently depending
+ on whether they are a publication or a dataset.
+ Importantly, we test the quality of 
+\shape smallcaps
+DataRank
+\shape default
+ to predict the real usage of two dataset networks: GenBank (web visits)
+ and FigShare (downloads).
+ We show that 
+\shape smallcaps
+DataRank 
+\shape default
+is significantly better at predicting real usage of datasets when compared
  to 
 \shape smallcaps
-PageRank
+PageRank 
 \shape default
- and other variations, and we show that our method is better able to predict
- actual download and web visits of the dataset than alternatives.
- We discuss the implications of our work for information retrieval.
+and other variants.
+ While both dataset networks are in different domains, our results suggest
+ that they follow similar dynamics whereas publications have about twenty
+ time faster decay compared to datasets.
+ We discuss improvements to citation behavior and algorithms to properly
+ track the usage of datasets.
+\end_layout
+
+\begin_layout Abstract
+
+\series bold
+Keywords
+\series default
+ DataRank OpenCitation GenBank FigShare
 \end_layout
 
 \begin_layout Section
@@ -275,8 +260,8 @@ literal "false"
 \end_inset
 
 .
- Worsely, as the age of the article grows, datasets loss is severe, which
- leading to a rapid decline in the availability of research datasets
+ What is worse, as the age of the article grows, datasets loss is severe,
+ which leading to a rapid decline in the availability of research datasets
 \begin_inset CommandInset citation
 LatexCommand citep
 key "vines2014availability"
@@ -400,6 +385,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename ../figures/genbank3.png
 	width 100text%
