@@ -850,8 +850,8 @@ literal "false"
 \end_inset
 
 .
- This method is inspired by PageRank by addressing the issue that citation
- networks are always directed back in time.
+ This method is inspired by PageRank by solves the issue that citation networks
+ are always directed back in time.
  In that model, each vertex in the graph was a publication but in our case,
  a vertex can be either a publication or a dataset.
  Our goal is to propagate a vertex's impact through its citation.
@@ -860,9 +860,9 @@ literal "false"
 \begin_layout Standard
 This method simulates a set of researchers traversing publications through
  the citation networks.
- It ranks publications by estimating the average path length taken by researcher
-s who randomly start from a publication as a function of the publication's
- age and have a probability of stopping at each node.
+ It ranks publications by essentially estimating the average path length
+ taken by researchers who randomly start from a publication as a function
+ of the publication's age and have a probability of stopping at each node.
  Mathematically, it defines a traffic function 
 \begin_inset Formula $T_{i}(\tau_{\text{pub}},\alpha)$
 \end_inset
@@ -2489,7 +2489,7 @@ Discussion
 The goal of this paper is to better evaluate the importance of datasets
  through the citation network.
  Compared with the mature citation mechanism of articles, the reference
- of the datasets is in its infancy.
+ of the datasets is just in its infancy.
  The challenges of datasets citation are mainly from two aspects: No clear
  standards for datasets citation and lack of incentive for dataset sharing.
  There are several proposals trying to solve the first problem while not
