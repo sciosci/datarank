@@ -197,8 +197,8 @@ Introduction
 
 \begin_layout Standard
 Citation networks are an important source of analysis in science.
- Citations may indicate multiple intents: usage of an idea, signaling knowledge
- of the literature, and critique
+ Citations may indicate multiple intents: using an idea, signaling knowledge
+ of the literature, or criticizing other's approaches 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "martyn1975citation"
@@ -207,8 +207,8 @@ literal "false"
 \end_inset
 
 .
- When thought of as impact, citations also inform tenure, promotion, and
- hiring decisions
+ When citations are thought of as impact, they also inform tenure, promotion,
+ and hiring decisions 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "meho2007impact"
@@ -227,11 +227,11 @@ literal "false"
 \end_inset
 
 .
- Citation practices and infrastructures are well-developed for scientific
- publications, such as journal articles and conference proceedings.
- However, this development is much less for datasets.
- This gap affects the credit assignment that datasets are playing in scientific
- reproducibility 
+ Citation practices and infrastructures are well-developed for journal articles
+ and conference proceedings.
+ However, there is much less development for dataset citation.
+ This gap affects the credit assignment that datasets are increasingly playing
+ in scientific reproducibility 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "task2013out,belter2014measuring,robinson2016analyzing,park2018informal"
@@ -239,7 +239,7 @@ literal "false"
 
 \end_inset
 
-, where studies used dataset to confirm or extend the results of other research
+, where studies use dataset to confirm or extend the results of other research
  
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -249,48 +249,21 @@ literal "false"
 \end_inset
 
 .
- [But there are many gaps which remain.
- For one, datasets citation enables scientists to create reproducible content
- or carry out further research 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "altman2013evolution"
-literal "false"
-
-\end_inset
-
-.
- Moreover, datasets tend to not appear in top information search and query
- results at the same scale as publications, resulting in datasets contributors
- lacking the use and assignment of credit that publications benefit.
- Third, the datasets usage statistics are underdeveloped and underexploited
- which inhibits better dataset curation and service to the scientific community
- of users by indicating the interest, relevance, or value of a dataset to
- the community.
- Worse still, as the age of the article grows, datasets loss is severe,
- which is leading to a rapid decline in the availability of research datasets
- 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "vines2014availability"
-literal "false"
-
-\end_inset
-
-.] One possible cause of this gap has been the historical difficulty with
- archiving datasets, but these difficulties are less prominent today but
- the citation practices for datasets take to develop.
- We are researchers should promote mechanisms that reverse this historical
+ One possible cause of this gap has been the historical difficulty with
+ archiving datasets.
+ While these difficulties are less prominent today, the citation practices
+ for datasets take time to develop.
+ We as researchers should promote mechanisms that reverse this historical
  gap.
- In this work, we propose an algorithmic solution based on the principle
- that citations should flow through a network of citations and publications,
- considering the different times scales of these artifacts.
- Thus, with this proposed solution, citation networks would remain an important
- source for scientific decisions in both publications and datasets.
+ In this work, we hypothesize that citations should flow through the network
+ of publications and datasets, and that an algorithm could capture the different
+ values of these artifacts.
+ Thus, citation analysis could fully account for the impact of datasets.
 \end_layout
 
 \begin_layout Standard
 Citation network has been widely used in evaluating the importance of authors
+ 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "ding2009pagerank,ding2011applying"
@@ -298,7 +271,7 @@ literal "false"
 
 \end_inset
 
-, papers
+, papers 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "chen2007finding,ma2008bringing"
@@ -306,7 +279,7 @@ literal "false"
 
 \end_inset
 
-, journals
+, journals 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "bollen2006journal"
@@ -314,7 +287,7 @@ literal "false"
 
 \end_inset
 
-, institutions
+, institutions 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "fiala2013suborganizations"
@@ -322,7 +295,7 @@ literal "false"
 
 \end_inset
 
- or even counties
+ and even counties 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "fiala2012bibliometric"
@@ -330,28 +303,38 @@ literal "false"
 
 \end_inset
 
- with a recursive algorithm, such as 
+.
+ Many of this previous work has been based on modifications of the 
 \shape smallcaps
-PageRank 
+PageRank
 \shape default
-and its variants.
- Bollen proposed a weighted 
-\shape smallcaps
-PageRank 
-\shape default
-to assess the prestige of journals
+ algorithm 
 \begin_inset CommandInset citation
 LatexCommand citep
+key "page1999pagerank"
+literal "false"
+
+\end_inset
+
+.
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
 key "bollen2006journal"
 literal "false"
 
 \end_inset
 
-, while Ding proposed another weighted 
+ proposed a weighted 
 \shape smallcaps
 PageRank 
 \shape default
-to measure the prestige of authors
+to assess the prestige of journals, while Ding proposed another weighted
+ 
+\shape smallcaps
+PageRank 
+\shape default
+to measure the prestige of authors 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "ding2009pagerank,ding2011applying"
@@ -360,64 +343,44 @@ literal "false"
 \end_inset
 
 .
- Others try to take time into consideration, Fiala defines a new time-aware
  
-\shape smallcaps
-PageRank 
-\shape default
-method
 \begin_inset CommandInset citation
-LatexCommand citep
+LatexCommand citet
 key "fiala2012time"
 literal "false"
 
 \end_inset
 
-, which outperforms standard 
+ defines a new time-aware 
 \shape smallcaps
-PageRank
+PageRank 
 \shape default
- and its time-unaware weighted varirants in detecting the most prominent
- computer scientists.
- Massimo Franceschet introduced an approach called 
-\shape smallcaps
-TimeRank
-\shape default
- for scholars rating
+method for more accurately ranking the most prominent computer scientists.
+ 
 \begin_inset CommandInset citation
-LatexCommand citep
+LatexCommand citet
 key "franceschet2017timerank"
 literal "false"
 
 \end_inset
 
-.
+ introduced an approach called 
+\shape smallcaps
+TimeRank
+\shape default
+ for scholars rating.
  This method updates the rating of scholars based on the relative rating
  of the citing and cited scholars at the time of the citation.
- The citation network mentioned above is homogeneous, and our citation network
- is heterogeneous, that is, it contains two different types of data structures:
- papers and datasets.
+ Citation networks are an important source of information for ranking homogenous
+ types of nodes.
 \end_layout
 
 \begin_layout Standard
-[find an idea that is close to our paper.
- it seems that data citation is not as close as we thought so maybe find
- a paper that is about paper citation.
- for example, they might be papers about miscitation patterns for papers
- and how they affect the assignment of credit.
- .
- Such infrastructure includes citation policies, processes, software, and
- social norms, and other formal and informal mechanisms of referencing a
- scientific artifact.
- ]
-\end_layout
-
-\begin_layout Standard
-Historically, the challenges with establishing citation infrastructures
- for research datasets has been multifactorial, with social and technical
- issues alike.
- First, the massive size of research datasets makes them prohibitive for
- archiving and searching.
+Historically, the use of citation networks for ranking datasets has been
+ significantly more challenging.
+ These challenges have social and technical issues alike.
+ First, the massive size of research datasets has made them prohibitive
+ for archiving and searching.
  Second, datasets cost time and labor to prepare and to share, resulting
  in some articles failing to provide datasets 
 \begin_inset CommandInset citation
@@ -455,11 +418,10 @@ literal "false"
 \begin_layout Standard
 Several attempts to improve citation practices for datasets and to modify
  citation networks have been established.
- In 2014, the Joint Declaration Of Data Citation Principles was offically
+ In 2014, the Joint Declaration Of Data Citation Principles was officially
  released.
- It mainly fouces on the normalization of the reference of datasets through
- eight core principles, rathen than datasets storage and some other technical
- issues.[Mention more specifically what these standards do 
+ These principles mainly focus on normalizing dataset references rather
+ than normalizing storage and some other technical issues 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "altman2015introduction,callaghan2014joint,mooney2012anatomy"
@@ -467,7 +429,7 @@ literal "false"
 
 \end_inset
 
-].
+.
  For instance, some researchers have suggested assigning specific DOIs to
  datasets to mitigate differences between datasets and articles 
 \begin_inset CommandInset citation
@@ -477,8 +439,9 @@ literal "false"
 
 \end_inset
 
- and identifying datasets used in articles but not properly referenced automatic
-ally 
+.
+ Other have proposed to identify (uncited / unreferenced) datasets used
+ in articles automatically 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "boland2012identifying,kafkas2013database,ghavimi2016identifying"
@@ -495,9 +458,8 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-[Our approach] In this article, we develop a method for assigning credit
- to datasets from citation networks of publications assuming that they have
- biases.
+In this article, we develop a method for assigning credit to datasets from
+ citation networks of publications assuming that they have biases.
  Importantly, our method does not modify the source for the algorithms.
  The method does not rely on scientists explicitly citing a dataset but
  infers the use and assigns credit accordingly based on a modified 
@@ -505,32 +467,32 @@ literal "false"
 PageRank
 \shape default
  approach.
- We adapt the work done in 
+ We adapt the work by 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "walker2007ranking"
 
 \end_inset
 
- in the context of dataset and publication citation networks.
- Our method that simulates the a random walker in a citation graph that
- takes into account the differences between obsolescence rates of publications
- and datasets, and estimates the 
+ to include two types of nodes: datasets and publications.
+ Our method simulates a random walker that takes into account the differences
+ between obsolescence rates of publications and datasets, and estimates
+ the 
 \shape smallcaps
 DataRank
 \shape default
 , or score of each dataset.
  The data we use to develop this method is the metadata from National Center
  for Bioinformatics (NCBI) GenBank nucleic acid sequence data and publications
- associated with them; Microsoft Academic Graph publication citation metadata,
- Figshare datasets, and OpenCitationCorpus.
+ associated with them; Figshare datasets and OpenCitationCorpus.
  We estimate the relative rank of the datasets with the 
 \shape smallcaps
 DataRank
 \shape default
  algorithm and cross-validate it using the actual visits to the NCBI dataset
- web pages containing the description of the datasets.
- We show that our method is significantly better at predicting usage.
+ web pages and the actual downloads of Figshare datasets.
+ We show that our method is significantly better at predicting both types
+ of usages.
  We discuss the implications of our method for data citation infrastructures
  and future projects.
 \end_layout
@@ -543,7 +505,7 @@ Materials and methods
 Datasets
 \end_layout
 
-\begin_layout Standard
+\begin_layout Subsubsection
 
 \series bold
 GenBank
@@ -568,7 +530,7 @@ literal "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -652,7 +614,7 @@ name "fig:sample-data-of-1"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -691,7 +653,7 @@ The citation network is bimodal, containing both datasets and publications
  
 \end_layout
 
-\begin_layout Standard
+\begin_layout Subsubsection
 
 \series bold
 FigShare
@@ -1544,6 +1506,18 @@ Results
 \end_layout
 
 \begin_layout Standard
+[Restate the problem and the proposed solution]
+\end_layout
+
+\begin_layout Standard
+[The distribution of datasets in Genbank and Figshare]
+\end_layout
+
+\begin_layout Standard
+[An overview of the network]
+\end_layout
+
+\begin_layout Standard
 We propose a new method to rank scientific datasets by bootstrapping on
  the information already contains in the publication citation network.
  We test our method on a genetic sequencing dataset known as GenBank and
@@ -1573,6 +1547,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename ../figures/F5_result_r_square.pdf
+	width 10cm
 
 \end_inset
 
@@ -1645,8 +1620,10 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename ../figures/F6_decay_diff_coeff.pdf
+	width 11cm
 
 \end_inset
 
@@ -1709,7 +1686,7 @@ noprefix "false"
 \begin_layout Standard
 \begin_inset Float table
 wide false
-sideways false
+sideways true
 status open
 
 \begin_layout Plain Layout
@@ -2929,6 +2906,44 @@ The authors would like to thank the Dr.
  DHHS.
  Daniel E.
  Acuna was partially funded by the National Science Foundation awards #1800956.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Scratchpad of ideas
+\end_layout
+
+\begin_layout Standard
+But there are many gaps which remain.
+ For one, datasets citation enables scientists to create reproducible content
+ or carry out further research 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "altman2013evolution"
+literal "false"
+
+\end_inset
+
+.
+ Moreover, datasets tend to not appear in top information search and query
+ results at the same scale as publications, resulting in datasets contributors
+ lacking the use and assignment of credit that publications benefit.
+ Third, the datasets usage statistics are underdeveloped and underexploited
+ which inhibits better dataset curation and service to the scientific community
+ of users by indicating the interest, relevance, or value of a dataset to
+ the community.
+ Worse still, as the age of the article grows, datasets loss is severe,
+ which is leading to a rapid decline in the availability of research datasets
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "vines2014availability"
+literal "false"
+
+\end_inset
+
+.] 
 \end_layout
 
 \begin_layout Standard
