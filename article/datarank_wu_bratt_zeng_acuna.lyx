@@ -508,13 +508,64 @@ Datasets
 \begin_layout Subsubsection
 
 \series bold
+OpenCitation Corpus and Microsoft Academic Graph (MAG)
+\end_layout
+
+\begin_layout Standard
+OpenCitation Corpus (OCC) is the OpenCitations Index of Crossref's open
+ DOI-to-DOI references data 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "peroni2015setting"
+literal "false"
+
+\end_inset
+
+, which can be used without restriction 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "shotton2013publishing"
+literal "false"
+
+\end_inset
+
+.
+ It contains approximately 450 million DOI-to-DOI citation links, which
+ makes it one of the largest open corpuses of citation data available 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "peroni2017one"
+literal "false"
+
+\end_inset
+
+.
+ Because OCC is already formatted in the form of directed relationships
+ between two DOIs, it is easy to transform the citation into a graph.
+ OpenCitations does not have year information about the DOIs.
+ We obtain this information from the Microsoft Academic Graph (MAG) 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "sinha2015overview"
+literal "false"
+
+\end_inset
+
+.
+ All nodes without a year are excluded, and the result after this step is
+ 441,432,288 citations and 44,229,769 unique resources.XXXXX
+\end_layout
+
+\begin_layout Subsubsection
+
+\series bold
 GenBank
 \end_layout
 
 \begin_layout Standard
 GenBank is an open research repository that contains an annotated collection
- of all publicly available nucleotide sequences for almost 260, 000 formally
- described species
+ of all publicly available nucleotide sequences for almost 260,000 formally
+ described species 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "benson2012genbank"
@@ -522,15 +573,25 @@ literal "false"
 
 \end_inset
 
+—Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:sample-data-of"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
 .
- The figure below shows the format of GenBank's metadata record.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -568,19 +629,24 @@ name "fig:sample-data-of"
 \end_layout
 
 \begin_layout Standard
-From a previous project with collaborators which parsed the GenBank metadata
- into a relational database (excluding the actual sequence data in the ORIGIN
- field, comprising approximately 80% of the GenBank database's total size)
- and disambiguated the author names, for the task of data here we selected
- the ACCESSION field and the relevant information from the REFERENCE field.
- The ACCESSION field is the identifier in for data submissions to GenBank
- or affiliate databases and from the REFERENCE field we used authors, title,
- journal and pubmed.
- The entry of 'Direct Submission' in the REFERENCE field indicates that
- the annotation record is describing a dataset (rather than a publication).
- The field of JOURNAL often contains the date that the dataset was submitted
- (e.g.
+The information about a dataset in the GenBank can be found as a record,
+ which contain also publications citing the dataset (Fig.
  
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:sample-data-of"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ The accesion field contains the identifier of the dataset and the reference
+ field contains a publication with its authors, title, journal and PubMed
+ identifier (PMID).
+ The submitted field contains the date in which the dataset was introduced
+ (e.g., 
 \begin_inset Quotes eld
 \end_inset
 
@@ -589,46 +655,51 @@ From a previous project with collaborators which parsed the GenBank metadata
 \end_inset
 
  in 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:sample-data-of-1"
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:sample-data-of"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
-), an item we extracted to be used in the decay rate part of our algorithm.
- We queried the GenBank database with a resulant 212,260,377 gene sequences
- (version 230).
- Because the GenBank dataset only had the PubMed Identification number (PMID)
- of the publications and not the Digital Object Identifier (DOI) which was
- necessary to connect the GenBank metadata to the Microsoft Academic Graph
- (MAG) citation data, we converted the PMID of the GenBank dataset submissions'
- affiliated publications to the publications' DOI, and joined the MAG citation
- data to the GenBank data through a union of DOI to DOI.
- At the conclusion of the data processing, a total of 25,888,648 gene sequences
- from GenBank and 32,353,710 citations from MAG, which supply us with the
- citation network containing datasets and their affiliated cited publications.
+).
+ We processed 212,260,377 gene sequences in the dataset (version 230).
+ Our citation database (described later below) has describes nodes by their
+ Digital Object Identifiers (DOI), but GenBank only contains publications
+ with their PMID identifier.
+ Therefore, we used an additional PMID to DOI link dataset provided by PubMed.
+ At the end, this left us with 25,888,648 gene sequences from GenBank datasets
+ with publications associated and 32,353,710 citations from OpenCitations.
+ The previous steps allowed us to construct a citation network with both
+ publications and datasets.
+ 
 \end_layout
 
 \begin_layout Standard
-The citation network is bimodal, containing both datasets and publications
- and the links among them.
- The papers cite eachother, each one accuring a citation count.
- The datasets can have zero, one, or many affiliated papers.
- The dataset's affiliated papers are selected by the submitting authors
- as those publications the authors believe the datasets are explained in
- or that otherwise are based on and so reference the dataset.
+The National Institutes of Health (NIH) provided download data for the month
+ of September 2012 for the top 1000 Nucleotide GenBank entries 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "benson2012genbank"
+literal "false"
+
+\end_inset
+
+.
  
 \end_layout
 
 \begin_layout Subsubsection
 
 \series bold
-FigShare
+FigShares
 \end_layout
 
 \begin_layout Standard
 FigShare is a multidisciplinary, open access research repository where researche
-rs can deposit and share figures, datasets, and other media
+rs can deposit and share figures, datasets, and other media 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "singh2011figshare"
@@ -637,110 +708,23 @@ literal "false"
 \end_inset
 
 .
- FigShare represents a mainstream repository that allows for the deposit
- of versatile resources.
  To encourage data sharing, free storage space is unlimited if the content
  is made public, while storage space has limits for private use.
  When a user makes a resource publicly available, FigShare immediately assigns
  a DOI to this resource, marked as a FigShare object by embedding the character
  string 'FigShare' within the DOI, e.g., 'https://doi.org/10.6084/m9.figshare.6741260.'
- We can leverage this feature to determine whether a DOI is from FigShare.
-\end_layout
-
-\begin_layout Subsubsection
-
-\series bold
-OpenCitation Corpus
+ We can leverage this feature to determine whether a publication cites a
+ dataset by detecting FigShare-generated DOIs.
+ 
 \end_layout
 
 \begin_layout Standard
-OpenCitation Corpus (OCC) is the OpenCitations Index of Crossref's open
- DOI-to-DOI references data
-\begin_inset CommandInset citation
-LatexCommand citep
-key "peroni2015setting"
-literal "false"
-
-\end_inset
-
-.
- It is constructed from the semantic web to create an open repository for
- scholarly citation data that publishers have made available.
- OCC provides citation data that others are able to build upon freely and
- enhance and reuse for any purpose without the restriction of copyright
- and database access limits 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "shotton2013publishing"
-literal "false"
-
-\end_inset
-
-.
- It contains approximately 450 million DOI-to-DOI citation links, which
- makes it one of the largest open corpuses of RDF-based citation data available
+The FigShare database contains XXXX datasets.
+ However, only a very small portion of those DOIs (about 949) are ever cited
+ in OCC comes from FigShare.
+ We crawled the downloads and the creation time of every FigShare DOI through
+ the website: https://stats.figshare.com/total/downloads/article.
  
-\begin_inset CommandInset citation
-LatexCommand citep
-key "peroni2017one"
-literal "false"
-
-\end_inset
-
-.
- Because OCC is already formatted in the form of directed relationships
- between two DOIs, it is easy to transform the citation into a graph.
- For example, if there are three DOIs: 
-\begin_inset Formula $D_{i},D_{j}$
-\end_inset
-
-and 
-\begin_inset Formula $D_{k}$
-\end_inset
-
-, 
-\begin_inset Formula $D_{i}$
-\end_inset
-
- cites both 
-\begin_inset Formula $D_{j}$
-\end_inset
-
- and 
-\begin_inset Formula $D_{k}$
-\end_inset
-
-, we will get two records in OCC, the first one is 
-\begin_inset Formula $D_{i}$
-\end_inset
-
- to 
-\begin_inset Formula $D_{j}$
-\end_inset
-
-, and second is 
-\begin_inset Formula $D_{i}$
-\end_inset
-
- to 
-\begin_inset Formula $D_{k}$
-\end_inset
-
-, this kind of data.
- Under these circumstances, the only thing we need to do is to make sure
- when the node, that is, the DOI, is created.
- We acquire this information through OpenCitation and Microsoft Academic
- Graph (MAG)
-\begin_inset CommandInset citation
-LatexCommand citep
-key "sinha2015overview"
-literal "false"
-
-\end_inset
-
-.
- All nodes without a year are excluded, and the result after this step is
- 441,432,288 citations and 44,229,769 unique resources.
 \end_layout
 
 \begin_layout Subsection
@@ -759,9 +743,8 @@ literal "false"
 .
  This method is inspired by PageRank by addressing the issue that citation
  networks are always directed back in time.
- In that model, each vertex in the graph was a publication but in our case,
- a vertex can be either a publication or a dataset.
- Our goal is to propagate a vertex's impact through its citation.
+ In this model, each vertex in the graph was a publication.
+ The goal of this method is to propagate a vertex's impact through its citation.
 \end_layout
 
 \begin_layout Standard
@@ -885,7 +868,7 @@ DataRank
 \end_layout
 
 \begin_layout Standard
-In this article, we do a simple extension of the previously described procedure
+In this article, we do an extension of the previously described procedure
  in what we call 
 \shape smallcaps
 DataRank
@@ -1032,7 +1015,7 @@ DataRank
  paper who cites it.
  In other words, the research can move on in two directions: forwardly and
  backwardly.
- we call this modified method 
+ We call this modified method 
 \shape smallcaps
 DataRank-FB.
  
@@ -1212,7 +1195,7 @@ Modified PageRank:
 \begin_layout Standard
 Considering that we have two types of resources in the network, we use the
  following method to modify the iterative process of the classical PageRank
- algorthm:
+ algorithm:
 \end_layout
 
 \begin_layout Standard
@@ -1281,19 +1264,6 @@ In our analysis, we aimed to find whether the estimation of the rank of
  DataRank) is related to something important about the submissions.
  In this study, we use the downloads of the submissions as a proxy for such
  importance.
- A portion of the DOIs (about 949) in OCC comes from FigShare.
- We crawled the downloads and the creation time of every FigShare DOI through
- the website: https://stats.figshare.com/total/downloads/article.
- The National Institutes of Health (NIH) provided download data for the
- month of September 2012 for the top 1000 Nucleotide GenBank entries 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "benson2012genbank"
-literal "false"
-
-\end_inset
-
-.
  With this information, we were able to partially validate how our estimation
  of importance might be related to some external factor.
 \end_layout
@@ -1330,7 +1300,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
