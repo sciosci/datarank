@@ -266,6 +266,113 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
+Citation network has been widely used in evaluating the importance of authors
+\begin_inset CommandInset citation
+LatexCommand citep
+key "ding2009pagerank,ding2011applying"
+literal "false"
+
+\end_inset
+
+, papers
+\begin_inset CommandInset citation
+LatexCommand citep
+key "chen2007finding,ma2008bringing"
+literal "false"
+
+\end_inset
+
+, journals
+\begin_inset CommandInset citation
+LatexCommand citep
+key "bollen2006journal"
+literal "false"
+
+\end_inset
+
+, institutions
+\begin_inset CommandInset citation
+LatexCommand citep
+key "fiala2013suborganizations"
+literal "false"
+
+\end_inset
+
+ or even counties
+\begin_inset CommandInset citation
+LatexCommand citep
+key "fiala2012bibliometric"
+literal "false"
+
+\end_inset
+
+ with a recursive algorithm, such as 
+\shape smallcaps
+PageRank 
+\shape default
+and its variants.
+ Bollen proposed a weighted 
+\shape smallcaps
+PageRank 
+\shape default
+to assess the prestige of journals
+\begin_inset CommandInset citation
+LatexCommand citep
+key "bollen2006journal"
+literal "false"
+
+\end_inset
+
+, while Ding proposed another weighted 
+\shape smallcaps
+PageRank 
+\shape default
+to measure the prestige of authors
+\begin_inset CommandInset citation
+LatexCommand citep
+key "ding2009pagerank,ding2011applying"
+literal "false"
+
+\end_inset
+
+.
+ Others try to take time into consideration, Fiala defines a new time-aware
+ 
+\shape smallcaps
+PageRank 
+\shape default
+method
+\begin_inset CommandInset citation
+LatexCommand citep
+key "fiala2012time"
+literal "false"
+
+\end_inset
+
+, which outperforms standard 
+\shape smallcaps
+PageRank
+\shape default
+ and its time-unaware weighted varirants in detecting the most prominent
+ computer scientists.
+ Massimo Franceschet introduced an approach called 
+\shape smallcaps
+TimeRank
+\shape default
+ for scholars rating
+\begin_inset CommandInset citation
+LatexCommand citep
+key "franceschet2017timerank"
+literal "false"
+
+\end_inset
+
+.
+ This method updates the rating of scholars based on the relative rating
+ of the citing and cited scholars at the time of the citation.
+\end_layout
+
+\begin_layout Standard
 [find an idea that is close to our paper.
  it seems that data citation is not as close as we thought so maybe find
  a paper that is about paper citation.
