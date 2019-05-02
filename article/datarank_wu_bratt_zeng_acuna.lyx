@@ -198,11 +198,35 @@ Introduction
 \begin_layout Standard
 Citation networks are an important source of analysis in science.
  Citations may indicate multiple intents: usage of an idea, signaling knowledge
- of the literature, and critique [cite].
+ of the literature, and critique
+\begin_inset CommandInset citation
+LatexCommand citep
+key "martyn1975citation"
+literal "false"
+
+\end_inset
+
+.
  When thought of as impact, citations also inform tenure, promotion, and
- hiring decisions [cite].
+ hiring decisions
+\begin_inset CommandInset citation
+LatexCommand citep
+key "meho2007impact"
+literal "false"
+
+\end_inset
+
+.
  Furthermore, scientists themselves make decisions based on citations, such
- as what papers to read and which articles to cite [cite].
+ as what papers to read and which articles to cite 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "martyn1975citation"
+literal "false"
+
+\end_inset
+
+.
  Citation practices and infrastructures are well-developed for scientific
  publications, such as journal articles and conference proceedings.
  However, this development is much less for datasets.
@@ -370,6 +394,9 @@ literal "false"
 .
  This method updates the rating of scholars based on the relative rating
  of the citing and cited scholars at the time of the citation.
+ The citation network mentioned above is homogeneous, and our citation network
+ is heterogeneous, that is, it contains two different types of data structures:
+ papers and datasets.
 \end_layout
 
 \begin_layout Standard
@@ -428,7 +455,11 @@ literal "false"
 \begin_layout Standard
 Several attempts to improve citation practices for datasets and to modify
  citation networks have been established.
- [Mention more specifically what these standards do 
+ In 2014, the Joint Declaration Of Data Citation Principles was offically
+ released.
+ It mainly fouces on the normalization of the reference of datasets through
+ eight core principles, rathen than datasets storage and some other technical
+ issues.[Mention more specifically what these standards do 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "altman2015introduction,callaghan2014joint,mooney2012anatomy"
