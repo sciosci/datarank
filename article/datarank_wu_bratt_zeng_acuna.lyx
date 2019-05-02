@@ -607,39 +607,6 @@ name "fig:sample-data-of-1"
  At the conclusion of the data processing, a total of 25,888,648 gene sequences
  from GenBank and 32,353,710 citations from MAG, which supply us with the
  citation network containing datasets and their affiliated cited publications.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename pasted2.png
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Citation network of publications to affiliated datasets.
- A model of the directed connections from citing papers to other papers
- which are affiliated with the dataset.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -680,7 +647,7 @@ literal "false"
  We can leverage this feature to determine whether a DOI is from FigShare.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Subsubsection
 
 \series bold
 OpenCitation Corpus
@@ -774,203 +741,6 @@ literal "false"
 .
  All nodes without a year are excluded, and the result after this step is
  441,432,288 citations and 44,229,769 unique resources.
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Download Data
-\end_layout
-
-\begin_layout Standard
-In our analysis, we aimed to find whether the estimation of the rank of
- a dataset (calculated using our modified network traffic estimation algorithm,
- DataRank) is related to something important about the submissions.
- In this study, we use the downloads of the submissions as a proxy for such
- importance.
- A portion of the DOIs (about 949) in OCC comes from FigShare.
- We crawled the downloads and the creation time of every FigShare DOI through
- the website: https://stats.figshare.com/total/downloads/article.
- The National Institutes of Health (NIH) provided download data for the
- month of September 2012 for the top 1000 Nucleotide GenBank entries 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "benson2012genbank"
-literal "false"
-
-\end_inset
-
-.
- With this information, we were able to partially validate how our estimation
- of importance might be related to some external factor.
-\end_layout
-
-\begin_layout Standard
-Based on the download data of FigShare and GenBank, we plotted probability
- density functions (pdf) of them respectively in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:pdf-of-figshare"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- Because of the limited amount of data, the disturbance of small downloads
- is relatively large, which we can clearly see from the figures' left side.
- The right part of the data tends to be flat, mainly due to the long tail
- phenomenon, which means comparing with normal datasets, datasets that have
- been frequently downloaded are pretty small.
- Exclude these two pieces of data, we can find that the points in the figure
- clearly show a linear correlation.
- This means the download probability of a dataset is predictable, which
- makes our mission possible.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename ../figures/F1B_figshare_downloads_lr.pdf
-	width 48text%
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename ../figures/F1B_genbank_downloads_lr.pdf
-	width 48text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:pdf-of-figshare"
-
-\end_inset
-
-Probability density function of downloads
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Construction of the citation network
-\end_layout
-
-\begin_layout Standard
-We constructed a directed network of citations primarily using the OpenCitation
- Corpus, but combined with the affiliation between dataset and paper which
- was extracted from GenBank as mentioned above.
- The result is a sizable citation network.
- In this citation network, each node represents one dataset or paper.
- The directed edges represent the citation relations between nodes.
- OpenCitation Corpus consists of 441,432,288 citations and 44,229,769 unique
- resources, including 949 resources and 1335 citations from FigShare.
- After Integrated with GenBank, we finally get 473,785,998 citations and
- 70,138,538 unique resources.
- On average, each paper will be cited by 9.98 papers, but when it switches
- to FigShare and GenBank, the number drops dramatically
-\begin_inset space ~
-\end_inset
-
-to 1.41 and 1.25.
- This also suggests less of an emphasis on performing dataset citations.
-\end_layout
-
-\begin_layout Standard
-For the purpose of exploring this network more intuitively, we sample about
- 1 thousand nodes 1.5 thousand edges from the network and show it in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:network-of-sample"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename ../figures/F1A_sampleData_colored.pdf
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:network-of-sample"
-
-\end_inset
-
- Each color represents a different type of resource: Papers appear as red
- nodes and Datasets are green.
- The lighter the color, the older the resource.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-From 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:network-of-sample"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, we observe four patterns of papers citing datasets (a dataset cannot cite
- anything): one-to-one, one-to-many, many-to-one and many-to-many.
- We also observe the structure of a knowledge diffusion process with the
- direction of knowledge flows.
 \end_layout
 
 \begin_layout Subsection
@@ -1107,7 +877,7 @@ th iteration.
  traffic as predictable of something external.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Subsubsection
 
 \series bold
 \shape smallcaps
@@ -1233,7 +1003,7 @@ noprefix "false"
 ).
 \end_layout
 
-\begin_layout Standard
+\begin_layout Subsubsection
 
 \series bold
 \shape smallcaps
@@ -1339,7 +1109,7 @@ DataRank-FB
 Other network models
 \end_layout
 
-\begin_layout Standard
+\begin_layout Subsubsection
 
 \series bold
 PageRank
@@ -1433,7 +1203,7 @@ The importance of a page depends on the number of its in-degree(how many
  pages who has a link into it), and the importance of pages who cite it.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Subsubsection
 
 \series bold
 Modified PageRank:
@@ -1518,6 +1288,205 @@ Results
 \end_layout
 
 \begin_layout Standard
+In our analysis, we aimed to find whether the estimation of the rank of
+ a dataset (calculated using our modified network traffic estimation algorithm,
+ DataRank) is related to something important about the submissions.
+ In this study, we use the downloads of the submissions as a proxy for such
+ importance.
+ A portion of the DOIs (about 949) in OCC comes from FigShare.
+ We crawled the downloads and the creation time of every FigShare DOI through
+ the website: https://stats.figshare.com/total/downloads/article.
+ The National Institutes of Health (NIH) provided download data for the
+ month of September 2012 for the top 1000 Nucleotide GenBank entries 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "benson2012genbank"
+literal "false"
+
+\end_inset
+
+.
+ With this information, we were able to partially validate how our estimation
+ of importance might be related to some external factor.
+\end_layout
+
+\begin_layout Subsection
+Distribution of download data in GenBank and FigShare
+\end_layout
+
+\begin_layout Standard
+Based on the download data of FigShare and GenBank, we plotted probability
+ density functions (pdf) of them respectively in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:pdf-of-figshare"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Because of the limited amount of data, the disturbance of small downloads
+ is relatively large, which we can clearly see from the figures' left side.
+ The right part of the data tends to be flat, mainly due to the long tail
+ phenomenon, which means comparing with normal datasets, datasets that have
+ been frequently downloaded are pretty small.
+ Exclude these two pieces of data, we can find that the points in the figure
+ clearly show a linear correlation.
+ This means the download probability of a dataset is predictable, which
+ makes our mission possible.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../figures/F1B_figshare_downloads_lr.pdf
+	width 48text%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename ../figures/F1B_genbank_downloads_lr.pdf
+	width 48text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:pdf-of-figshare"
+
+\end_inset
+
+Probability density function of downloads
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Construction of citation network
+\end_layout
+
+\begin_layout Standard
+We constructed a directed network of citations primarily using the OpenCitation
+ Corpus, but combined with the affiliation between dataset and paper which
+ was extracted from GenBank as mentioned above.
+ The result is a sizable citation network.
+ In this citation network, each node represents one dataset or paper.
+ The directed edges represent the citation relations between nodes.
+ OpenCitation Corpus consists of 441,432,288 citations and 44,229,769 unique
+ resources, including 949 resources and 1335 citations from FigShare.
+ After Integrated with GenBank, we finally get 473,785,998 citations and
+ 70,138,538 unique resources.
+ On average, each paper will be cited by 9.98 papers, but when it switches
+ to FigShare and GenBank, the number drops dramatically
+\begin_inset space ~
+\end_inset
+
+to 1.41 and 1.25.
+ This also suggests less of an emphasis on performing dataset citations.
+\end_layout
+
+\begin_layout Standard
+For the purpose of exploring this network more intuitively, we sample about
+ 1 thousand nodes 1.5 thousand edges from the network and show it in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:network-of-sample"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../figures/F1A_sampleData_colored.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:network-of-sample"
+
+\end_inset
+
+ Each color represents a different type of resource: Papers appear as red
+ nodes and Datasets are green.
+ The lighter the color, the older the resource.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:network-of-sample"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, we observe four patterns of papers citing datasets (a dataset cannot cite
+ anything): one-to-one, one-to-many, many-to-one and many-to-many.
+ We also observe the structure of a knowledge diffusion process with the
+ direction of knowledge flows.
+\end_layout
+
+\begin_layout Subsection
+Experiments
+\end_layout
+
+\begin_layout Standard
 We propose a new method to rank scientific datasets by bootstrapping on
  the information already contains in the publication citation network.
  We test our method on a genetic sequencing dataset known as GenBank and
@@ -1541,7 +1510,7 @@ DataRank
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
