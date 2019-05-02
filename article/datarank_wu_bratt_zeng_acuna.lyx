@@ -1276,18 +1276,6 @@ Results
 \end_layout
 
 \begin_layout Standard
-[Restate the problem and the proposed solution]
-\end_layout
-
-\begin_layout Standard
-[The distribution of datasets in Genbank and Figshare]
-\end_layout
-
-\begin_layout Standard
-[An overview of the network]
-\end_layout
-
-\begin_layout Standard
 In our analysis, we aimed to find whether the estimation of the rank of
  a dataset (calculated using our modified network traffic estimation algorithm,
  DataRank) is related to something important about the submissions.
