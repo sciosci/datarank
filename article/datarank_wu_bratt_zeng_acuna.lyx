@@ -1259,41 +1259,15 @@ Results
 \end_layout
 
 \begin_layout Standard
-In our analysis, we aimed to find whether the estimation of the rank of
- a dataset (calculated using our modified network traffic estimation algorithm,
- DataRank) is related to something important about the submissions.
- In this study, we use the downloads of the submissions as a proxy for such
- importance.
- With this information, we were able to partially validate how our estimation
- of importance might be related to some external factor.
-\end_layout
-
-\begin_layout Subsection
-Distribution of download data in GenBank and FigShare
-\end_layout
-
-\begin_layout Standard
-Based on the download data of FigShare and GenBank, we plotted probability
- density functions (pdf) of them respectively in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:pdf-of-figshare"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- Because of the limited amount of data, the disturbance of small downloads
- is relatively large, which we can clearly see from the figures' left side.
- The right part of the data tends to be flat, mainly due to the long tail
- phenomenon, which means comparing with normal datasets, datasets that have
- been frequently downloaded are pretty small.
- Exclude these two pieces of data, we can find that the points in the figure
- clearly show a linear correlation.
- This means the download probability of a dataset is predictable, which
- makes our mission possible.
+In our analysis, we aimed at finding whether the estimation of the rank
+ of a dataset is related to a real measure of relevance by scientists.
+ We propose a method for estimating this ranking considering differences
+ in citation dynamics for publications and datasets.
+ We also propose variants to this method, and compare all of them to standard
+ ranking algorithms.
+ We use the data of visits of GenBank datasets and downloads of Figshare
+ datasets.
+ Thus, we will investigate which of the methods works best for ranking them.
 \end_layout
 
 \begin_layout Standard
@@ -1305,14 +1279,14 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../figures/F1B_figshare_downloads_lr.pdf
+	filename ../figures/F1B_genbank_downloads_lr.pdf
 	width 48text%
 
 \end_inset
 
 
 \begin_inset Graphics
-	filename ../figures/F1B_genbank_downloads_lr.pdf
+	filename ../figures/F1B_figshare_downloads_lr.pdf
 	width 48text%
 
 \end_inset
@@ -1341,6 +1315,76 @@ Probability density function of downloads
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+We first wanted to examine differences in usage between these two datasets.
+ We call usage to both visits to the GenBank dataset profile (Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:sample-data-of"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) and actual downloads from Figshare.
+ We plot the probability density function of this usage for both datasets
+ (Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:pdf-of-figshare"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ While the scale of usage is significantly different (i.e., overall GenBank
+ is more used than Figshare), there is long-tail power law relationship
+ in usage.
+ The GeneBank dataset had a significantly larger scale parameter than Figshare
+ (
+\begin_inset Formula $k\approx-XXX\pm[-XXX,-XXXX]$
+\end_inset
+
+ in GenBank and 
+\begin_inset Formula $k\approx-YYY\pm[-YYY,-YYY]$
+\end_inset
+
+ in FigShare, for 
+\begin_inset Formula $p(d)\propto d^{-k}$
+\end_inset
+
+, two-sample t-test 
+\begin_inset Formula $t(df)=-XXX$
+\end_inset
+
+, 
+\begin_inset Formula $p<0.001$
+\end_inset
+
+).
+ There is a significant bias for downloads below a certain threshold, small
+ number of downloads are significantly less frequent than expected.
+ However, both datasets show similar patterns suggesting a common mechanism
+ driving the dataset using behavior.
+\end_layout
+
+\begin_layout Standard
+Because of the limited amount of data, the distribution of small downloads
+ is relatively large, which we can clearly see from the figures' left side.
+ The right part of the data tends to be flat, mainly due to the long tail
+ phenomenon, which means comparing with normal datasets, datasets that have
+ been frequently downloaded are pretty small.
+ Exclude these two pieces of data, we can find that the points in the figure
+ clearly show a linear correlation.
+ This means the download probability of a dataset is predictable, which
+ makes our mission possible.
 \end_layout
 
 \begin_layout Subsection
