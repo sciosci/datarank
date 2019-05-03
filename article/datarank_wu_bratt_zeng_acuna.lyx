@@ -553,7 +553,7 @@ literal "false"
 
 .
  All nodes without a year are excluded, and the result after this step is
- 441,432,288 citations and 44,229,769 unique resources.XXXXX
+ 441,432,288 citations and 44,229,769 unique resources.
 \end_layout
 
 \begin_layout Subsubsection
@@ -719,7 +719,15 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-The FigShare database contains XXXX datasets.
+The FigShare database contains 266,961 DOIs until December 2014
+\begin_inset CommandInset citation
+LatexCommand citep
+key "kraker2015research"
+literal "false"
+
+\end_inset
+
+.
  However, only a very small portion of those DOIs (about 949) are ever cited
  in OCC comes from FigShare.
  We crawled the downloads and the creation time of every FigShare DOI through
