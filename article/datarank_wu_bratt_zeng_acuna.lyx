@@ -1287,15 +1287,13 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../figures/F1B_genbank_downloads_lr.pdf
-	width 48text%
+	filename ../figures/genbank_usage.pdf
 
 \end_inset
 
 
 \begin_inset Graphics
-	filename ../figures/F1B_figshare_downloads_lr.pdf
-	width 48text%
+	filename ../figures/figshare_usage.pdf
 
 \end_inset
 
