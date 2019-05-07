@@ -162,13 +162,6 @@ DataRank
 , that assigns a relative value to each node in the network based on how
  citation flows through the graph, differentiating publication and dataset
  flow rates.
- Specifically, 
-\shape smallcaps
-DataRank
-\shape default
- is a random walker that 1) starts at a node with exponentially decaying
- probability as a function of age and 2) randomly jumps to nodes differently
- depending on whether they are a publication or a dataset.
  We evaluate the quality of 
 \shape smallcaps
 DataRank
@@ -184,9 +177,9 @@ DataRank
 PageRank
 \shape default
  and other variants.
- Our results suggest that even though we examined different scientific disciplin
-es, they follow similar usage dynamics, whereas the decay rate in publication-ci
-tation networks is about twenty-times faster than in dataset-usage networks.
+ Our results suggest that even though we examined vastly different dataset
+ databases, they follow a similar decay rate whereas publication-citation
+ networks is about twenty-times faster than in dataset-usage networks.
  We discuss improvements to citation behavior and algorithms to properly
  track and assign credit to the usage of datasets.
 \end_layout
@@ -197,8 +190,8 @@ Introduction
 
 \begin_layout Standard
 Citation networks are an important source of analysis in science.
- Citations may indicate multiple intents: using an idea, signaling knowledge
- of the literature, or criticizing other's approaches 
+ Citations serve multiple purposes such as crediting an idea, signaling
+ knowledge of the literature, or critiquing others' work 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "martyn1975citation"
@@ -218,20 +211,12 @@ literal "false"
 
 .
  Furthermore, scientists themselves make decisions based on citations, such
- as what papers to read and which articles to cite 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "martyn1975citation"
-literal "false"
-
-\end_inset
-
-.
+ as what papers to read and which articles to cite.
  Citation practices and infrastructures are well-developed for journal articles
  and conference proceedings.
  However, there is much less development for dataset citation.
- This gap affects the credit assignment that datasets are increasingly playing
- in scientific reproducibility 
+ This gap affects the increasingly important role they play in scientific
+ reproducibility 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "task2013out,belter2014measuring,robinson2016analyzing,park2018informal"
@@ -253,16 +238,15 @@ literal "false"
  archiving datasets.
  While these difficulties are less prominent today, the citation practices
  for datasets take time to develop.
- We as researchers should promote mechanisms that reverse this historical
- gap.
- In this work, we hypothesize that citations should flow through the network
- of publications and datasets, and that an algorithm could capture the different
- values of these artifacts.
- Thus, citation analysis could fully account for the impact of datasets.
+ One possible solution to this gap is to develop better algorithmic approaches
+ to track dataset usage.
+ In this work, we hypothesize that a network flow algorithm could track
+ usage more effectively if it propagates publication and dataset citations
+ differently.
 \end_layout
 
 \begin_layout Standard
-Citation network has been widely used in evaluating the importance of authors
+Citation networks are widely used for evaluating the importance of authors
  
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -295,7 +279,7 @@ literal "false"
 
 \end_inset
 
- and even counties 
+ and even countries 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "fiala2012bibliometric"
@@ -351,7 +335,7 @@ literal "false"
 
 \end_inset
 
- defines a new time-aware 
+ defined a new time-aware 
 \shape smallcaps
 PageRank 
 \shape default
@@ -420,8 +404,8 @@ Several attempts to improve citation practices for datasets and to modify
  citation networks have been established.
  In 2014, the Joint Declaration Of Data Citation Principles was officially
  released.
- These principles mainly focus on normalizing dataset references rather
- than normalizing storage and some other technical issues 
+ These principles, however, mainly focused on normalizing dataset references
+ rather than normalizing storage and some other technical issues 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "altman2015introduction,callaghan2014joint,mooney2012anatomy"
@@ -440,8 +424,8 @@ literal "false"
 \end_inset
 
 .
- Other have proposed to identify (uncited / unreferenced) datasets used
- in articles automatically 
+ Others have proposed to automatically identify uncited or unreferenced
+ datasets used in articles 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "boland2012identifying,kafkas2013database,ghavimi2016identifying"
@@ -460,7 +444,7 @@ literal "false"
 \begin_layout Standard
 In this article, we develop a method for assigning credit to datasets from
  citation networks of publications assuming that they have biases.
- Importantly, our method does not modify the source for the algorithms.
+ Importantly, our method does not modify the source data for the algorithms.
  The method does not rely on scientists explicitly citing a dataset but
  infers the use and assigns credit accordingly based on a modified 
 \shape smallcaps
@@ -477,20 +461,20 @@ key "walker2007ranking"
  to include two types of nodes: datasets and publications.
  Our method simulates a random walker that takes into account the differences
  between obsolescence rates of publications and datasets, and estimates
- the 
+ the score of each dataset—the 
 \shape smallcaps
 DataRank
 \shape default
-, or score of each dataset.
- The data we use to develop this method is the metadata from National Center
- for Bioinformatics (NCBI) GenBank nucleic acid sequence data and publications
- associated with them; Figshare datasets and OpenCitationCorpus.
+.
+ The data we use to develop this method is the metadata from the National
+ Center for Bioinformatics (NCBI) GenBank nucleic acid sequence and the
+ Figshare datasets.
  We estimate the relative rank of the datasets with the 
 \shape smallcaps
 DataRank
 \shape default
- algorithm and cross-validate it using the actual visits to the NCBI dataset
- web pages and the actual downloads of Figshare datasets.
+ algorithm and cross-validate it using the actual usage of them—number of
+ visits to the NCBI dataset web pages and downloads of Figshare datasets.
  We show that our method is significantly better at predicting both types
  of usages.
  We discuss the implications of our method for data citation infrastructures
@@ -540,10 +524,8 @@ literal "false"
 \end_inset
 
 .
- Because OCC is already formatted in the form of directed relationships
- between two DOIs, it is easy to transform the citation into a graph.
- OpenCitations does not have year information about the DOIs.
- We obtain this information from the Microsoft Academic Graph (MAG) 
+ We obtain the year of publication from the Microsoft Academic Graph (MAG)
+ 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "sinha2015overview"
@@ -551,9 +533,10 @@ literal "false"
 
 \end_inset
 
-.
- All nodes without a year are excluded, and the result after this step is
- 441,432,288 citations and 44,229,769 unique resources.
+ because OpenCitations does not have metadata about the DOIs.
+ All nodes without a year are excluded.
+ The final dataset of publications  has 441,432,288 citations and 44,229,769
+ unique resources.
 \end_layout
 
 \begin_layout Subsubsection
@@ -630,7 +613,7 @@ name "fig:sample-data-of"
 
 \begin_layout Standard
 The information about a dataset in the GenBank can be found as a record,
- which contain also publications citing the dataset (Fig.
+ which contains also publications citing the dataset (Fig.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -642,8 +625,8 @@ noprefix "false"
 \end_inset
 
 ).
- The accesion field contains the identifier of the dataset and the reference
- field contains a publication with its authors, title, journal and PubMed
+ The accession field contains the identifier of the dataset and the reference
+ field contains a publication with its authors, title, journal, and PubMed
  identifier (PMID).
  The submitted field contains the date in which the dataset was introduced
  (e.g., 
@@ -666,9 +649,9 @@ noprefix "false"
 
 ).
  We processed 212,260,377 gene sequences in the dataset (version 230).
- Our citation database (described later below) has describes nodes by their
- Digital Object Identifiers (DOI), but GenBank only contains publications
- with their PMID identifier.
+ Our citation database (described above) describes nodes by their Digital
+ Object Identifiers (DOI), but GenBank only contains publications with their
+ PMID identifier.
  Therefore, we used an additional PMID to DOI link dataset provided by PubMed.
  At the end, this left us with 25,888,648 gene sequences from GenBank datasets
  with publications associated and 32,353,710 citations from OpenCitations.
@@ -678,8 +661,9 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-The National Institutes of Health (NIH) provided download data for the month
- of September 2012 for the top 1000 Nucleotide GenBank entries 
+The National Institutes of Health (NIH) provided us with download data for
+ the month of September 2012 for the top 1000 Nucleotide GenBank entries
+ 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "benson2012genbank"
@@ -688,7 +672,9 @@ literal "false"
 \end_inset
 
 .
- 
+ We use this downloads as a measure of real 
+\emph on
+usage.
 \end_layout
 
 \begin_layout Subsubsection
@@ -712,14 +698,14 @@ literal "false"
  is made public, while storage space has limits for private use.
  When a user makes a resource publicly available, FigShare immediately assigns
  a DOI to this resource, marked as a FigShare object by embedding the character
- string 'FigShare' within the DOI, e.g., 'https://doi.org/10.6084/m9.figshare.6741260.'
- We can leverage this feature to determine whether a publication cites a
- dataset by detecting FigShare-generated DOIs.
+ string 'FigShare' within the DOI, e.g., 'm9.figshare.6741260.' We can leverage
+ this feature to determine whether a publication cites a dataset by detecting
+ FigShare-generated DOIs.
  
 \end_layout
 
 \begin_layout Standard
-The FigShare database contains 266,961 DOIs until December 2014
+The FigShare database contains 266,961 DOIs until December 2014 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "kraker2015research"
@@ -729,14 +715,21 @@ literal "false"
 
 .
  However, only a very small portion of those DOIs (about 949) are ever cited
- in OCC comes from FigShare.
- We crawled the downloads and the creation time of every FigShare DOI through
- the website: https://stats.figshare.com/total/downloads/article.
+ in OCC.
+ We crawled the downloads and the creation time of each of these FigShare
+ DOI through the website: https://stats.figshare.com/total/downloads/article.
  
 \end_layout
 
 \begin_layout Subsection
-A network model of datasets and publications
+Network models for scientific artifacts
+\end_layout
+
+\begin_layout Subsubsection
+
+\series bold
+\shape smallcaps
+Related work
 \end_layout
 
 \begin_layout Standard
@@ -751,8 +744,8 @@ literal "false"
 .
  This method is inspired by PageRank by addressing the issue that citation
  networks are always directed back in time.
- In this model, each vertex in the graph was a publication.
- The goal of this method is to propagate a vertex's impact through its citation.
+ In this model, each vertex in the graph is a publication.
+ The goal of this method is to propagate a vertex's impact through its citations.
 \end_layout
 
 \begin_layout Standard
@@ -767,7 +760,11 @@ s who randomly start from a publication as a function of the publication's
 
  for a given paper.
  A starting paper is selected randomly with a probability that exponentially
- decays with a characteristic 
+ decays with a 
+\emph on
+decay
+\emph default
+ parameter 
 \begin_inset Formula $\tau_{\text{paper}}$
 \end_inset
 
@@ -798,7 +795,7 @@ The concrete functional form that it proposes is as follows.
 th node is 
 \begin_inset Formula 
 \begin{equation}
-\rho_{i}=\exp\left(-\frac{\text{age}_{i}}{\tau_{\text{pub}}}\right)\label{eq:starting-probability}
+\rho_{i}\propto\exp\left(-\frac{\text{age}_{i}}{\tau_{\text{pub}}}\right)\label{eq:starting-probability}
 \end{equation}
 
 \end_inset
@@ -850,12 +847,22 @@ T=I\cdot\rho+(1-\alpha)W\cdot\rho+(1-\alpha)^{2}W^{2}\rho+\cdots\label{eq:averag
 \end_layout
 
 \begin_layout Standard
-This series can be practically solved until some threshold is achieved after
- adding the 
-\begin_inset Formula $n$
+In practice, this series can be solved iteratively by computing the difference
+ between 
+\begin_inset Formula $T_{t+1}$
 \end_inset
 
-th iteration.
+ and 
+\begin_inset Formula $T_{t}$
+\end_inset
+
+.
+ For this and all algorithms used in this work, we set the threshold to
+ be the root mean squared difference less than 
+\begin_inset Formula $10^{-3}$
+\end_inset
+
+.
  The parameters 
 \begin_inset Formula $\tau_{\text{paper}}$
 \end_inset
@@ -864,8 +871,7 @@ th iteration.
 \begin_inset Formula $\alpha$
 \end_inset
 
- are typically found by cross validation by using some validation of the
- traffic as predictable of something external.
+ are typically found by cross validation, predicting real traffic.
 \end_layout
 
 \begin_layout Subsubsection
@@ -882,10 +888,10 @@ In this article, we do an extension of the previously described procedure
 DataRank
 \shape default
 .
- The extension considers that the probability of staring at any single node
- should depend on whether the node is a publication or a datasets.
- This is, publications and datasets may vary in their relevant period, with
- publications generally becoming obsolete sooner than publications.
+ The extension considers that the probability of starting at any single
+ node should depend on whether the node is a publication or a datasets.
+ This is, publications and datasets may vary in their relevance period,
+ with publications generally becoming obsolete sooner than publications.
  Mathematically, we redefine the starting probability of the 
 \begin_inset Formula $i$
 \end_inset
@@ -905,7 +911,8 @@ th node as
 \end_layout
 
 \begin_layout Standard
-This initialize process also shown in 
+This initialization process is depicted in Fig.
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Initialize-the-value"
@@ -916,9 +923,22 @@ noprefix "false"
 \end_inset
 
 .
- After initializing, we can easily found that nodes of the same type and
- same age have the same value, and meanwhile, the younger a node is the
- bigger its value.
+ Here, datasets have a smaller decay than papers.
+ The size of the bubble indicates the initial flow as directed by Eq.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:data-rank-starting"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ After initializing, we can easily find that nodes of the same type and
+ same age have the same value meanwhile, the younger a node is the bigger
+ its value.
 \begin_inset Float figure
 wide false
 sideways false
