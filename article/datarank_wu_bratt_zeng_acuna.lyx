@@ -1375,11 +1375,11 @@ noprefix "false"
  in usage.
  The GeneBank dataset had a significantly larger scale parameter than Figshare
  (
-\begin_inset Formula $k\approx-XXX\pm[-XXX,-XXXX]$
+\begin_inset Formula $k\approx-1.416(SE=0.2699)$
 \end_inset
 
  in GenBank and 
-\begin_inset Formula $k\approx-YYY\pm[-YYY,-YYY]$
+\begin_inset Formula $k\approx-1.125(SE=0.0907)$
 \end_inset
 
  in FigShare, for 
@@ -1387,11 +1387,11 @@ noprefix "false"
 \end_inset
 
 , two-sample t-test 
-\begin_inset Formula $t(df)=-XXX$
+\begin_inset Formula $t(220)=-1.05$
 \end_inset
 
 , 
-\begin_inset Formula $p<0.001$
+\begin_inset Formula $p=0.29$
 \end_inset
 
 ).
