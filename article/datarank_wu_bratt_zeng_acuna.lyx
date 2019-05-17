@@ -1545,30 +1545,6 @@ SE=0.2699
  driving the dataset using behavior.
 \end_layout
 
-\begin_layout Subsection
-Experiments
-\end_layout
-
-\begin_layout Standard
-We propose a new method to rank scientific datasets by bootstrapping on
- the information already contained in the publication citation network.
- We test our method on a genetic sequencing dataset known as GenBank and
- a online open access repository called FigShare, and we validated that
- the 
-\shape smallcaps
-DataRank
-\shape default
-—our method—is more predictive of the real traffic to the dataset entries
- than the number of publications the dataset has received.
- This new proposed method bootstrap on information already available to
- scientists.
- Optimizing parameters to maximize the 
-\begin_inset Formula $R^{2}$
-\end_inset
-
-.
-\end_layout
-
 \begin_layout Standard
 \begin_inset Float figure
 wide false
@@ -1624,7 +1600,21 @@ orig represents a special set of the parameter for DataRank
 \end_layout
 
 \begin_layout Standard
-In 
+One of the real tests of whether the methods work is to predict how they
+ are related to real usage data.
+ For each algorithm and set of parameters, we estimated the rank of each
+ of the nodes.
+ We then use the rank to compute its 
+\begin_inset Formula $R^{2}$
+\end_inset
+
+ with the real usage of the datasets (i.e., web visits for GenBank and downloads
+ for FigShare).
+ Our analysis reveals that 
+\shape smallcaps
+DataRank
+\shape default
+ is significantly better than all other methods (
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Predictability-of-the"
@@ -1634,13 +1624,29 @@ noprefix "false"
 
 \end_inset
 
-, we can clearly see that our method can better predict the real impact
- of datasets than PageRank.
+).
+ We also find that it is not significantly different from 
+\shape smallcaps
+DataRank-FB.
+ 
+\shape default
+Because this algorithm has more parameters, the simple 
+\shape smallcaps
+DataRank
+\shape default
+ is preferred.
+ The proposed algorithm is thus better at predicting real usage data.
 \end_layout
 
 \begin_layout Standard
-We can also learn that the decay time of paper and dataset also have some
- impact on the predictive performance of the algorithm.
+The parameters that 
+\shape smallcaps
+DataRank
+\shape default
+ is finding best can tell us about the nature of the datasets.
+ We analyze the correlation coefficient of the rank with the We can also
+ learn that the decay time of paper and dataset also have some impact on
+ the predictive performance of the algorithm.
  So we plot the difference in decay time and the correlation coefficient
  in Figure 6.
 \end_layout
