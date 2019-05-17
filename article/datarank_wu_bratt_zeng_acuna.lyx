@@ -243,6 +243,10 @@ literal "false"
  In this work, we hypothesize that a network flow algorithm could track
  usage more effectively if it propagates publication and dataset citations
  differently.
+ With the implementation of this algorithm, then, it will be possible to
+ account for the differences in citation behavior between these two types
+ of artifacts, restoring the importance of datasets as first class citizens
+ of science.
 \end_layout
 
 \begin_layout Standard
@@ -404,7 +408,7 @@ Several attempts to improve citation practices for datasets and to modify
  citation networks have been established.
  In 2014, the Joint Declaration Of Data Citation Principles was officially
  released.
- These principles, however, mainly focused on normalizing dataset references
+ These principles, however, mainly focus on normalizing dataset references
  rather than normalizing storage and some other technical issues 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -443,7 +447,7 @@ literal "false"
 
 \begin_layout Standard
 In this article, we develop a method for assigning credit to datasets from
- citation networks of publications assuming that they have biases.
+ citation networks of publications, assuming that they have biases.
  Importantly, our method does not modify the source data for the algorithms.
  The method does not rely on scientists explicitly citing a dataset but
  infers the use and assigns credit accordingly based on a modified 
@@ -466,9 +470,9 @@ key "walker2007ranking"
 DataRank
 \shape default
 .
- The data we use to develop this method is the metadata from the National
- Center for Bioinformatics (NCBI) GenBank nucleic acid sequence and the
- Figshare datasets.
+ The data we use to validate this method is the metadata from the National
+ Center for Bioinformatics (NCBI) GenBank nucleic acid sequence and Figshare
+ datasets.
  We estimate the relative rank of the datasets with the 
 \shape smallcaps
 DataRank
@@ -649,7 +653,7 @@ noprefix "false"
 
 ).
  We processed 212,260,377 gene sequences in the dataset (version 230).
- Our citation database (described above) describes nodes by their Digital
+ Our citation database (described above) identifies nodes by their Digital
  Object Identifiers (DOI), but GenBank only contains publications with their
  PMID identifier.
  Therefore, we used an additional PMID to DOI link dataset provided by PubMed.
@@ -698,10 +702,9 @@ literal "false"
  is made public, while storage space has limits for private use.
  When a user makes a resource publicly available, FigShare immediately assigns
  a DOI to this resource, marked as a FigShare object by embedding the character
- string 'FigShare' within the DOI, e.g., 'm9.figshare.6741260.' We can leverage
+ string 'figshare' within the DOI, e.g., 'm9.figshare.6741260.' We can leverage
  this feature to determine whether a publication cites a dataset by detecting
  FigShare-generated DOIs.
- 
 \end_layout
 
 \begin_layout Standard
@@ -718,7 +721,100 @@ literal "false"
  in OCC.
  We crawled the downloads and the creation time of each of these FigShare
  DOI through the website: https://stats.figshare.com/total/downloads/article.
- 
+\end_layout
+
+\begin_layout Subsubsection
+Construction of citation network
+\end_layout
+
+\begin_layout Standard
+We constructed a directed network of citations primarily using the OpenCitation
+ Corpus, but combined with the affiliation between dataset and paper which
+ was extracted from GenBank as mentioned above.
+ The result is a sizable citation network.
+ In this citation network, each node represents one dataset or paper.
+ The directed edges represent the citation relations between nodes.
+ OpenCitation Corpus consists of 441,432,288 citations and 44,229,769 unique
+ resources, including 949 resources and 1335 citations from FigShare.
+ After Integrated with GenBank, we finally get 473,785,998 citations and
+ 70,138,538 unique resources.
+ On average, each paper will be cited by 9.98 papers, but when it switches
+ to FigShare and GenBank, the number drops dramatically to 1.41 and 1.25.
+ This also suggests less of an emphasis on performing dataset citations.
+\end_layout
+
+\begin_layout Standard
+For the purpose of exploring this network more intuitively, we sample about
+ 1 thousand nodes 1.5 thousand edges from the network and show it in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:network-of-sample"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../figures/F1A_sampleData_colored.pdf
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:network-of-sample"
+
+\end_inset
+
+ Each color represents a different type of resource: Papers appear as red
+ nodes and Datasets are green.
+ The lighter the color, the older the resource.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:network-of-sample"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, we observe four patterns of papers citing datasets (a dataset cannot cite
+ anything): one-to-one, one-to-many, many-to-one and many-to-many.
+ We also observe the structure of a knowledge diffusion process with the
+ direction of knowledge flows.
 \end_layout
 
 \begin_layout Subsection
@@ -742,23 +838,27 @@ literal "false"
 \end_inset
 
 .
- This method is inspired by PageRank by addressing the issue that citation
- networks are always directed back in time.
+ This method is inspired by 
+\shape smallcaps
+PageRank
+\shape default
+ by addressing the issue that citation networks are always directed back
+ in time.
  In this model, each vertex in the graph is a publication.
  The goal of this method is to propagate a vertex's impact through its citations.
 \end_layout
 
 \begin_layout Standard
 This method simulates a set of researchers traversing publications through
- the citation networks.
+ the citation network.
  It ranks publications by estimating the average path length taken by researcher
-s who randomly start from a publication as a function of the publication's
- age and have a probability of stopping at each node.
+s who traverses the network considering the age of resources and a stopping
+ criteria.
  Mathematically, it defines a traffic function 
 \begin_inset Formula $T_{i}(\tau_{\text{pub}},\alpha)$
 \end_inset
 
- for a given paper.
+ for each paper.
  A starting paper is selected randomly with a probability that exponentially
  decays with a 
 \emph on
@@ -769,7 +869,7 @@ decay
 \end_inset
 
 .
- Each time the research moves, it can stop with a probability 
+ Each time the researcher moves, it can stop with a probability 
 \begin_inset Formula $\alpha$
 \end_inset
 
@@ -784,10 +884,7 @@ decay
 \end_inset
 
  is proportional to the rate at which the paper is accessed.
-\end_layout
-
-\begin_layout Standard
-The concrete functional form that it proposes is as follows.
+ The concrete functional form is as follows.
  The probability of starting at the 
 \begin_inset Formula $i$
 \end_inset
@@ -808,7 +905,8 @@ Then,
 \shape smallcaps
  
 \shape default
-it defines a transition matrix from the citation network as follows 
+the method defines a transition matrix from the citation network as follows
+ 
 \begin_inset Formula 
 \begin{equation}
 W_{ij}=\begin{cases}
@@ -871,7 +969,7 @@ In practice, this series can be solved iteratively by computing the difference
 \begin_inset Formula $\alpha$
 \end_inset
 
- are typically found by cross validation, predicting real traffic.
+ are found by cross validation, predicting real traffic.
 \end_layout
 
 \begin_layout Subsubsection
@@ -882,17 +980,28 @@ DataRank
 \end_layout
 
 \begin_layout Standard
-In this article, we do an extension of the previously described procedure
- in what we call 
+In this article, we extend the previously described procedure in what we
+ call 
 \shape smallcaps
 DataRank
 \shape default
 .
  The extension considers that the probability of starting at any single
- node should depend on whether the node is a publication or a datasets.
- This is, publications and datasets may vary in their relevance period,
- with publications generally becoming obsolete sooner than publications.
- Mathematically, we redefine the starting probability of the 
+ node should depend on whether the node is a publication or a dataset.
+ This is, publications and datasets may vary in their relevance period—e.g.,
+ publications generally become obsolete sooner than datasets.
+ Mathematically, we redefine the starting probability in Eq.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:starting-probability"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ of the 
 \begin_inset Formula $i$
 \end_inset
 
@@ -924,7 +1033,7 @@ noprefix "false"
 
 .
  Here, datasets have a smaller decay than papers.
- The size of the bubble indicates the initial flow as directed by Eq.
+ The size of the bubble indicates the initial flow as defined by Eq.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -937,7 +1046,7 @@ noprefix "false"
 
 .
  After initializing, we can easily find that nodes of the same type and
- same age have the same value meanwhile, the younger a node is the bigger
+ same age have the same value, and that the younger a node is the bigger
  its value.
 \begin_inset Float figure
 wide false
@@ -965,9 +1074,9 @@ name "fig:Initialize-the-value"
 
 \end_inset
 
-this figure shows nodes' value after initializing process.
- Size of the node represents its value, different color means different
- type, red nodes are papers, while green nodes are datasets.
+Node values after initializing process.
+ The size of the node represents its value, different color means different
+ type: red nodes are papers, and green nodes are datasets.
 \end_layout
 
 \end_inset
@@ -1028,7 +1137,7 @@ In
 DataRank
 \series default
 \shape default
-, Each time the research moves, there are two options, one is to stop with
+, each time the research moves, there are two options, one is to stop with
  a probability 
 \begin_inset Formula $\alpha$
 \end_inset
@@ -1041,8 +1150,8 @@ DataRank
 .
  But actually, there may exist a third choice, to continue its search through
  paper who cites it.
- In other words, the research can move on in two directions: forwardly and
- backwardly.
+ In other words, the research can move on in two directions: forwards and
+ backwards.
  We call this modified method 
 \shape smallcaps
 DataRank-FB.
@@ -1052,11 +1161,11 @@ In this method, one may stop with a probability
 \begin_inset Formula $\alpha-\beta$
 \end_inset
 
-, continue search forwardly with a probability 1 - 
+, continue the search forward with a probability 1 - 
 \begin_inset Formula $\alpha$
 \end_inset
 
-, and backwardly with a probability 
+, and backward with a probability 
 \begin_inset Formula $\beta$
 \end_inset
 
@@ -1082,10 +1191,6 @@ M_{ij}=\begin{cases}
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 also, we update the average path length to all papers in the network starting
  from 
 \begin_inset Formula $\rho$
@@ -1128,8 +1233,8 @@ PageRank
 
 \begin_layout Standard
 PageRank is a well known and widely used webpage ranking algorithm proposed
- by Google, it uses the topological structure of the web to determines the
- importance of a webpage which is totally independent of its content
+ by Google, it uses the topological structure of the web to determine the
+ importance of a webpage, independently of its content 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "bianchini2005inside"
@@ -1138,10 +1243,10 @@ literal "false"
 \end_inset
 
 .
- It's an iterative algorithm.
- Firstly, it builds a network of the web through the link between webpages,
- each webpage will be assigned an initial value evenly, then updates the
- value of each webpage based on the link relations, which will eventually
+ It is an iterative algorithm.
+ First, it builds a network of the web through the link between webpages.
+ Second, each webpage is assigned an initial value evenly, then updates
+ the value of each webpage based on the link relations, which will eventually
  converge on a certain value.
 \end_layout
 
@@ -1157,15 +1262,11 @@ PR(p_{i})=\frac{1-d}{N}+d\underset{p_{j}\in M(p_{i})}{\sum\frac{PR(p_{j})}{L(p_{
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 where 
 \begin_inset Formula $p_{1},p_{2},\cdots,p_{N}$
 \end_inset
 
-are the webpages whose importance need to be calculated, 
+ are the webpages whose importance need to be calculated, 
 \begin_inset Formula $M(p_{i})$
 \end_inset
 
@@ -1185,23 +1286,16 @@ are the webpages whose importance need to be calculated,
 \begin_inset Formula $N$
 \end_inset
 
-is the total number of webpages.
+ is the total number of webpages.
  The parameter 
 \begin_inset Formula $d$
 \end_inset
 
  is a dampening factor which ranges from 0 to 1 and is usually set to 0.85
+ 
 \begin_inset CommandInset citation
 LatexCommand citep
-key "brin1998anatomy"
-literal "false"
-
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand citep
-key "page1999pagerank"
+key "brin1998anatomy,page1999pagerank"
 literal "false"
 
 \end_inset
@@ -1210,7 +1304,7 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-The importance of a page depends on the number of its in-degree(how many
+The importance of a page depends on the number of its in-degree (how many
  pages who has a link into it), and the importance of pages who cite it.
 \end_layout
 
@@ -1234,15 +1328,11 @@ PR(p_{i})=\frac{1-d_{data}}{N_{data}}+\frac{1-d_{pub}}{N_{pub}}+d_{data}\underse
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 where 
 \begin_inset Formula $p_{1},p_{2},\cdots,p_{N}$
 \end_inset
 
-are still the nodes whose importance need to be calculated, 
+ are still the nodes whose importance need to be calculated, 
 \begin_inset Formula $M^{data}(p_{i})$
 \end_inset
 
@@ -1270,7 +1360,7 @@ are still the nodes whose importance need to be calculated,
 \begin_inset Formula $N_{data},N_{pub}$
 \end_inset
 
-is the total size of datasets and paper collections respectively.
+ are the total size of datasets and paper collections, respectively.
  The parameter 
 \begin_inset Formula $d_{data}$
 \end_inset
@@ -1308,12 +1398,14 @@ status open
 \align center
 \begin_inset Graphics
 	filename ../figures/genbank_usage.pdf
+	width 45text%
 
 \end_inset
 
 
 \begin_inset Graphics
 	filename ../figures/figshare_usage.pdf
+	width 45text%
 
 \end_inset
 
@@ -1345,7 +1437,7 @@ Probability density function of downloads
 
 \begin_layout Standard
 We first wanted to examine differences in usage between these two datasets.
- We call usage to both visits to the GenBank dataset profile (Fig.
+ We call usage to both visits to the GenBank dataset profiles (Fig.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1357,8 +1449,8 @@ noprefix "false"
 \end_inset
 
 ) and actual downloads from Figshare.
- We plot the probability density function of this usage for both datasets
- (Fig.
+ We plot the estimated probability density function of this usage for both
+ datasets (Fig.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1371,17 +1463,69 @@ noprefix "false"
 
 ).
  While the scale of usage is significantly different (i.e., overall GenBank
- is more used than Figshare), there is long-tail power law relationship
- in usage.
- The GeneBank dataset had a significantly larger scale parameter than Figshare
+ is more used than Figshare), there seem to be a long-tail power law relationshi
+p in usage.
+ The GeneBank dataset had a larger but not significantly different scale
+ parameter than Figshare (
+\begin_inset Formula $k\approx-1.416$
+\end_inset
+
  (
-\begin_inset Formula $k\approx-1.416(SE=0.2699)$
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+SE=0.2699
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+) in GenBank and 
+\begin_inset Formula $k\approx-1.125$
 \end_inset
 
- in GenBank and 
-\begin_inset Formula $k\approx-1.125(SE=0.0907)$
-\end_inset
-
+ 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+(SE=0.0907)
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
  in FigShare, for 
 \begin_inset Formula $p(d)\propto d^{-k}$
 \end_inset
@@ -1395,119 +1539,10 @@ noprefix "false"
 \end_inset
 
 ).
- There is a significant bias for downloads below a certain threshold, small
- number of downloads are significantly less frequent than expected.
+ There is a significant bias for downloads below a certain threshold, where
+ smaller number of downloads are significantly less frequent than expected.
  However, both datasets show similar patterns suggesting a common mechanism
  driving the dataset using behavior.
-\end_layout
-
-\begin_layout Standard
-Because of the limited amount of data, the distribution of small downloads
- is relatively large, which we can clearly see from the figures' left side.
- The right part of the data tends to be flat, mainly due to the long tail
- phenomenon, which means comparing with normal datasets, datasets that have
- been frequently downloaded are pretty small.
- Exclude these two pieces of data, we can find that the points in the figure
- clearly show a linear correlation.
- This means the download probability of a dataset is predictable, which
- makes our mission possible.
-\end_layout
-
-\begin_layout Subsection
-Construction of citation network
-\end_layout
-
-\begin_layout Standard
-We constructed a directed network of citations primarily using the OpenCitation
- Corpus, but combined with the affiliation between dataset and paper which
- was extracted from GenBank as mentioned above.
- The result is a sizable citation network.
- In this citation network, each node represents one dataset or paper.
- The directed edges represent the citation relations between nodes.
- OpenCitation Corpus consists of 441,432,288 citations and 44,229,769 unique
- resources, including 949 resources and 1335 citations from FigShare.
- After Integrated with GenBank, we finally get 473,785,998 citations and
- 70,138,538 unique resources.
- On average, each paper will be cited by 9.98 papers, but when it switches
- to FigShare and GenBank, the number drops dramatically
-\begin_inset space ~
-\end_inset
-
-to 1.41 and 1.25.
- This also suggests less of an emphasis on performing dataset citations.
-\end_layout
-
-\begin_layout Standard
-For the purpose of exploring this network more intuitively, we sample about
- 1 thousand nodes 1.5 thousand edges from the network and show it in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:network-of-sample"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename ../figures/F1A_sampleData_colored.pdf
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:network-of-sample"
-
-\end_inset
-
- Each color represents a different type of resource: Papers appear as red
- nodes and Datasets are green.
- The lighter the color, the older the resource.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-From 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:network-of-sample"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, we observe four patterns of papers citing datasets (a dataset cannot cite
- anything): one-to-one, one-to-many, many-to-one and many-to-many.
- We also observe the structure of a knowledge diffusion process with the
- direction of knowledge flows.
 \end_layout
 
 \begin_layout Subsection
@@ -1516,7 +1551,7 @@ Experiments
 
 \begin_layout Standard
 We propose a new method to rank scientific datasets by bootstrapping on
- the information already contains in the publication citation network.
+ the information already contained in the publication citation network.
  We test our method on a genetic sequencing dataset known as GenBank and
  a online open access repository called FigShare, and we validated that
  the 
@@ -1538,7 +1573,7 @@ DataRank
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
