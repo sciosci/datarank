@@ -1648,7 +1648,17 @@ DataRank
  learn that the decay time of paper and dataset also have some impact on
  the predictive performance of the algorithm.
  So we plot the difference in decay time and the correlation coefficient
- in Figure 6.
+ in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:difference-in-decay"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
