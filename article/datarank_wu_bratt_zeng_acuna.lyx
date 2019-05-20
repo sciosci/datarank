@@ -167,19 +167,19 @@ DataRank
 DataRank
 \shape default
  by estimating its accuracy at predicting the usage of real datasets: web
- visits to GenBank datasets and downloads of FigShare datasets.
+ visits to GenBank datasets and downloads of Figshare datasets.
  We show that 
 \shape smallcaps
 DataRank
 \shape default
- is significantly better when compared to 
+ is better when compared to 
 \shape smallcaps
 PageRank
 \shape default
  and other variants.
- Our results suggest that even though we examined vastly different dataset
- databases, they follow a similar decay rate whereas publication-citation
- networks is about twenty-times faster than in dataset-usage networks.
+ Our results suggest that even though we examined different dataset databases,
+ they follow a similar decay rate whereas publication-citation networks
+ is about twenty-times faster than in dataset-citation networks.
  We discuss improvements to citation behavior and algorithms to properly
  track and assign credit to the usage of datasets.
 \end_layout
@@ -200,7 +200,7 @@ literal "false"
 \end_inset
 
 .
- When citations are thought of as impact, they also inform tenure, promotion,
+ When citations are thought of as impact, they inform tenure, promotion,
  and hiring decisions 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -479,8 +479,7 @@ DataRank
 \shape default
  algorithm and cross-validate it using the actual usage of them—number of
  visits to the NCBI dataset web pages and downloads of Figshare datasets.
- We show that our method is significantly better at predicting both types
- of usages.
+ We show that our method is better at predicting both types of usages.
  We discuss the implications of our method for data citation infrastructures
  and future projects.
 \end_layout
@@ -684,11 +683,11 @@ usage.
 \begin_layout Subsubsection
 
 \series bold
-FigShares
+Figshare
 \end_layout
 
 \begin_layout Standard
-FigShare is a multidisciplinary, open access research repository where researche
+Figshare is a multidisciplinary, open access research repository where researche
 rs can deposit and share figures, datasets, and other media 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -700,15 +699,15 @@ literal "false"
 .
  To encourage data sharing, free storage space is unlimited if the content
  is made public, while storage space has limits for private use.
- When a user makes a resource publicly available, FigShare immediately assigns
- a DOI to this resource, marked as a FigShare object by embedding the character
+ When a user makes a resource publicly available, Figshare immediately assigns
+ a DOI to this resource, marked as a Figshare object by embedding the character
  string 'figshare' within the DOI, e.g., 'm9.figshare.6741260.' We can leverage
  this feature to determine whether a publication cites a dataset by detecting
- FigShare-generated DOIs.
+ Figshare-generated DOIs.
 \end_layout
 
 \begin_layout Standard
-The FigShare database contains 266,961 DOIs until December 2014 
+The Figshare database contains 266,961 DOIs until December 2014 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "kraker2015research"
@@ -719,7 +718,7 @@ literal "false"
 .
  However, only a very small portion of those DOIs (about 949) are ever cited
  in OCC.
- We crawled the downloads and the creation time of each of these FigShare
+ We crawled the downloads and the creation time of each of these Figshare
  DOI through the website: https://stats.figshare.com/total/downloads/article.
 \end_layout
 
@@ -735,11 +734,11 @@ We constructed a directed network of citations primarily using the OpenCitation
  In this citation network, each node represents one dataset or paper.
  The directed edges represent the citation relations between nodes.
  OpenCitation Corpus consists of 441,432,288 citations and 44,229,769 unique
- resources, including 949 resources and 1335 citations from FigShare.
+ resources, including 949 resources and 1335 citations from Figshare.
  After Integrated with GenBank, we finally get 473,785,998 citations and
  70,138,538 unique resources.
  On average, each paper will be cited by 9.98 papers, but when it switches
- to FigShare and GenBank, the number drops dramatically to 1.41 and 1.25.
+ to Figshare and GenBank, the number drops dramatically to 1.41 and 1.25.
  This also suggests less of an emphasis on performing dataset citations.
 \end_layout
 
@@ -785,8 +784,8 @@ name "fig:network-of-sample"
 
 \end_inset
 
- Each color represents a different type of resource: Papers appear as red
- nodes and Datasets are green.
+ Visualization of publication–dataset citation network.
+ Papers appear as red nodes and Datasets are green.
  The lighter the color, the older the resource.
 \end_layout
 
@@ -822,10 +821,10 @@ Network models for scientific artifacts
 \end_layout
 
 \begin_layout Subsubsection
-
+Related work (
 \series bold
 \shape smallcaps
-Related work
+NetworkFlow)
 \end_layout
 
 \begin_layout Standard
@@ -1078,7 +1077,7 @@ name "fig:Initialize-the-value"
 
 \end_inset
 
-Node values after initializing process.
+Node values after initialization.
  The size of the node represents its value, different color means different
  type: red nodes are papers, and green nodes are datasets.
 \end_layout
@@ -1237,9 +1236,13 @@ PageRank
 \end_layout
 
 \begin_layout Standard
-PageRank is a well known and widely used webpage ranking algorithm proposed
- by Google, it uses the topological structure of the web to determine the
- importance of a webpage, independently of its content 
+
+\shape smallcaps
+PageRank
+\shape default
+ is a well known and widely used webpage ranking algorithm proposed by Google,
+ it uses the topological structure of the web to determine the importance
+ of a webpage, independently of its content 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "bianchini2005inside"
@@ -1248,15 +1251,18 @@ literal "false"
 \end_inset
 
 .
- It is an iterative algorithm.
  First, it builds a network of the web through the link between webpages.
  Second, each webpage is assigned an initial value evenly, then updates
  the value of each webpage based on the link relations, which will eventually
- converge on a certain value.
+ converge on a value.
 \end_layout
 
 \begin_layout Standard
-The mathematical formation of PageRank is:
+The mathematical formation of 
+\shape smallcaps
+PageRank
+\shape default
+ is:
 \end_layout
 
 \begin_layout Standard
@@ -1311,6 +1317,53 @@ literal "false"
 \begin_layout Standard
 The importance of a page depends on the number of its in-degree (how many
  pages who has a link into it), and the importance of pages who cite it.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../figures/genbank_usage.pdf
+	width 45text%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename ../figures/figshare_usage.pdf
+	width 45text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:pdf-of-figshare"
+
+\end_inset
+
+Probability density function of downloads
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -1396,53 +1449,6 @@ In our analysis, we aimed at finding whether the estimation of the rank
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename ../figures/genbank_usage.pdf
-	width 45text%
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename ../figures/figshare_usage.pdf
-	width 45text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:pdf-of-figshare"
-
-\end_inset
-
-Probability density function of downloads
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 We first wanted to examine differences in usage between these two datasets.
  We call usage to both visits to the GenBank dataset profiles (Fig.
  
@@ -1477,7 +1483,7 @@ p in usage.
 \begin_inset Formula $k\approx-1.416$
 \end_inset
 
- (
+
 \family roman
 \series medium
 \shape up
@@ -1490,7 +1496,7 @@ p in usage.
 \uwave off
 \noun off
 \color none
-SE=0.2699
+, SE=0.2699
 \family default
 \series default
 \shape default
@@ -1503,11 +1509,11 @@ SE=0.2699
 \uwave default
 \noun default
 \color inherit
-) in GenBank and 
+, in GenBank and 
 \begin_inset Formula $k\approx-1.125$
 \end_inset
 
- 
+
 \family roman
 \series medium
 \shape up
@@ -1520,7 +1526,7 @@ SE=0.2699
 \uwave off
 \noun off
 \color none
-(SE=0.0907)
+, SE=0.0907, 
 \family default
 \series default
 \shape default
@@ -1533,7 +1539,7 @@ SE=0.2699
 \uwave default
 \noun default
 \color inherit
- in FigShare, for 
+in Figshare, for 
 \begin_inset Formula $p(d)\propto d^{-k}$
 \end_inset
 
@@ -1553,121 +1559,39 @@ SE=0.2699
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename ../figures/F5_result_r_square.pdf
-	width 10cm
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Predictability-of-the"
-
-\end_inset
-
-Predictability of the usage of each model.
- The 
-\begin_inset Formula $R^{2}$
-\end_inset
-
- is the best performance across the set of parameters available for each
- model.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 One of the real tests of whether the methods work is to predict how they
  are related to real usage data.
  For each algorithm and set of parameters, we estimated the rank of each
  of the nodes in the network.
  We then used these ranks to predict real usage (i.e., web visits for GenBank
- and downloads for FigShare), obtaining an 
+ and downloads for Figshare), obtaining an 
 \begin_inset Formula $R^{2}$
 \end_inset
 
- for each for the models.
+ for each of the models.
  Our analysis reveals that 
 \shape smallcaps
 DataRank
 \shape default
- is significantly better than 
+ is better than 
 \shape smallcaps
-NetworkFlow
+NetworkFlow, PageRank, 
 \shape default
- 
+and Modified 
 \shape smallcaps
-(
-\begin_inset Formula $F(XXX,YYY)=ZZZ,p=0.8$
+PageRank 
+\shape default
+for both GenBank and Figshare
+\shape smallcaps
+.
+
+\shape default
+ Due to the small size of the datasets, however, the standard errors of
+ these 
+\begin_inset Formula $R^{2}$
 \end_inset
 
-)
-\shape default
-, 
-\shape smallcaps
-PageRank
-\shape default
- 
-\shape smallcaps
-(
-\begin_inset Formula $F(XXX,YYY)=ZZZ,p=0.8$
-\end_inset
-
-)
-\shape default
-, and Modified 
-\shape smallcaps
-PageRank (
-\begin_inset Formula $F(XXX,YYY)=ZZZ,p=0.8$
-\end_inset
-
-
-\shape default
-, Fig.
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Predictability-of-the"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-) on GenBank.
- We also find that it is not significantly different from 
-\shape smallcaps
-DataRank-FB (
-\begin_inset Formula $F(XXX,YYY)=ZZZ,p=0.8$
-\end_inset
-
-).
- 
-\shape default
-A similar trend also happens for Figshare.
- The proposed algorithm is thus better at predicting real usage data.
+ are as large as the values themselves.
 \end_layout
 
 \begin_layout Standard
@@ -1740,985 +1664,6 @@ noprefix "false"
  publication–dataset networks.
 \end_layout
 
-\begin_layout Standard
-As an interesting exercise, we then estimated the 
-\shape smallcaps
-DataRank
-\shape default
--based prediction of usage for GenBank and Figshare datasets published recently
- (Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:top-10-of-GenBank"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- and Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:top-10-datasets-of-Figshare"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- These datasets seem to be created from many different fields and therefore
- are hard to unify into one interpretation.
- We leave this here for the reader who might be familiar with these datasets.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float table
-wide false
-sideways true
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "tab:top-10-of-GenBank"
-
-\end_inset
-
-Top ten datasets information for 
-\shape smallcaps
-DataRank
-\shape default
- values in GenBank
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Tabular
-<lyxtabular version="3" rows="11" columns="4">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="10page%">
-<column alignment="center" valignment="top" width="10page%">
-<column alignment="center" valignment="top" width="30page%">
-<column alignment="center" valignment="top" width="6page%">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Accession
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Year
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Definition
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Predicted usage
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-LC420150
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2018
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Mumps rubulavirus rOdate/AcGFP viral cRNA, complete genome
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.469
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-MH118296
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2018
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Enterovirus D68 strain ITA/MI/MA16-348/2016 polyprotein gene, partial cds
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.4694
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-MG668998
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2017
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Hypophthalmichthys nobilis male-specific marker genomic sequence
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.411
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-MG979489
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2018
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Scolytoplatypus unipilus voucher SpScp16 elongation factor 1-alpha gene,
- partial cds
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.407
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-MH071441
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2018
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-[Candida] auris culture CBS:15366 small subunit ribosomal RNA gene, partial
- sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal
- transcribed spacer 2, complete sequence; and large subunit ribosomal RNA
- gene, partial sequence
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.407
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-MH046063
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2018
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Homo sapiens solute carrier family 5 member 5 (SLC5A5) gene, partial cds
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.407
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-MH071440
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2018
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-[Candida] auris culture CBS:15366 large subunit ribosomal RNA gene, partial
- sequence
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.407
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-MG979488
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2018
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Scolytoplatypus unipilus voucher SpScp16 cytochrome oxidase subunit i gene,
- partial cds; mitochondrial
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.407
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-MG847149
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2018
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Paenibacillus assamensis strain lqr1 16S ribosomal RNA gene, partial sequence
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.407
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-MG979490
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2018
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Scolytoplatypus unipilus voucher SpScp16 carbamoyl-phosphate synthetase
- 2 gene, partial cds
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.407
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float table
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "tab:top-10-datasets-of-Figshare"
-
-\end_inset
-
-Top ten datasets information for 
-\shape smallcaps
-DataRank
-\shape default
- values in Figshare
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Tabular
-<lyxtabular version="3" rows="11" columns="4">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="15page%">
-<column alignment="center" valignment="top" width="10page%">
-<column alignment="center" valignment="top" width="25page%">
-<column alignment="center" valignment="top" width="6page%">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Doi
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Year
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Title
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Predicted usage
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10.6084/m9.figshare.1286826
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-101 Innovations in Scholarly Communication - the Changing Research Workflow
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1.611
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10.6084/m9.figshare.5018774.v1
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2018
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Using AmgX to Accelerate PETSc-Based CFD Codes
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1.377
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10.6084/m9.figshare.6714206.v1
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2019
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Sensitivity analysis for missing data in cost-effectiveness analysis: Stata
- code
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1.375
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10.6084/m9.figshare.5394382.v1
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2018
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Empowering Archaeology What model of disability do people with dyslexia
- in university archaeology courses experience?
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1.326
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10.6084/m9.figshare.5621260.v1
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2019
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Topic Modelling of Research in the Arts and Humanities
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1.188
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10.6084/m9.figshare.6226721
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2019
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Effect of New Mexico conservation agreements for the dunes sagebrush lizard
- on oil and gas well approval rates
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1.188
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10.6084/m9.figshare.6226964.v2
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2019
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-No effect of the Texas Conservation Plan on oil and gas well approval in
- dunes sagebrush lizard habitat in Texas
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1.188
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10.6084/m9.figshare.5687791.v1
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2018
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Sequence Stratigraphy, Chronostratigraphy, and Spatio-Temporal Stratigraphic
- Thickness Variation of the Agbada Formation, Robertkiri and Delta Fields,
- Niger Delta, Nigeria
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1.139
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10.6084/m9.figshare.5688469
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2018
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Visualization_of_Angular_Unconformities
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1.139
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10.6084/m9.figshare.5328442.v3
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2018
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Track 1 Paper: Surveying the U.S.
- National Postdoctoral Association Regarding Software Use and Training in
- Research
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1.139
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Section
 Discussion
 \end_layout
@@ -2773,18 +1718,7 @@ literal "false"
 , giving these important research outcomes less credit that they might deserve.
  Our proposal aims at solving some of these issues by constructing a network
  flow that is able to successfully predict real usage better than other
- methods (Fig.
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Predictability-of-the"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
+ methods.
  While citations are not a perfect measure of credit, having a method that
  can estimate true citations is good.
 \end_layout
@@ -2823,8 +1757,12 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-PageRank is a well-known ranking algorithm to determines the importance
- of a webpage
+
+\shape smallcaps
+PageRank
+\shape default
+ is a well-known ranking algorithm to determine the importance of a webpage
+ 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "page1999pagerank"
@@ -2836,9 +1774,20 @@ literal "false"
  other information of a webpage, such as content, topic, etc.
  Considering the fact that there are two different types of nodes in our
  network, we extend the classical PageRank algorithm to accommodate two
- data types, which we call it Modified PageRank.
- Modified PageRank seems to have a slight improvement over PageRank (0.159
- over 0.157 in GenBank and 0.0509 over 0.0504 in FigShare).
+ data types, which we call it Modified 
+\shape smallcaps
+PageRank
+\shape default
+.
+ Modified 
+\shape smallcaps
+PageRank
+\shape default
+ seems to have a slight improvement over 
+\shape smallcaps
+PageRank
+\shape default
+ (0.159 over 0.157 in GenBank and 0.0509 over 0.0504 in Figshare).
 \end_layout
 
 \begin_layout Standard
@@ -2903,8 +1852,8 @@ noprefix "false"
 
 \end_inset
 
-, we can clearly see that the greater the difference in the decay time of
- paper and datasets, the more significant the correlation coefficient becomes.
+, the greater the difference in the decay time of paper and datasets, the
+ larger the absolute correlation coefficient becomes.
  Though the trend differs in GenBank and Figshare (i.e., one is positive and
  the other is negative), this may be related to some intrinsic attributes
  of the dataset itself.
@@ -2938,11 +1887,11 @@ ion of scientific discoveries.
 
 \begin_layout Standard
 There are some shortcomings in our study.
- In our Genbank dataset, we do not have a great deal of information on actual
+ In our GenBank dataset, we do not have a great deal of information on actual
  usage.
  There are 1000 records but we only located 255 in the publication network.
  For the Figshare dataset, while we do have a significantly larger dataset
- of usage, the datasets do not seem to be cited as often as in Genbank.
+ of usage, the datasets do not seem to be cited as often as in GenBank.
  However, the dynamics of both datasets are similar, leading us to believe
  that they are representative of the nature of citation behavior in general.
  In the future, we will explore other data repositories such as PANGEA,
@@ -2950,24 +1899,40 @@ There are some shortcomings in our study.
 \end_layout
 
 \begin_layout Standard
-We found that the nature of the correlation between DataRank and usage was
- predictive but somewhat puzzling.
- Specifically, for some parameter choices, DataRank had the effect of finding
- a high but negative correlation between the rank and the usage amount.
+We found that the nature of the correlation between 
+\shape smallcaps
+DataRank
+\shape default
+ and usage was predictive but somewhat puzzling.
+ Specifically, for some parameter choices, 
+\shape smallcaps
+DataRank
+\shape default
+ had the effect of finding a high but negative correlation between the rank
+ and the usage amount.
  We use a predictive model to avoid this issue but we would like to explore
  the reasons behind the negative correlation.
- One possibility that we might entertain is that datasets that are well
- cited and have high DataRank might be moved to their own data repositories
- which we are not able to capture.
- Therefore, some high DataRank dataset might have low usage on the official
- repositories we examine.
+ We think that datasets that are well cited and have high 
+\shape smallcaps
+DataRank
+\shape default
+ are moved to their own data repositories.
+ Therefore, some high 
+\shape smallcaps
+DataRank
+\shape default
+ dataset might have low usage on the official repositories we examined.
 \end_layout
 
 \begin_layout Standard
 Our study advances an analysis of datasets and publications with novel ideas
  from network analysis.
  Our work puts together concepts from other popular network flow estimation
- algorithms such as PageRank 
+ algorithms such as 
+\shape smallcaps
+PageRank
+\shape default
+ 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "brin1998anatomy"
@@ -2975,7 +1940,11 @@ literal "false"
 
 \end_inset
 
- and Dylan Walker's algorithm NetworkFlow 
+ and Dylan Walker's algorithm 
+\shape smallcaps
+NetworkFlow
+\shape default
+ 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "walker2007ranking"
@@ -2984,8 +1953,15 @@ literal "false"
 \end_inset
 
 .
- Our method predicts better the usage of datasets compared PageRank and
- NetworkFlow and also it provides interpretable parameters.
+ Our method predicts better the usage of datasets compared to 
+\shape smallcaps
+PageRank
+\shape default
+ and 
+\shape smallcaps
+NetworkFlow
+\shape default
+ and also it provides interpretable parameters.
  For example, even when the two datasets are of different nature, we consistentl
 y found that the best decay time for publication is around 1 year whereas
  for datasets is around 20 year.
