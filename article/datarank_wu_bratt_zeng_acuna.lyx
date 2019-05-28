@@ -151,8 +151,8 @@ A citation is a well-established mechanism for connecting scientific artifacts.
  prominently to give credit to scientists’ work.
  However, because of current citation practices, scientists tend to cite
  only publications, leaving out other types of artifacts such as datasets.
- Yet datasets are increasingly reused and experimented with, indicating
- their utility as an important part of the scientific enterprise.
+ Yet datasets are increasingly reused and experimented with, but they do
+ not get appropriate credit.
  In this article, we examine several approaches for assigning credit to
  datasets.
  We develop a network flow measure, called 
@@ -172,7 +172,7 @@ DataRank
 \shape smallcaps
 DataRank
 \shape default
- is better when compared to 
+ is better at predicting usage when compared to 
 \shape smallcaps
 PageRank
 \shape default
@@ -189,7 +189,7 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-Citation networks are an important source of analysis in science.
+A citation network is an important source of analysis in science.
  Citations serve multiple purposes such as crediting an idea, signaling
  knowledge of the literature, or critiquing others' work 
 \begin_inset CommandInset citation
@@ -211,7 +211,7 @@ literal "false"
 
 .
  Furthermore, scientists themselves make decisions based on citations, such
- as what papers to read and which articles to cite.
+ as which papers to read and which articles to cite.
  Citation practices and infrastructures are well-developed for journal articles
  and conference proceedings.
  However, there is much less development for dataset citation.
@@ -245,7 +245,7 @@ literal "false"
  differently.
  With the implementation of this algorithm, then, it will be possible to
  account for the differences in citation behavior between these two types
- of artifacts, restoring the importance of datasets as first class citizens
+ of artifacts, increasing the importance of datasets as first class citizens
  of science.
 \end_layout
 
@@ -356,7 +356,7 @@ literal "false"
 \shape smallcaps
 TimeRank
 \shape default
- for scholars rating.
+ for rating scholars.
  This method updates the rating of scholars based on the relative rating
  of the citing and cited scholars at the time of the citation.
  Citation networks are an important source of information for ranking homogenous
@@ -380,7 +380,7 @@ literal "false"
 
 .
  Third, scholars are not used to citing datasets.
- Although survey research has suggested that formal citation is considered
+ Although survey research has suggested that a formal citation is considered
  by scholars to be the way of crediting a dataset 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -389,8 +389,12 @@ literal "false"
 
 \end_inset
 
-, scientists tend to cite the article describing the dataset, the subsets
- of data, or merely mention the dataset without explicit reference 
+, scientists tend to cite the 
+\emph on
+article
+\emph default
+ rather than the dataset or they merely mention the dataset without explicit
+ reference 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "force2014encouraging"
@@ -400,7 +404,7 @@ literal "false"
 
 .
  Therefore, these historical reasons have prevented the proper assignment
- of credits to dataset usage.
+ of credit to dataset usage.
 \end_layout
 
 \begin_layout Standard
@@ -441,7 +445,7 @@ literal "false"
  All these solutions try to make citation dataset behavior more standard
  or attempt to fix the citation network by estimating which data nodes are
  missing.
- Therefore, these attempts necessarily modify the source that algorithms
+ Therefore, these solutions necessarily modify the source that algorithms
  use to estimate impact.
 \end_layout
 
@@ -450,7 +454,7 @@ In this article, we develop a method for assigning credit to datasets from
  citation networks of publications, assuming that they have biases.
  Importantly, our method does not modify the source data for the algorithms.
  The method does not rely on scientists explicitly citing a dataset but
- infers the use and assigns credit accordingly based on a modified 
+ infers their usage, assigning credit based on a modified 
 \shape smallcaps
 PageRank
 \shape default
@@ -477,8 +481,8 @@ DataRank
 \shape smallcaps
 DataRank
 \shape default
- algorithm and cross-validate it using the actual usage of them—number of
- visits to the NCBI dataset web pages and downloads of Figshare datasets.
+ algorithm and cross-validate it by predicting the actual usage of them—number
+ of visits to the NCBI dataset web pages and downloads of Figshare datasets.
  We show that our method is better at predicting both types of usages.
  We discuss the implications of our method for data citation infrastructures
  and future projects.
@@ -1438,7 +1442,8 @@ Results
 
 \begin_layout Standard
 In our analysis, we aimed at finding whether the estimation of the rank
- of a dataset is related to a real measure of relevance by scientists.
+ of a dataset based on citation data is related to a real-world measure
+ of relevance such as downloads.
  We propose a method for estimating this ranking considering differences
  in citation dynamics for publications and datasets.
  We also propose variants to this method, and compare all of them to standard
@@ -1449,8 +1454,12 @@ In our analysis, we aimed at finding whether the estimation of the rank
 \end_layout
 
 \begin_layout Standard
-We first wanted to examine differences in usage between these two datasets.
- We call usage to both visits to the GenBank dataset profiles (Fig.
+We first wanted to examine differences in usage between Genbank and Figshare.
+ We call 
+\emph on
+usage
+\emph default
+ to web visits to the GenBank dataset profiles (Fig.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1461,7 +1470,7 @@ noprefix "false"
 
 \end_inset
 
-) and actual downloads from Figshare.
+) and actual downloads of Figshare datasets.
  We plot the estimated probability density function of this usage for both
  datasets (Fig.
  
@@ -1553,9 +1562,9 @@ in Figshare, for
 
 ).
  There is a significant bias for downloads below a certain threshold, where
- smaller number of downloads are significantly less frequent than expected.
+ smaller number of downloads are less frequent than expected.
  However, both datasets show similar patterns suggesting a common mechanism
- driving the dataset using behavior.
+ driving the dataset usage behavior.
 \end_layout
 
 \begin_layout Standard
@@ -1591,7 +1600,7 @@ for both GenBank and Figshare
 \begin_inset Formula $R^{2}$
 \end_inset
 
- are as large as the values themselves.
+ are large.
 \end_layout
 
 \begin_layout Standard
@@ -1640,10 +1649,28 @@ The parameters that
 \shape smallcaps
 DataRank
 \shape default
- is finding as best can inform our understand of the nature of the datasets.
+ is finding as best can inform our understanding of the nature of the datasets.
  We find that there is an interesting relationship between the difference
- in dataset–publication decays and the correlation coefficient of the rank
- and usage (Fig.
+ in dataset–publication decays (parameters 
+\begin_inset Formula $\tau_{\text{data}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\tau_{\text{publications}}$
+\end_inset
+
+ in Eq.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:data-rank-starting"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) and the correlation coefficient of the rank and usage (Fig.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1655,11 +1682,11 @@ noprefix "false"
 \end_inset
 
 ).
- In particular, we find the highest correlation occur when the difference
- is either -19 or 19, suggesting that both datasets have the same properly
- differentiation between datasets and publications.
+ In particular, we find that the highest correlation occurs when the difference
+ is either -19 or 19, suggesting that both datasets have the same obsolescence
+ differences between datasets and publications.
  Concretely, the highest correlation (although negative for GenBank) occurs
- when the datasets are set decay around 20 times slower than publications.
+ when the datasets decay around 20 times slower than publications.
  Thus the parameters that we find offer some insight into the nature of
  publication–dataset networks.
 \end_layout
@@ -1673,9 +1700,9 @@ The goal of this paper is to better evaluate the importance of datasets
  through the citation network.
  Compared with the mature citation mechanism of articles, referencing datasets
  is still in its infancy.
- Acknowledging the long time this practice will take to be adopted, our
- research aims at recovering the true importance of datasets even if their
- citations are biased compared to publications.
+ Acknowledging the long time the practice of citing datasets will take to
+ be adopted, our research aims at recovering the true importance of datasets
+ even if their citations are biased compared to publications.
 \end_layout
 
 \begin_layout Standard
@@ -1720,29 +1747,35 @@ literal "false"
  flow that is able to successfully predict real usage better than other
  methods.
  While citations are not a perfect measure of credit, having a method that
- can estimate true citations is good.
+ can estimate true citations is advantageous.
 \end_layout
 
 \begin_layout Standard
 Previous research has examined ways of normalizing the citations by time,
  field, and quality.
- This relates to our DataRank algorithm in that we are trying to normalize
- the citations by year and artifact type.
- Similar work has been done in patent citations where 
+ This relates to our 
+\shape smallcaps
+DataRank
+\shape default
+ algorithm in that we are trying to normalize the citations by year and
+ artifact type.
+ Similar work has been done in patent citations: 
 \begin_inset CommandInset citation
-LatexCommand citep
+LatexCommand citet
 key "hall2001nber"
 literal "false"
 
 \end_inset
 
- attempts to eliminate the effects caused by year, field and year-field
- interaction through dividing the number of citation received by a certain
- patent by the corresponding year-field average number of citation of patents
- of each cohort in each field.
+ attempt to eliminate the effects caused by year, field and year-field interacti
+on through dividing the number of citation received by a certain patent
+ by the corresponding year-field average number of citation of patents of
+ each cohort in each field.
  Other researchers have gone beyond time and field by also attempting to
  control by quality of the resource.
- Clarivate Analytics editors on the Data Citation Index (DCI) database 
+ Clarivate Analytics editors consider other normalizing factors such as
+ publishing standards, editorial content and citation information about
+ it when creating the Data Citation Index (DCI) database 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "reuters2012repository"
@@ -1750,58 +1783,25 @@ literal "false"
 
 \end_inset
 
- consider like its publishing standards, editorial content and citation
- information about it.
- However, a control like this requires significantly more manual curation
- and it is a fundamentally difficult task.
-\end_layout
-
-\begin_layout Standard
-
-\shape smallcaps
-PageRank
-\shape default
- is a well-known ranking algorithm to determine the importance of a webpage
- 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "page1999pagerank"
-literal "false"
-
-\end_inset
-
-, it only uses the topological structure of the network without considering
- other information of a webpage, such as content, topic, etc.
- Considering the fact that there are two different types of nodes in our
- network, we extend the classical PageRank algorithm to accommodate two
- data types, which we call it Modified 
-\shape smallcaps
-PageRank
-\shape default
-.
- Modified 
-\shape smallcaps
-PageRank
-\shape default
- seems to have a slight improvement over 
-\shape smallcaps
-PageRank
-\shape default
- (0.159 over 0.157 in GenBank and 0.0509 over 0.0504 in Figshare).
+ .
+ However, a control like this requires significantly more manual curation.
 \end_layout
 
 \begin_layout Standard
 We found that the practice of following who cites an artifact (i.e., backward
  propagation) is not important compared to following a cited artifact (i.e.,
  forward propagation).
- This is, the more specialized DataRank-FB model did not produce higher
- predictability.
+ This is, the more specialized 
+\shape smallcaps
+DataRank-FB
+\shape default
+ model (see Methods) did not produce higher predictability.
  This lack of improvement could suggest that when scientists traverse the
- network of citations, they seem to only following one direction of the
- graph (who cites what).
+ network of citations, they seem to only follow one direction of the graph
+ (who cites what).
  This could be perhaps a limitation of the tools available to scientists
- to explore the citation network or an effect of the fact that the backward
- propagation changes constantly.
+ to explore the citation network or because backward propagation changes
+ constantly year after year.
  Initiatives that force the creation of identifiers (DOI) for datasets,
  such as the NERC Science Information Strategy Data Citation and Publication
  project 
@@ -1812,7 +1812,7 @@ literal "false"
 
 \end_inset
 
-, might change this pattern and make it for specialized for datasets.
+, might change this pattern.
 \end_layout
 
 \begin_layout Standard
@@ -1856,11 +1856,7 @@ noprefix "false"
  larger the absolute correlation coefficient becomes.
  Though the trend differs in GenBank and Figshare (i.e., one is positive and
  the other is negative), this may be related to some intrinsic attributes
- of the dataset itself.
- As a third party open source website, Figshare allows the user to upload
- anything without limitation whereas GenBank checks the gene sequence and
- some other basic information.
- This innate characteristic can partially account for the phenomenon.
+ of the datasets themselves.
 \end_layout
 
 \begin_layout Section
@@ -1871,18 +1867,18 @@ Conclusion
 Understanding how datasets are used is an important topic in science.
  Datasets are becoming crucial for the reproduction of results and the accelerat
 ion of scientific discoveries.
- Scientists, however, tend to dismiss citing datasets and therefore we do
- not have a proper measurement of how impactful datasets are.
+ Scientists, however, tend to dismiss citing datasets and therefore there
+ is no proper measurement of how impactful datasets are.
  Our method uses the publication-publication citation network to propagate
  the impact of the publication-dataset citation network.
- Using two databases of real dataset network, we demonstrate how our method
- is able to predict actual more accurately than other methods.
+ Using two databases of real dataset networks, we demonstrate how our method
+ is able to predict actual usage more accurately than other methods.
  Our results suggest that datasets have different citation dynamics to those
  of publications.
  In particular, they have a longer decay time.
  In sum, our study provides a prescriptive model to understand how citations
  interact in publication and dataset citation networks and gives a concrete
- method for producing ranks that correlate with actual usage.
+ method for producing ranks that are predictive of actual usage.
 \end_layout
 
 \begin_layout Standard
@@ -1921,7 +1917,10 @@ DataRank
 \shape smallcaps
 DataRank
 \shape default
- dataset might have low usage on the official repositories we examined.
+ dataset might have low usage on the official repositories we examined,
+ leading to the puzzling result.
+ In the future, we will confirm whether this high-datarank datasets are
+ available elsewhere.
 \end_layout
 
 \begin_layout Standard
@@ -1972,7 +1971,7 @@ Science needs better ways to keep track of dataset usage.
  While scientists might potentially take a great amount of time to change
  their citation behavior, we could use techniques such as the one put forth
  in this article to accelerate the credit assignment for datasets.
- Ultimately, the need for tracking datasets can only become more pressing
+ Ultimately, the need for tracking datasets will only become more pressing
  and therefore we must adapt or miss the opportunity to make datasets first-clas
 s citizens of science.
 \end_layout
@@ -1987,6 +1986,7 @@ The authors would like to thank the Dr.
  DHHS.
  Daniel E.
  Acuna was partially funded by the National Science Foundation awards #1800956.
+ Tong Zeng was funded by the China Scholarship Council #201706190067.
 \end_layout
 
 \begin_layout Standard
