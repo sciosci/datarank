@@ -162,17 +162,19 @@ A citation is a well-established mechanism for connecting scientific artifacts.
  prominently to give credit to scientists’ work.
  However, because of current citation practices, scientists tend to cite
  only publications, leaving out other types of artifacts such as datasets.
- Yet datasets are increasingly reused and experimented with, but they do
- not get appropriate credit.
- In this article, we examine several approaches for assigning credit to
- datasets.
+ Datasets then do not get appropriate credit even though they are increasingly
+ reused and experimented with.
  We develop a network flow measure, called 
 \shape smallcaps
 DataRank
 \shape default
-, that assigns a relative value to each node in the network based on how
- citation flows through the graph, differentiating publication and dataset
- flow rates.
+, aimed at solving this gap.
+ 
+\shape smallcaps
+DataRank
+\shape default
+ assigns a relative value to each node in the network based on how citations
+ flow through the graph, differentiating publication and dataset flow rates.
  We evaluate the quality of 
 \shape smallcaps
 DataRank
@@ -183,16 +185,15 @@ DataRank
 \shape smallcaps
 DataRank
 \shape default
- is better at predicting usage when compared to 
+ is better at predicting this usage when compared to 
 \shape smallcaps
 PageRank
 \shape default
  and other variants.
- Our results suggest that even though we examined different dataset databases,
- they follow a similar decay rate whereas publication-citation networks
- is about twenty-times faster than in dataset-citation networks.
+ Our results suggest that dataset databases follow a similar decay rate
+ whereas publication citations decay twenty-times faster than dataset citations.
  We discuss improvements to citation behavior and algorithms to properly
- track and assign credit to the usage of datasets.
+ track and assign credit to datasets.
 \end_layout
 
 \begin_layout Section
@@ -265,7 +266,7 @@ Citation networks are widely used for evaluating the importance of authors
  
 \begin_inset CommandInset citation
 LatexCommand citep
-key "ding2009pagerank,ding2011applying"
+key "ding2009pagerank,ding2011applying,west2013author"
 literal "false"
 
 \end_inset
@@ -281,7 +282,7 @@ literal "false"
 , journals 
 \begin_inset CommandInset citation
 LatexCommand citep
-key "bollen2006journal"
+key "bollen2006journal,bergstrom2007eigenfactor"
 literal "false"
 
 \end_inset
@@ -1465,6 +1466,56 @@ In our analysis, we aimed at finding whether the estimation of the rank
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../figures/F5_result_r_square.pdf
+	width 9cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:result-r-2"
+
+\end_inset
+
+Model comparison in 
+\begin_inset Formula $R^{2}$
+\end_inset
+
+.
+ 
+\shape smallcaps
+DataRank
+\shape default
+ is able to predict better the real usage of datasets compared to other
+ variants.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 We first wanted to examine differences in usage between Genbank and Figshare.
  We call 
 \emph on
@@ -1588,7 +1639,17 @@ One of the real tests of whether the methods work is to predict how they
 \begin_inset Formula $R^{2}$
 \end_inset
 
- for each of the models.
+ for each of the models (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:result-r-2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
  Our analysis reveals that 
 \shape smallcaps
 DataRank
