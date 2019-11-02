@@ -501,6 +501,92 @@ DataRank
 \end_layout
 
 \begin_layout Section
+Conceptual Framing
+\end_layout
+
+\begin_layout Standard
+Our work is situated in scientific impact assessment.
+ We frame this work from the conceptual lens of impact assessment, specifically,
+ studies of usage statistics and crediting scientific works.
+ This area of study aims to develop methods for scientific indicators of
+ the usage and impact of scholarly outputs.
+ Impact assessment research also derives empirical insights from research
+ products by assessing the dynamics and structures of connections between
+ the outputs.
+ Work in this area informs evidence-based policymaking which benefits from
+ usage statistics to inform policy decisions about research data management,
+ cyberinfrastructure implementation, and funding allocation.
+ 
+\end_layout
+
+\begin_layout Standard
+Methods for measuring usage and impact include a variety of different dimensions
+ of impact, from social media to code use and institutional metrics.
+ Several of these approaches have begun to recognize the artificial distinction
+ between the scientific process and product [CITE].
+ For instance, the area of altmetrics studies the digital traces left by
+ non-traditional outputs of science and forms of scholarly engagement on
+ social media platforms.
+ For example, altmetrics are one ways scholars have begun to measure engagement
+ with diverse research products, and to estimate the impact of non-traditional
+ outputs.
+ Researchers predict that it will soon become a part of the citation infrastruct
+ure to routinely track — and value — “citations to an online lab notebook,
+ contributions to a software library, bookmarks to datasets from content-sharing
+ sites such as Pinterest and Delicious” [CITE].
+ In short, if science has made a difference, it will show up in a multiplicity
+ of places.
+ A correspondingly wider range of metrics are needed to attribute credit
+ to the many locations where research works reflect their value.
+ For example, researchers have estimated that datasets contribute to more
+ than 1000 papers [CITE] in NCBI’s Gene Expression Omnibus.
+ The authors found that these attributions will continue to accumulate cites,
+ just like papers, for a number of years after the datasets are publically
+ released.
+ The NSF policy change does not only properly reward the PI who contributed
+ a popular data processing package, however.
+ It is a game-changer because it alters the evaluation of scientific impact
+ itself.
+ Other efforts to track include ImpactStory, statistics from FigShare, and
+ Altmetric.com [CITE].
+\end_layout
+
+\begin_layout Standard
+Credit attribution efforts include those by federal agencies to expand the
+ definition of scientific works that were not publications.
+ For example, in 2013 the National Science Foundation (NSF) recognized the
+ importance of measuring scientific artifacts other than publications by
+ asking researchers for “products” rather than just publications [CITE].
+ This represents a sea-change in how scientists are evaluated [CITE, Piowar
+ 2013].
+ Datasets, software, and other non-traditional scientific works are now
+ considered by the NSF as legitimate contributions to the publication record.
+ Furthermore, real-time science is presented in mediums like computational
+ lab notebooks [CITE] and algorithms filter, rank, and disseminate scholarship
+ as it happens [CITE].
+ Open science researchers emphasize how the journal article and paper are
+ being superseded by scientific products [CITE].
+ 
+\end_layout
+
+\begin_layout Standard
+Yet despite the crucial role of data in scientific discovery and innovation,
+ can often datasets suffer from lack of findability, accessibility, interoperabi
+lity, and reproducibility.
+ In response to the urgent need for improving the infrastructures supporting
+ reuse of open research data, principles are known as the FAIR data principles
+ [CITE].
+ However, there is a lack of technical infrastructure for implementing the
+ technical components needed for assessing usage of data.
+ Datasets have not achieved the goal of machine-actionability — that is,
+ the capacity of computational systems to find, access, interoperate, and
+ reuse data with none or minimal human intervention [CITE].
+ In sum, there remains a need to establish methods to technically implement
+ the goals of making datasets first-class citizens.
+ 
+\end_layout
+
+\begin_layout Section
 Materials and methods
 \end_layout
 
@@ -1775,6 +1861,45 @@ The goal of this paper is to better evaluate the importance of datasets
  Acknowledging the long time the practice of citing datasets will take to
  be adopted, our research aims at recovering the true importance of datasets
  even if their citations are biased compared to publications.
+\end_layout
+
+\begin_layout Standard
+Open research datasets have little means for systematic attribution even
+ in well-resourced disciplines, such as the biomedical community.
+ The lack of systematic, benchmarking tools prevents good policymaking.
+ Furthermore, it contributes to the invisibility of digital objects, an
+ issue of serious concern.
+ When digital objects are not well described, they tend to disappear from
+ view.
+ They fall to the bottom of classic search engine results when there are
+ no mechanisms to assign credit to datasets.
+ This lack of indexing creates an asymmetrical representation of some kinds
+ of objects of science and can be an obstacle to quality evaluation and
+ data reuse.
+ [CITE]
+\end_layout
+
+\begin_layout Standard
+“Impact” is defined differently depending on the goal [CITE].
+ As such, metrics estimating impact can be defined “use” “reuse” “engagement”,
+ and have a range of proxies, likewise depending on the context of circulation.
+ For example, a downloads might measure use while in another context it
+ may only indicate viewing.
+ The edifice of citation standards in the realm of journal articles is relativel
+y well-established, with refinements to the interpretation of citation behavior
+ such as the relative value of citations [CITE], the disciplinary context
+ [CITE], and the in-text location [CITE].
+ Nonetheless, usage serves as a proximal indicator of use, and a first-order
+ approximation of the impact of the scientific work.
+ Recent work in developing impact assessment tools continue development
+ and refinement [CITE].
+ However, existing evaluation mechanisms often fail where there are no direct
+ or indirect measure for usage, which can be an important indicator of scientifi
+c impact.
+ While our approach does not estimate impact, we measure usage which is
+ the crucial foundational step toward developing technical and theoretical
+ models of impact.
+ 
 \end_layout
 
 \begin_layout Standard
