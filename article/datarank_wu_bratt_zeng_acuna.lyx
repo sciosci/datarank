@@ -185,13 +185,12 @@ DataRank
 \shape smallcaps
 DataRank
 \shape default
- is better at predicting this usage when compared to 
+ is better at predicting this usage compared to simple citations while offering
+ additional interpretable outcomes compared to 
 \shape smallcaps
 PageRank
 \shape default
  and other variants.
- Our results suggest that dataset databases follow a similar decay rate
- whereas publication citations decay twenty-times faster than dataset citations.
  We discuss improvements to citation behavior and algorithms to properly
  track and assign credit to datasets.
 \end_layout
@@ -304,7 +303,7 @@ literal "false"
 \end_inset
 
 .
- Many of this previous work has been based on modifications of the 
+ Much of this previous work has been based on modifications of the 
 \shape smallcaps
 PageRank
 \shape default
@@ -351,7 +350,7 @@ literal "false"
 
 \end_inset
 
- defined a new time-aware 
+ defined a time-aware 
 \shape smallcaps
 PageRank 
 \shape default
@@ -371,8 +370,8 @@ TimeRank
  for rating scholars.
  This method updates the rating of scholars based on the relative rating
  of the citing and cited scholars at the time of the citation.
- Citation networks are an important source of information for ranking homogenous
- types of nodes.
+ Citation networks are thus an important source of information for ranking
+ homogenous types of nodes.
 \end_layout
 
 \begin_layout Standard
@@ -496,12 +495,12 @@ DataRank
  algorithm and cross-validate it by predicting the actual usage of them—number
  of visits to the NCBI dataset web pages and downloads of Figshare datasets.
  We show that our method is better at predicting both types of usages.
- We discuss the implications of our method for data citation infrastructures
- and future projects.
+ We discuss interpretations of our results and implications for data citation
+ infrastructures and future projects.
 \end_layout
 
 \begin_layout Section
-Conceptual Framing
+Conceptual framework and background information
 \end_layout
 
 \begin_layout Standard
@@ -516,7 +515,6 @@ Our work is situated in scientific impact assessment.
  Work in this area informs evidence-based policymaking which benefits from
  usage statistics to inform policy decisions about research data management,
  cyberinfrastructure implementation, and funding allocation.
- 
 \end_layout
 
 \begin_layout Standard
@@ -541,10 +539,10 @@ ure to routinely track — and value — “citations to an online lab notebook,
  For example, researchers have estimated that datasets contribute to more
  than 1000 papers [CITE] in NCBI’s Gene Expression Omnibus.
  The authors found that these attributions will continue to accumulate cites,
- just like papers, for a number of years after the datasets are publically
+ just like papers, for a number of years after the datasets are publicly
  released.
  The NSF policy change does not only properly reward the PI who contributed
- a popular data processing package, however.
+ a popular data processing package, however [Which NSF policy change?].
  It is a game-changer because it alters the evaluation of scientific impact
  itself.
  Other efforts to track include ImpactStory, statistics from FigShare, and
@@ -557,8 +555,8 @@ Credit attribution efforts include those by federal agencies to expand the
  For example, in 2013 the National Science Foundation (NSF) recognized the
  importance of measuring scientific artifacts other than publications by
  asking researchers for “products” rather than just publications [CITE].
- This represents a sea-change in how scientists are evaluated [CITE, Piowar
- 2013].
+ This represents a significant change in how scientists are evaluated [CITE,
+ Piowar 2013].
  Datasets, software, and other non-traditional scientific works are now
  considered by the NSF as legitimate contributions to the publication record.
  Furthermore, real-time science is presented in mediums like computational
@@ -571,8 +569,33 @@ Credit attribution efforts include those by federal agencies to expand the
 
 \begin_layout Standard
 Yet despite the crucial role of data in scientific discovery and innovation,
- can often datasets suffer from lack of findability, accessibility, interoperabi
-lity, and reproducibility.
+ datasets do not get enough credit 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "silvello2018theory"
+literal "true"
+
+\end_inset
+
+.
+ The recent competition on dataset discovery by NYU highlights this problem
+ because publishers and funding agencies cannot track where datasets are
+ being used in publications, an important source of information to continue
+ funding and support for the dataset efforts (cite Tong's chapter).
+ This issue leads to biases in the citation network 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "robinson2016analyzing"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+can suffer from lack of findability, accessibility, interoperability, and
+ reproducibility.
  In response to the urgent need for improving the infrastructures supporting
  reuse of open research data, principles are known as the FAIR data principles
  [CITE].
@@ -1569,6 +1592,17 @@ Then
 \shape default
 we define another transition matrix from the citation network as follows
  
+\begin_inset Formula 
+\[
+p(j\mid i)\propto\begin{cases}
+w_{d}^{I(j=dataset)}w_{p}^{I(j=pub)}\exp(-\lambda\text{age}) & \text{if \ensuremath{j} is cited by i}\\
+0 & \text{o.w.}
+\end{cases}
+\]
+
+\end_inset
+
+
 \begin_inset Formula 
 \begin{equation}
 M_{ij}=\begin{cases}
