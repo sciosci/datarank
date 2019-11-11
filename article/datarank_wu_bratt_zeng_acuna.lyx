@@ -511,40 +511,29 @@ Datasets
 \begin_layout Subsubsection
 
 \series bold
-OpenCitation Corpus and Microsoft Academic Graph (MAG)
+OpenCitations Index (COCI) 
 \end_layout
 
 \begin_layout Standard
-OpenCitation Corpus (OCC) is the OpenCitations Index of Crossref's open
- DOI-to-DOI references data 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "peroni2015setting"
-literal "false"
+The OpenCitations index is a index of Crossref's open DOI-to-DOI citation
+ data.
+ It contains approximately 450 million DOI-to-DOI citations.
+ Specifically, COCI contains information describing a citation relationship,
+ including citing DOI, cited DOI, the publication date of citing DOI.
+ Because, not all the DOIs in COCI citation network have an publication
+ date, we will introduce Microsoft Academic Graph to fill up this gap.
+\end_layout
 
-\end_inset
+\begin_layout Subsubsection
 
-, which can be used without restriction 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "shotton2013publishing"
-literal "false"
+\series bold
+Microsoft Academic Graph (MAG)
+\end_layout
 
-\end_inset
-
-.
- It contains approximately 450 million DOI-to-DOI citation links, which
- makes it one of the largest open corpuses of citation data available 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "peroni2017one"
-literal "false"
-
-\end_inset
-
-.
- We obtain the year of publication from the Microsoft Academic Graph (MAG)
- 
+\begin_layout Standard
+The Microsoft Academic Graph is a large heterogeneous graph consist of six
+ types of entities involved in academic communication activities, including
+ the paper, author, institution, venue, event and field of study 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "sinha2015overview"
@@ -552,10 +541,250 @@ literal "false"
 
 \end_inset
 
- because OpenCitations does not have metadata about the DOIs.
- All nodes without a year are excluded.
- The final dataset of publications  has 441,432,288 citations and 44,229,769
- unique resources.
+.
+ Concretely, the description of paper consist of DOI, title, abstract, published
+ year, etc.
+ We download a copy of MAG November 2018, which contains 208,915,369 papers.
+ As an supplement to COCI, we extract the DOI and published year to extend
+ the DOIs in COCI which without an publication date.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Statistics of article citation network
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+COCI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+COCI + MAG
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+number of nodes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+46534730
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+46534730
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+number of edges
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+449842410
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+449842410
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+number of nodes with year
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+23521643
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+44229769
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+number of edges with year
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+203883846
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+441432288
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename oc_age_distribution.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Nodes-distribution-by-age"
+
+\end_inset
+
+Nodes distribution by age.
+ The x-axis is the age of nodes relative to 2018.
+ The y-axis is the number of nodes at a certain age.
+ The number of nodes at age 0 is significantly less than age 1, since the
+ Open Citation Indexes we use is a November 2018 dump.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -631,8 +860,16 @@ name "fig:sample-data-of"
 \end_layout
 
 \begin_layout Standard
-The information about a dataset in the GenBank can be found as a record,
- which contains also publications citing the dataset (Fig.
+The information about a nucleotide sequence in the GenBank is organized
+ as a record, according to 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "how_to_cite_ncbi"
+literal "false"
+
+\end_inset
+
+ this sequence could be which contains publications citing the dataset (Fig.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -673,7 +910,8 @@ noprefix "false"
  PMID identifier.
  Therefore, we used an additional PMID to DOI link dataset provided by PubMed.
  At the end, this left us with 25,888,648 gene sequences from GenBank datasets
- with publications associated and 32,353,710 citations from OpenCitations.
+ with publications associated and 32,353,710 citations from OpenCitations
+ Index.
  The previous steps allowed us to construct a citation network with both
  publications and datasets.
  
@@ -743,19 +981,64 @@ Construction of citation network
 \end_layout
 
 \begin_layout Standard
-We constructed a directed network of citations primarily using the OpenCitation
- Corpus, but combined with the affiliation between dataset and paper which
+We constructed a directed network of citations primarily using the OpenCitations
+ Index, but combined with the affiliation between dataset and paper which
  was extracted from GenBank as mentioned above.
  The result is a sizable citation network.
  In this citation network, each node represents one dataset or paper.
  The directed edges represent the citation relations between nodes.
- OpenCitation Corpus consists of 441,432,288 citations and 44,229,769 unique
+ OpenCitations Index consists of 441,432,288 citations and 44,229,769 unique
  resources, including 949 resources and 1335 citations from Figshare.
  After Integrated with GenBank, we finally get 473,785,998 citations and
  70,138,538 unique resources.
  On average, each paper will be cited by 9.98 papers, but when it switches
  to Figshare and GenBank, the number drops dramatically to 1.41 and 1.25.
  This also suggests less of an emphasis on performing dataset citations.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Network-construction-workflow"
+
+\end_inset
+
+Network construction workflow
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename data_processing.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
