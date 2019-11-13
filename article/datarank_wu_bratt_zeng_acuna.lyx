@@ -520,33 +520,59 @@ Our work is situated in scientific impact assessment.
 \begin_layout Standard
 Methods for measuring usage and impact include a variety of different dimensions
  of impact, from social media to code use and institutional metrics.
- Several of these approaches have begun to recognize the artificial distinction
- between the scientific process and product [CITE].
- For instance, the area of altmetrics studies the digital traces left by
- non-traditional outputs of science and forms of scholarly engagement on
- social media platforms.
+ Several of these approaches recognize the artificial distinction between
+ the scientific process and product 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "priem2013scholarship"
+literal "false"
+
+\end_inset
+
+, such as the area of altmetrics studies the digital traces left by non-traditio
+nal outputs of science and forms of scholarly engagement on social media
+ platforms.
  For example, altmetrics are one ways scholars have begun to measure engagement
- with diverse research products, and to estimate the impact of non-traditional
+ with diverse research products and to estimate the impact of non-traditional
  outputs.
  Researchers predict that it will soon become a part of the citation infrastruct
 ure to routinely track — and value — “citations to an online lab notebook,
  contributions to a software library, bookmarks to datasets from content-sharing
- sites such as Pinterest and Delicious” [CITE].
+ sites such as Pinterest and Delicious” 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "priem2014altmetrics"
+literal "false"
+
+\end_inset
+
+.
  In short, if science has made a difference, it will show up in a multiplicity
  of places.
- A correspondingly wider range of metrics are needed to attribute credit
- to the many locations where research works reflect their value.
- For example, researchers have estimated that datasets contribute to more
- than 1000 papers [CITE] in NCBI’s Gene Expression Omnibus.
- The authors found that these attributions will continue to accumulate cites,
- just like papers, for a number of years after the datasets are publicly
- released.
- The NSF policy change does not only properly reward the PI who contributed
- a popular data processing package, however [Which NSF policy change?].
- It is a game-changer because it alters the evaluation of scientific impact
- itself.
+ As such, a correspondingly wider range of metrics are needed to attribute
+ credit to the many locations where research works reflect their value.
+ For example, datasets contribute to more than 1000 papers in NCBI’s Gene
+ Expression Omnibus and these attributions will continue to accumulate,
+ just like paper accumulate citations, for a number of years after the datasets
+ are publicly released 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "piwowar2011data,piwowar2013altmetrics"
+literal "false"
+
+\end_inset
+
+.
  Other efforts to track include ImpactStory, statistics from FigShare, and
- Altmetric.com [CITE].
+ Altmetric.com 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "robinson2017datacite"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -554,16 +580,30 @@ Credit attribution efforts include those by federal agencies to expand the
  definition of scientific works that were not publications.
  For example, in 2013 the National Science Foundation (NSF) recognized the
  importance of measuring scientific artifacts other than publications by
- asking researchers for “products” rather than just publications [CITE].
- This represents a significant change in how scientists are evaluated [CITE,
- Piowar 2013].
+ asking researchers for “products” rather than just publications .
+ This represents a significant change in how scientists are evaluated 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "piwowar2013altmetrics"
+literal "false"
+
+\end_inset
+
+.
  Datasets, software, and other non-traditional scientific works are now
  considered by the NSF as legitimate contributions to the publication record.
  Furthermore, real-time science is presented in mediums like computational
- lab notebooks [CITE] and algorithms filter, rank, and disseminate scholarship
- as it happens [CITE].
- Open science researchers emphasize how the journal article and paper are
- being superseded by scientific products [CITE].
+ lab notebooks and algorithms filter, rank, and disseminate scholarship
+ as it happens, and the journal article is being superseded by other scientific
+ products 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "priem2013scholarship"
+literal "false"
+
+\end_inset
+
+.
  
 \end_layout
 
@@ -591,19 +631,30 @@ literal "false"
 \end_inset
 
 .
-\end_layout
+ The FAIR (findable, accessibile, interoperabile, reproducible) principles
+ of open research data are one major initiative that is spearheading these
+ issues 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "wilkinson2016fair"
+literal "false"
 
-\begin_layout Standard
-can suffer from lack of findability, accessibility, interoperability, and
- reproducibility.
- In response to the urgent need for improving the infrastructures supporting
- reuse of open research data, principles are known as the FAIR data principles
- [CITE].
- However, there is a lack of technical infrastructure for implementing the
- technical components needed for assessing usage of data.
- Datasets have not achieved the goal of machine-actionability — that is,
- the capacity of computational systems to find, access, interoperate, and
- reuse data with none or minimal human intervention [CITE].
+\end_inset
+
+.
+ However, the initiative is theoretical, and lacks technical implementation
+ for data usage and impact assessment.
+ That is, datasets have not achieved the FAIR goal of machine-actionability
+ — that is, the capacity of computational systems to find, access, interoperate,
+ and reuse data with none or minimal human intervention 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "wilkinson2016fair"
+literal "false"
+
+\end_inset
+
+.
  In sum, there remains a need to establish methods to technically implement
  the goals of making datasets first-class citizens.
  
@@ -2184,8 +2235,16 @@ The goal of this paper is to better evaluate the importance of datasets
 Open research datasets have little means for systematic attribution even
  in well-resourced disciplines, such as the biomedical community.
  The lack of systematic, benchmarking tools prevents good policymaking.
- Furthermore, it contributes to the invisibility of digital objects, an
- issue of serious concern.
+ Furthermore, it contributes to the invisibility of digital objects and
+ labor, an issue of serious concern 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "scroggins2019labor"
+literal "false"
+
+\end_inset
+
+.
  When digital objects are not well described, they tend to disappear from
  view.
  They fall to the bottom of classic search engine results when there are
@@ -2193,23 +2252,61 @@ Open research datasets have little means for systematic attribution even
  This lack of indexing creates an asymmetrical representation of some kinds
  of objects of science and can be an obstacle to quality evaluation and
  data reuse.
- [CITE]
 \end_layout
 
 \begin_layout Standard
-“Impact” is defined differently depending on the goal [CITE].
+“Impact” is defined differently depending on the goal 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "piwowar2013altmetrics"
+literal "false"
+
+\end_inset
+
+.
  As such, metrics estimating impact can be defined “use” “reuse” “engagement”,
  and have a range of proxies, likewise depending on the context of circulation.
  For example, a downloads might measure use while in another context it
  may only indicate viewing.
  The edifice of citation standards in the realm of journal articles is relativel
 y well-established, with refinements to the interpretation of citation behavior
- such as the relative value of citations [CITE], the disciplinary context
- [CITE], and the in-text location [CITE].
+ such as the relative value of citations 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "stuart2017data"
+literal "false"
+
+\end_inset
+
+, the disciplinary context 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "borgman1989bibliometrics"
+literal "false"
+
+\end_inset
+
+, and the in-text location 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "teplitskiy2018almost"
+literal "false"
+
+\end_inset
+
+.
  Nonetheless, usage serves as a proximal indicator of use, and a first-order
  approximation of the impact of the scientific work.
  Recent work in developing impact assessment tools continue development
- and refinement [CITE].
+ and refinement 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "silvello2018theory"
+literal "false"
+
+\end_inset
+
+.
  However, existing evaluation mechanisms often fail where there are no direct
  or indirect measure for usage, which can be an important indicator of scientifi
 c impact.
@@ -2501,6 +2598,8 @@ The authors would like to thank the Dr.
  Daniel E.
  Acuna was partially funded by the National Science Foundation awards #1800956.
  Tong Zeng was funded by the China Scholarship Council #201706190067.
+ Sarah Bratt was partially funded by National Science Foundation award #1561348.
+ 
 \end_layout
 
 \begin_layout Standard
