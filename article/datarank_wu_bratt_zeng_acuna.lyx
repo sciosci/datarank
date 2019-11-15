@@ -671,7 +671,7 @@ Datasets
 \begin_layout Subsubsection
 
 \series bold
-OpenCitations Index (COCI) 
+OpenCitations Index (COCI)
 \end_layout
 
 \begin_layout Standard
@@ -954,17 +954,20 @@ GenBank
 \end_layout
 
 \begin_layout Standard
-GenBank is an open research repository that contains an annotated collection
- of all publicly available nucleotide sequences for almost 260,000 formally
+GenBank is a genetic sequence database that contains an annotated collection
+ of all publicly available nucleotide sequences for almost 420,000 formally
  described species 
 \begin_inset CommandInset citation
 LatexCommand citep
-key "benson2012genbank"
+key "Sayers2019"
 literal "false"
 
 \end_inset
 
-—Fig.
+.
+ The information about a nucleotide sequence in GenBank is organized as
+ a record consist of many data element (field) and stored in a flat file
+ (see Fig.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -975,7 +978,39 @@ noprefix "false"
 
 \end_inset
 
-.
+).
+ The ACCESSION field contains the unique identifier of the dataset.
+ The last citation in the REFERENCE field contains the information about
+ the submitter, including the author list and the date in which the dataset
+ was introduced (e.g., 
+\begin_inset Quotes eld
+\end_inset
+
+16-JAN-1992
+\begin_inset Quotes erd
+\end_inset
+
+ in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:sample-data-of"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ We obtained a snapshot of the GenBank database (version 230) consist of
+ 212,260,377 gene sequences.
+\end_layout
+
+\begin_layout Standard
+The National Institutes of Health (NIH) provided us with download data for
+ the month of September 2012 for the top 1000 Nucleotide sequence.
+ We use this downloads as a measure of real 
+\emph on
+usage.
 \end_layout
 
 \begin_layout Standard
@@ -1006,7 +1041,6 @@ name "fig:sample-data-of"
 \end_inset
 
  Sample record of a yeast sequence dataset submission from GenBank.
- 
 \end_layout
 
 \end_inset
@@ -1017,81 +1051,6 @@ name "fig:sample-data-of"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-The information about a nucleotide sequence in the GenBank is organized
- as a record, according to 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "how_to_cite_ncbi"
-literal "false"
-
-\end_inset
-
- this sequence could be which contains publications citing the dataset (Fig.
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:sample-data-of"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- The accession field contains the identifier of the dataset and the reference
- field contains a publication with its authors, title, journal, and PubMed
- identifier (PMID).
- The submitted field contains the date in which the dataset was introduced
- (e.g., 
-\begin_inset Quotes eld
-\end_inset
-
-16-JAN-1992
-\begin_inset Quotes erd
-\end_inset
-
- in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:sample-data-of"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- We processed 212,260,377 gene sequences in the dataset (version 230).
- Our citation database (described above) identifies nodes by their Digital
- Object Identifiers (DOI), but GenBank only contains publications with their
- PMID identifier.
- Therefore, we used an additional PMID to DOI link dataset provided by PubMed.
- At the end, this left us with 25,888,648 gene sequences from GenBank datasets
- with publications associated and 32,353,710 citations from OpenCitations
- Index.
- The previous steps allowed us to construct a citation network with both
- publications and datasets.
- 
-\end_layout
-
-\begin_layout Standard
-The National Institutes of Health (NIH) provided us with download data for
- the month of September 2012 for the top 1000 Nucleotide GenBank entries
- 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "benson2012genbank"
-literal "false"
-
-\end_inset
-
-.
- We use this downloads as a measure of real 
-\emph on
-usage.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1102,38 +1061,41 @@ Figshare
 
 \begin_layout Standard
 Figshare is a multidisciplinary, open access research repository where researche
-rs can deposit and share figures, datasets, and other media 
+rs can deposit and share their research output.
+ Figshare allows users uploading varies format of research output, including
+ the figures, datasets, and other media 
 \begin_inset CommandInset citation
 LatexCommand citep
-key "singh2011figshare"
+key "thelwall2016figshare"
 literal "false"
 
 \end_inset
 
 .
- To encourage data sharing, free storage space is unlimited if the content
- is made public, while storage space has limits for private use.
- When a user makes a resource publicly available, Figshare immediately assigns
- a DOI to this resource, marked as a Figshare object by embedding the character
- string 'figshare' within the DOI, e.g., 'm9.figshare.6741260.' We can leverage
- this feature to determine whether a publication cites a dataset by detecting
- Figshare-generated DOIs.
+ To encourage data sharing, all research data made publicly available would
+ have unlimited storage space and would be allocated a DOI which makes the
+ resource cit-able using traditional citation methods.
+ Figshare makes the research data publicly and permanently available which
+ mitigates the resource decay problem, improves research reproducibility
+\begin_inset CommandInset citation
+LatexCommand citep
+key "zeng2019deadscience"
+literal "false"
+
+\end_inset
+
+.
+ The figshare DOI contains the string 'figshare' in the suffix (e.g., '10.6084/m9.fi
+gshare.6741260').
+ We can leverage this feature to determine whether a publication cites a
+ figshare resources by detecting Figshare-generated DOIs.
 \end_layout
 
 \begin_layout Standard
-The Figshare database contains 266,961 DOIs until December 2014 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "kraker2015research"
-literal "false"
-
-\end_inset
-
-.
- However, only a very small portion of those DOIs (about 949) are ever cited
- in OCC.
- We crawled the downloads and the creation time of each of these Figshare
- DOI through the website: https://stats.figshare.com/total/downloads/article.
+Figshare also keeps track of dataset usage, such as page views and dataset
+ downloads.
+ We get the downloads of figshare DOI from figshare statistics API and use
+ it as a measure of real usage.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1798,15 +1760,55 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../figures/genbank_usage.pdf
-	width 45text%
+	filename citation_age_prob_dist.pdf
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:paper_network_age_citation_dist"
+
+\end_inset
+
+Probability density function of downloads
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename genebank_usage.pdf
+	width 50text%
 
 \end_inset
 
 
 \begin_inset Graphics
-	filename ../figures/figshare_usage.pdf
-	width 45text%
+	filename figureshare_usage.pdf
+	width 50text%
 
 \end_inset
 
@@ -1928,8 +1930,8 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../figures/F5_result_r_square.pdf
-	width 9cm
+	filename correlation.pdf
+	width 100text%
 
 \end_inset
 
@@ -2138,8 +2140,8 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../figures/F6_decay_diff_coeff.pdf
-	width 11cm
+	filename correlation_decay_diff.pdf
+	width 100text%
 
 \end_inset
 
