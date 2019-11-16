@@ -680,8 +680,9 @@ The OpenCitations index is a index of Crossref's open DOI-to-DOI citation
  It contains approximately 450 million DOI-to-DOI citations.
  Specifically, COCI contains information describing a citation relationship,
  including citing DOI, cited DOI, the publication date of citing DOI.
- Because, not all the DOIs in COCI citation network have an publication
- date, we will introduce Microsoft Academic Graph to fill up this gap.
+ The algorithm we proposed in the paper requires the publication year Because,
+ however, not all the DOIs in COCI have an publication date, we will introduce
+ Microsoft Academic Graph to fill up this gap.
 \end_layout
 
 \begin_layout Subsubsection
@@ -708,193 +709,6 @@ literal "false"
  As an supplement to COCI, we extract the DOI and published year to extend
  the DOIs in COCI which without an publication date.
  
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float table
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Statistics of article citation network
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="3">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-COCI
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-COCI + MAG
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-number of nodes
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-46534730
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-46534730
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-number of edges
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-449842410
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-449842410
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-number of nodes with year
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-23521643
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-44229769
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-number of edges with year
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-203883846
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-441432288
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -1094,28 +908,309 @@ gshare.6741260').
 \begin_layout Standard
 Figshare also keeps track of dataset usage, such as page views and dataset
  downloads.
- We get the downloads of figshare DOI from figshare statistics API and use
- it as a measure of real usage.
+ We get the downloads statistics of figshare DOI from the figshare API and
+ use it as a measure of real usage.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Construction of citation network
 \end_layout
 
 \begin_layout Standard
-We constructed a directed network of citations primarily using the OpenCitations
- Index, but combined with the affiliation between dataset and paper which
- was extracted from GenBank as mentioned above.
- The result is a sizable citation network.
- In this citation network, each node represents one dataset or paper.
- The directed edges represent the citation relations between nodes.
- OpenCitations Index consists of 441,432,288 citations and 44,229,769 unique
- resources, including 949 resources and 1335 citations from Figshare.
- After Integrated with GenBank, we finally get 473,785,998 citations and
- 70,138,538 unique resources.
- On average, each paper will be cited by 9.98 papers, but when it switches
- to Figshare and GenBank, the number drops dramatically to 1.41 and 1.25.
- This also suggests less of an emphasis on performing dataset citations.
+The citation network in this paper consist of two type of nodes and two
+ type of edges.
+ The node is represented by the paper and the dataset, the edge represented
+ by the citation between two nodes.
+ Concretely, papers cites each other which form a paper-paper edge, as dataset
+ can only be cited by papers which allows the paper-dataset edge.
+ As it shown in Fig.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Network-construction-workflow"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, we build the paper-paper citation network using COCI and MAG, build the
+ paper-dataset edges using GenBank and Figshare independently, then we integrate
+ the paper-dataset edges into the paper-paper citation network to form a
+ complete citation network.
+ The detailed procedures are described in the following sections.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Statistics-of-network"
+
+\end_inset
+
+Statistics of article citation network
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+COCI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+COCI + MAG
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+number of nodes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+46534730
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+46534730
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+number of edges
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+449842410
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+449842410
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+number of nodes with year
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+23521643
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+44229769
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+number of edges with year
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+203883846
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+441432288
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+paper-paper citation network
+\end_layout
+
+\begin_layout Standard
+As the our proposed method takes the publication year into account, we need
+ first build a large citation network then filter those edges without publicatio
+n year.
+ The DOI-DOI citation in COCI dataset provides us a skeleton of the citation
+ network, however, only the publication date of the citing DOIs are included
+ in COCI, leaves lots of cited DOI invalid for our experiments.
+ The COCI comes with a field named timespan which originally refer to the
+ publication time span between the citing DOI and cited DOI.
+ We tried to use the timespan to calculate the publication date of cited
+ DOI, however, due to unit of publication time of citing DOI is not consistent
+ across DOIs, ( e.g.
+ some publication date contains year-month-date, while some contains only
+ year), the recovered publication date inaccurate.
+ 
+\end_layout
+
+\begin_layout Standard
+We solved this problem by using the MAG which provides the DOI and publication
+ date explicitly.
+ By join the COCI and MAG, we able to build a large paper-paper citation
+ network consist of 46534730 nodes and 441432288 edges.
+ As the usage data of GenBank is in 2012, we further pruning the network
+ by remove the nodes published after 2012 for all experiments for GenBank.
+ We use all the nodes and edges for Figshare experiments.
+ Some statistics of the network are listed in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Statistics-of-network"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+paper-dataset citation network
+\end_layout
+
+\begin_layout Enumerate
+extracting paper-dataset citation for Genebank.
+ As previously described in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Sayers2019"
+literal "false"
+
+\end_inset
+
+, authors should use GenBank accession number with the version suffix as
+ identifier to cite a GenBank data, the accession number usually mentioned
+ in the body of the manuscript.
+ This practice enables us to extract GenBank dataset mention from full text
+ to build the paper-dataset citation network.
+ 
+\end_layout
+
+\begin_layout Itemize
+Build a XML parser to extracting full text from PubMed Open Access Subset.
+\end_layout
+
+\begin_layout Itemize
+Using regular expressions to match the Accession number mentions.
+ There are two kind of mention: 1) accession number only, e.g.
+ U00096; 2) range of accession number, e.g.
+ KK037225-KK037232, we recover every number within the range.
+ We then build a paper-dataset citation for each unique accession number.
+\end_layout
+
+\begin_layout Enumerate
+extracting paper-dataset citation for Figshare.
+ As there is a string 'figshare' in the figshare DOI, we can using a regular
+ expression to search for figshare DOIs from COCI and mark those matched
+ DOI as dataset.
 \end_layout
 
 \begin_layout Standard
@@ -1412,8 +1507,11 @@ DataRank
 .
  The extension considers that the probability of starting at any single
  node should depend on whether the node is a publication or a dataset.
- This is, publications and datasets may vary in their relevance period—e.g.,
- publications generally become obsolete sooner than datasets.
+ This is, publications and datasets may vary in their relevance period—
+\strikeout on
+e.g., publications generally become obsolete sooner than datasets.
+
+\strikeout default
  Mathematically, we redefine the starting probability in Eq.
  
 \begin_inset CommandInset ref
@@ -1778,7 +1876,10 @@ name "fig:paper_network_age_citation_dist"
 
 \end_inset
 
-Probability density function of downloads
+Probability density function of downloads.
+ Publication age: log10.age_df.age.
+ -4.12751 0.07817 -52.80 <2e-16 *** Citations: log10.citation.cited_count.
+ -2.16062 0.01290 -167.476 < 2e-16 ***
 \end_layout
 
 \end_inset
