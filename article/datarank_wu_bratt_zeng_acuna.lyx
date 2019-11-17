@@ -786,6 +786,23 @@ Nodes distribution by age.
 \begin_layout Subsubsection
 
 \series bold
+PMC Open Access Subset (PMC-OAS)
+\end_layout
+
+\begin_layout Standard
+The PubMed Central Open Access Subset is a collection of full-text open
+ access journal articles in biomedical and life sciences.
+ We obtained a snapshot of PMC-OAS in August 2019.
+ It consists of about 2.5 million full-text articles organized in well-structured
+ XML files.
+ The articles are identified by a unique id named PMID.
+ We also obtained a mapping list between PMID and DOI from NCBI, it enables
+ us to integrate PMC-OAS into the citation network.
+\end_layout
+
+\begin_layout Subsubsection
+
+\series bold
 GenBank
 \end_layout
 
@@ -895,23 +912,6 @@ name "fig:sample-data-of"
 \begin_layout Subsubsection
 
 \series bold
-PMC Open Access Subset (PMC-OAS)
-\end_layout
-
-\begin_layout Standard
-The PubMed Central Open Access Subset is a collection of full-text open
- access journal articles in biomedical and life sciences.
- We obtained a snapshot of PMC-OAS in August 2019.
- It consists of about 2.5 million full-text articles organized in well-structured
- XML files.
- The articles are identified by a unique id named PMID.
- We also obtained a mapping list between PMID and DOI from NCBI, it enables
- us to integrate PMC-OAS into the citation network.
-\end_layout
-
-\begin_layout Subsubsection
-
-\series bold
 Figshare
 \end_layout
 
@@ -970,7 +970,8 @@ The citation network in this paper consists of two types of nodes and two
  Concretely, papers cite each other form paper-paper (publication-publication)
  edges, as datasets can only be cited by papers which denoted by the paper-datas
 et (publication-dataset) edges.
- As shown in Figure 
+ As shown in the construction workflow (Fig.
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Network-construction-workflow"
@@ -980,7 +981,7 @@ noprefix "false"
 
 \end_inset
 
-, we build the paper-paper citation network using COCI and MAG, build the
+), we build the paper-paper citation network using COCI and MAG, build the
  paper-dataset edges using GenBank and Figshare independently.
  Then we integrate the paper-dataset edges into the paper-paper citation
  network to form a complete citation network.
@@ -2083,7 +2084,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename citation_age_prob_dist.pdf
+	filename citation_and_publication_age_prob_dist.pdf
 	width 100text%
 
 \end_inset
@@ -2130,6 +2131,51 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
+	filename genebank_parameter_search.pdf
+	width 48text%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figshare_parameter_search.pdf
+	width 48text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Parameter search
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
 	filename correlation.pdf
 	width 100text%
 
@@ -2164,6 +2210,58 @@ DataRank
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+GenBank Correlation: 
+\end_layout
+
+\begin_layout Plain Layout
+DataRank 0.333577966 
+\end_layout
+
+\begin_layout Plain Layout
+DataRank-FB 0.333555985
+\end_layout
+
+\begin_layout Plain Layout
+NetworkFlow 0.332749079 
+\end_layout
+
+\begin_layout Plain Layout
+PageRank 0.332408042 
+\end_layout
+
+\begin_layout Plain Layout
+Modified PageRank 0.332749079 
+\begin_inset Newline newline
+\end_inset
+
+——————————————————
+\end_layout
+
+\begin_layout Plain Layout
+Figshare Correlation: 
+\end_layout
+
+\begin_layout Plain Layout
+DataRank 0.127300885 
+\end_layout
+
+\begin_layout Plain Layout
+DataRank-FB 0.025624089 
+\end_layout
+
+\begin_layout Plain Layout
+NetworkFlow -0.039362697
+\end_layout
+
+\begin_layout Plain Layout
+PageRank -0.047330371 
+\end_layout
+
+\begin_layout Plain Layout
+Modified PageRank -0.047420754 
 \end_layout
 
 \end_inset
@@ -2387,8 +2485,19 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename correlation_decay_diff.pdf
-	width 100text%
+	filename GenBank_Figshare_decay_diff_corr_blue.pdf
+	width 80text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename GenBank_Figshare_decay_diff_corr_green.pdf
+	width 80text%
 
 \end_inset
 
