@@ -2121,7 +2121,58 @@ Probability density function of downloads.
 \end_layout
 
 \begin_layout Subsection
-DataRank on GenBank
+Predicting the real usage
+\end_layout
+
+\begin_layout Standard
+In order to find the best parameter for DataRank, we use a grid search with
+ publication decay year in [1, 5, 10, 20, 30, 50, 70, 100], the dataset
+ decay year [1, 5, 10, 20, 30, 50, 70, 100], and alpha in [0.05, 0.15] .
+ For experiments on GenBank dataset, we found the DataRank model reaches
+ its best (DataRank at 0.3336, DataRank-FB 0.3336,) with publication decay
+ at 30 years and dataset decay at 100 years.
+ As shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Parameter-search"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, the performance keep increase while the publication decay time increasing,
+ but the momentum slow down rapidly after 20 years and converge around 100
+ years.
+ In terms of dataset decay, the performance increases significantly before
+ 20 years.
+ After 20 years, the performance enter into a steady interval.
+ It reaches best performance at 20 years for dataset decay for most of the
+ different publication decays, then, keep going down slowly.
+ In all the cases, the alpha at 0.05 is better than 0.15.
+ 
+\end_layout
+
+\begin_layout Standard
+For Figshare dataset, we observed an opposite trends, the performance is
+ going down rapidly as the publication decay increases.
+ However, the same as GenBank, it lost momentum after 20 years.
+ The performance for dataset decay larger than 5 years is very small.
+ Different with GenBank, the parameter alpha at 0.15 is better than 0.05.
+ Our DataRank models achieve the best performance (DataRank at 0.1273, DataRank-F
+B at 0.0256) at one year for publication decay and 100 years for dataset
+ decay (see Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Parameter-search"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Standard
@@ -2152,6 +2203,12 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Parameter-search"
+
+\end_inset
+
 Parameter search
 \end_layout
 
@@ -2167,6 +2224,19 @@ Parameter search
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Comparing with other methods, although all the algorithms perform at the
+ same level on GenBank dataset, our DataRank perform slightly better (DataRank
+ at 0.3336 vs NetworkFlow at 0.3327, PageRank at 0.3324, Modified PageRank
+ at 0.3327).
+ In terms of Figshare dataset, our DataRank models predicts have positive
+ correlation with real dataset usage, while other variants are negatively
+ correlated.
+ Further, the DataRank is significantly higher in the absolute value.
+ More interesting, the DataRank offers insight of how the decay effects
+ the performance, and give us the best decay years intuitively.
 \end_layout
 
 \begin_layout Standard
@@ -2196,11 +2266,7 @@ name "fig:result-r-2"
 
 \end_inset
 
-Model comparison in 
-\begin_inset Formula $R^{2}$
-\end_inset
-
-.
+Model comparison in correlation coefficient.
  
 \shape smallcaps
 DataRank
