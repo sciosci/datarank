@@ -1,5 +1,5 @@
-fs_fit_data <-read.csv('/home/tozeng/Downloads/datarank_r/tz/pdf_downloads/figshare_log_process.csv')
-gb_fit_data <-read.csv('/home/tozeng/Downloads/datarank_r/tz/pdf_downloads/genbank_log_process.csv')
+fs_fit_data <-read.csv('data/pdf_downloads/figshare_log_process.csv')
+gb_fit_data <-read.csv('data/pdf_downloads/genbank_log_process.csv')
 
 
 m1 <- lm( fs_fit_data$label ~ fs_fit_data$log_x , data=fs_fit_data )  
@@ -12,10 +12,10 @@ summary(m1)
 
 
 
-fs_orig_data <-read.csv('/home/tozeng/Downloads/datarank_r/tz/pdf_downloads/figshare_pdf.txt')
-gb_orig_data <-read.csv('/home/tozeng/Downloads/datarank_r/tz/pdf_downloads/genbank_pdf.txt')
+fs_orig_data <-read.csv('data/pdf_downloads/figshare_pdf.txt')
+gb_orig_data <-read.csv('data/pdf_downloads/genbank_pdf.txt')
 
-p1<-ggplot(gb_orig_data,
+genbank_usage_fig<-ggplot(gb_orig_data,
            aes(x = hits, y = prodf)) + 
   geom_point(color = '#00BFC4') + 
   geom_abline(intercept=0.6734, slope=-1.4159, color = '#F9766E')+
@@ -29,7 +29,7 @@ p1<-ggplot(gb_orig_data,
                 labels = trans_format("log10", math_format(10^.x))) +
   annotation_logticks()
 
-p2<-ggplot(fs_orig_data,
+figureshare_usage_fig<-ggplot(fs_orig_data,
        aes(x = downloads, y = prodf)) + 
   geom_point(color = '#00BFC4') + 
   geom_abline(intercept=-0.40203, slope=-1.12473, color = '#F9766E')+
@@ -46,14 +46,14 @@ p2<-ggplot(fs_orig_data,
 
 
 
-pdf('/home/tozeng/Downloads/datarank_r/tz/genebank_usage.pdf', width = 6, height = 4)
+pdf('output/genebank_usage.pdf', width = 6, height = 4)
 
-p1
+genbank_usage_fig
 
 dev.off()
 
-pdf('/home/tozeng/Downloads/datarank_r/tz/figureshare_usage.pdf', width = 6, height = 4)
+pdf('output/figureshare_usage.pdf', width = 6, height = 4)
 
-p2
+figureshare_usage_fig
 
 dev.off()

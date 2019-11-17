@@ -1,4 +1,4 @@
-genbank_corr<-read.csv('/home/tozeng/Downloads/datarank_r/tz/datarank_corr_2012.csv')
+genbank_corr<-read.csv('data/datarank_corr_2012.csv')
 
 
 library(ggplot2)
@@ -14,9 +14,9 @@ scale_shape_manual(values=c(4,2))+geom_line()+
 #scale_color_manual(values=(c('#8BC34A','#CDDC39','#FFEB3B','#FFC107','#FFC107','#FF5722','#E64A19','#F44336')))+
   labs(x="Dataset decay time (year)", y="Correlation coefficient",shape="alpha", color=expr("publication \ndecay time"))
 
-pdf('/home/tozeng/Downloads/datarank_r/tz/genebank_parameter_search.pdf', width = 6, height = 4)
+#pdf('output/genebank_parameter_search.pdf', width = 6, height = 4)
 genbank_fig
-dev.off()
+#dev.off()
 
 
 #display.brewer.all()

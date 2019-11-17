@@ -1,7 +1,7 @@
 library(scales)
 
-age_df <-read.csv('/home/tozeng/Downloads/datarank_r/tz/age_dist_prob.csv')
-citation <-read.csv('/home/tozeng/Downloads/datarank_r/tz/citation_dist_prob.csv')
+age_df <-read.csv('data/age_dist_prob.csv')
+citation <-read.csv('data/citation_dist_prob.csv')
 
 #00BFC4 : green
 #new_citation <- citation[which(citation$cited_count< 50000), ]
@@ -49,15 +49,16 @@ age_log <- data.frame(log10(age_df$age),log10(age_df$prob))
 m1 <- lm( log10.age_df.prob. ~ log10.age_df.age., data=age_log[!is.infinite(age_log$log10.age_df.age.), ], na.action = na.omit)  
 summary(m1)
 
-pdf('/home/tozeng/Downloads/datarank_r/tz/citation_and_publication_age_prob_dist.pdf', width = 12, height = 4)
+pdf('output/citation_and_publication_age_prob_dist.pdf', width = 12, height = 4)
 
 multiplot(age_pdf, citation_pdf, cols=2)
 
+dev.off()
 #ggsave('citation_age_prob_dist.pdf', plot = mp, device = NULL, path = '/home/tozeng/Downloads/datarank_r/tz/',
 #       scale = 1, width = 10, height = 5, units = c("in"),
 #       dpi = 300, limitsize = TRUE)
 
-dev.off()
+
 
 #new_age <- age[which(age$age< 100), ]
 #ggplot(new_age,

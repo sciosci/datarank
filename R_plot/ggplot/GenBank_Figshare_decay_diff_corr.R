@@ -1,10 +1,10 @@
-# data <-read.csv('/home/tozeng/Downloads/datarank_r/tz/accession_metion_results.csv')
-data <-read.csv('/home/tozeng/Downloads/datarank_r/tz/genbank_decay_diff_corr.csv')
+# data <-read.csv('data/accession_metion_results.csv')
+data <-read.csv('data/genbank_decay_diff_corr.csv')
 data <- data[which(data$alpha==0.05),]
 
-#figshare_data <-read.csv('/home/tozeng/Downloads/datarank_r/tz/result_corr_figshare.csv')
+#figshare_data <-read.csv('data/result_corr_figshare.csv')
 
-figshare_data <-read.csv('/home/tozeng/Downloads/datarank_r/tz/figshare_decay_diff_corr.csv')
+figshare_data <-read.csv('data/figshare_decay_diff_corr.csv')
 figshare_data <- figshare_data[which(figshare_data$alpha==0.15),]
 
 multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
@@ -67,7 +67,7 @@ p1<-ggplot(data,aes(x=diff, y=corr))+geom_point(color = '#00BFC4') + xlab(xt) + 
 #legend.position = "none", 
 p2<-ggplot(figshare_data,aes(x=diff, y=corr))+geom_point(color = '#00BFC4') + xlab(xt) + ylab("") + ggtitle('Figshare') + theme(plot.title = element_text(hjust = 0.5))
 
-pdf('/home/tozeng/Downloads/datarank_r/tz/GenBank_Figshare_decay_diff_corr.pdf', width = 8, height = 4.9)
+pdf('output/GenBank_Figshare_decay_diff_corr.pdf', width = 8, height = 4.9)
 multiplot(p1, p2, cols=2)
 dev.off()
 #p1

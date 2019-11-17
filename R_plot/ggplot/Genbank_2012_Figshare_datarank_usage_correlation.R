@@ -36,8 +36,8 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
 }
 
 
-r2_corr = read.csv("/home/tozeng/Downloads/datarank_r/tz/best_genbank_2012_corr.csv")
-figshare_r2_corr = read.csv("/home/tozeng/Downloads/datarank_r/tz/best_figshare_corr.csv")
+r2_corr = read.csv("data/best_genbank_2012_corr.csv")
+figshare_r2_corr = read.csv("data/best_figshare_corr.csv")
 r2_corr_df = data.frame(r2_corr)
 figshare_r2_corr_df = data.frame(figshare_r2_corr)
 
@@ -71,7 +71,7 @@ corr2<-ggplot(figshare_r2_corr_df, aes(x=type, y=corr)) +
   theme(plot.title = element_text(hjust = 0.5)) 
 
 
-pdf('/home/tozeng/Downloads/datarank_r/tz/correlation.pdf', width = 9, height = 5)
+pdf('output/correlation.pdf', width = 9, height = 5)
 multiplot(corr1,corr2, cols=2)
 dev.off()
 
