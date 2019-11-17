@@ -7,6 +7,7 @@
 \textclass article
 \begin_preamble
 \usepackage{mathptmx}
+\usepackage[symbol]{footmisc}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -93,11 +94,21 @@ ssigning credit to scientific datasets using article citation networks
 
 \begin_layout Author
 Tong Zeng
-\begin_inset Formula $^{1,2,§}$
+\begin_inset Formula $^{1,2,}$
 \end_inset
 
-, Longfeng Wu
-\begin_inset Formula $^{§,}$
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+These authors contributed equally to this work
+\end_layout
+
+\end_inset
+
+ , Longfeng Wu
+\begin_inset Formula $^{∗,}$
 \end_inset
 
 
@@ -127,7 +138,7 @@ Daniel E.
 
 
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Corresponding author: 
@@ -162,14 +173,6 @@ School of Information Management, Nanjing University, China
 \end_inset
 
 School of Information Studies, Syracuse University
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Formula $^{§}$
-\end_inset
-
-These authors contributed equally to this work
 \end_layout
 
 \begin_layout Abstract
@@ -878,8 +881,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../figures/genbank3.png
-	width 100text%
+	filename genbank_record.pdf
 
 \end_inset
 
@@ -950,7 +952,7 @@ gshare.6741260').
 \begin_layout Standard
 Figshare also keeps track of dataset usages, such as page views and dataset
  downloads.
- We get the downloads statistics of figshare DOI from the figshare API and
+ We get the downloads statistics of Figshare DOI from the Figshare API and
  use it as a measure of real 
 \shape italic
 usage
@@ -1391,8 +1393,8 @@ extracting paper-dataset citation for Figshare.
 
 \begin_deeper
 \begin_layout Standard
-As there is a string 'figshare' in the figshare DOI, we can using a regular
- expression to search for figshare DOIs from COCI and mark those matched
+As there is a string 'figshare' in the Figshare DOI, we can using a regular
+ expression to search for Figshare DOIs from COCI and mark those matched
  DOI as dataset.
 \end_layout
 
