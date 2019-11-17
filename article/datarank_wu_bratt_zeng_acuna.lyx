@@ -9,6 +9,9 @@
 \usepackage{mathptmx}
 \end_preamble
 \use_default_options true
+\begin_modules
+enumitem
+\end_modules
 \maintain_unincluded_children false
 \language english
 \language_package default
@@ -89,23 +92,38 @@ ssigning credit to scientific datasets using article citation networks
 \end_layout
 
 \begin_layout Author
-Longfeng Wu
+Tong Zeng
+\begin_inset Formula $^{1,2,§}$
+\end_inset
+
+, Longfeng Wu
+\begin_inset Formula $^{§}$
+\end_inset
+
+
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
-The author performed this work while visiting the Acuna Lab in the School
- of Information Studies at Syracuse University
+The author performed this work while visiting the Science of Science and
+ Computational Discovery Lab in the School of Information Studies at Syracuse
+ University
 \end_layout
 
 \end_inset
 
 , Sarah Bratt
-\begin_inset Formula $^{1}$
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
 \end_inset
 
-, Tong Zeng
-\begin_inset Formula $^{1,2}$
+
+\begin_inset Formula $^{2}$
 \end_inset
 
 
@@ -114,7 +132,7 @@ The author performed this work while visiting the Acuna Lab in the School
 
 Daniel E.
  Acuna
-\begin_inset Formula $^{1,}$
+\begin_inset Formula $^{2,}$
 \end_inset
 
 
@@ -145,7 +163,7 @@ deacuna@syr.edu
 \begin_inset Formula $^{1}$
 \end_inset
 
-School of Information Studies, Syracuse University
+School of Information Management, Nanjing University, China
 \begin_inset Newline newline
 \end_inset
 
@@ -153,7 +171,15 @@ School of Information Studies, Syracuse University
 \begin_inset Formula $^{2}$
 \end_inset
 
-School of Information Management, Nanjing University, Nanjing, China
+School of Information Studies, Syracuse University
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $^{§}$
+\end_inset
+
+These authors contributed equally to this work
 \end_layout
 
 \begin_layout Abstract
@@ -675,14 +701,15 @@ OpenCitations Index (COCI)
 \end_layout
 
 \begin_layout Standard
-The OpenCitations index is a index of Crossref's open DOI-to-DOI citation
+The OpenCitations index is an index of Crossref's open DOI-to-DOI citation
  data.
- It contains approximately 450 million DOI-to-DOI citations.
+ We obtained a snapshot of COCI (version November 2018), which contains
+ approximately 450 million DOI-to-DOI citations.
  Specifically, COCI contains information describing a citation relationship,
  including citing DOI, cited DOI, the publication date of citing DOI.
- The algorithm we proposed in the paper requires the publication year Because,
- however, not all the DOIs in COCI have an publication date, we will introduce
- Microsoft Academic Graph to fill up this gap.
+ The algorithm we proposed in the paper requires the publication year.
+ However, not all the DOIs in COCI have a publication date.
+ We will introduce Microsoft Academic Graph to fill up this gap.
 \end_layout
 
 \begin_layout Subsubsection
@@ -694,7 +721,7 @@ Microsoft Academic Graph (MAG)
 \begin_layout Standard
 The Microsoft Academic Graph is a large heterogeneous graph consist of six
  types of entities involved in academic communication activities, including
- the paper, author, institution, venue, event and field of study 
+ the paper, author, institution, venue, event, and field of study 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "sinha2015overview"
@@ -705,17 +732,22 @@ literal "false"
 .
  Concretely, the description of paper consist of DOI, title, abstract, published
  year, etc.
- We download a copy of MAG November 2018, which contains 208,915,369 papers.
- As an supplement to COCI, we extract the DOI and published year to extend
- the DOIs in COCI which without an publication date.
+ We download a copy of MAG in November 2018, which contains 208,915,369
+ papers.
+ As a supplement to COCI, we extract the DOI and published year from MAG
+ to extend those DOIs in COCI without a publication date.
  
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -744,7 +776,6 @@ Nodes distribution by age.
  The y-axis is the number of nodes at a certain age.
  The number of nodes at age 0 is significantly less than age 1, since the
  Open Citation Indexes we use is a November 2018 dump.
- 
 \end_layout
 
 \end_inset
@@ -752,7 +783,8 @@ Nodes distribution by age.
 
 \end_layout
 
-\begin_layout Plain Layout
+\end_inset
+
 
 \end_layout
 
@@ -780,7 +812,7 @@ literal "false"
 
 .
  The information about a nucleotide sequence in GenBank is organized as
- a record consist of many data element (field) and stored in a flat file
+ a record consist of many data elements (fields) and stored in a flat-file
  (see Fig.
  
 \begin_inset CommandInset ref
@@ -804,7 +836,8 @@ noprefix "false"
 \begin_inset Quotes erd
 \end_inset
 
- in 
+ in Fig.
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:sample-data-of"
@@ -817,12 +850,14 @@ noprefix "false"
 ).
  We obtained a snapshot of the GenBank database (version 230) consist of
  212,260,377 gene sequences.
+ After processing, we are able to retrieve 77,149,105 sequences with a submitted
+ date.
 \end_layout
 
 \begin_layout Standard
 The National Institutes of Health (NIH) provided us with download data for
  the month of September 2012 for the top 1000 Nucleotide sequence.
- We use this downloads as a measure of real 
+ We use these downloads as a measure of real 
 \emph on
 usage.
 \end_layout
@@ -870,13 +905,30 @@ name "fig:sample-data-of"
 \begin_layout Subsubsection
 
 \series bold
+PMC Open Access Subset (PMC-OAS)
+\end_layout
+
+\begin_layout Standard
+The PubMed Central Open Access Subset is a collection of full-text open
+ access journal articles in biomedical and life sciences.
+ We obtained a snapshot of PMC-OAS in August 2019.
+ It consists of about 2.5 million full-text articles organized in well-structured
+ XML files.
+ The articles are identified by a unique id named PMID.
+ We also obtained a mapping list between PMID and DOI from NCBI, it enables
+ us to integrate PMC-OAS into the citation network.
+\end_layout
+
+\begin_layout Subsubsection
+
+\series bold
 Figshare
 \end_layout
 
 \begin_layout Standard
 Figshare is a multidisciplinary, open access research repository where researche
 rs can deposit and share their research output.
- Figshare allows users uploading varies format of research output, including
+ Figshare allows users uploading various formats of research output, including
  the figures, datasets, and other media 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -886,9 +938,9 @@ literal "false"
 \end_inset
 
 .
- To encourage data sharing, all research data made publicly available would
- have unlimited storage space and would be allocated a DOI which makes the
- resource cit-able using traditional citation methods.
+ In order to encourage data sharing, all research data made publicly available
+ would have unlimited storage space and would be allocated a DOI, which
+ makes the resource citable using traditional citation methods.
  Figshare makes the research data publicly and permanently available which
  mitigates the resource decay problem, improves research reproducibility
 \begin_inset CommandInset citation
@@ -899,17 +951,21 @@ literal "false"
 \end_inset
 
 .
- The figshare DOI contains the string 'figshare' in the suffix (e.g., '10.6084/m9.fi
+ The Figshare DOI contains the string 'figshare' in the suffix (e.g., '10.6084/m9.fi
 gshare.6741260').
- We can leverage this feature to determine whether a publication cites a
- figshare resources by detecting Figshare-generated DOIs.
+ We can leverage this feature to determine whether a publication cites Figshare
+ resources by detecting Figshare-generated DOIs.
 \end_layout
 
 \begin_layout Standard
-Figshare also keeps track of dataset usage, such as page views and dataset
+Figshare also keeps track of dataset usages, such as page views and dataset
  downloads.
  We get the downloads statistics of figshare DOI from the figshare API and
- use it as a measure of real usage.
+ use it as a measure of real 
+\shape italic
+usage
+\shape default
+.
 \end_layout
 
 \begin_layout Subsection
@@ -917,13 +973,14 @@ Construction of citation network
 \end_layout
 
 \begin_layout Standard
-The citation network in this paper consist of two type of nodes and two
- type of edges.
+The citation network in this paper consists of two types of nodes and two
+ types of edges.
  The node is represented by the paper and the dataset, the edge represented
  by the citation between two nodes.
- Concretely, papers cites each other which form a paper-paper edge, as dataset
- can only be cited by papers which allows the paper-dataset edge.
- As it shown in Fig.
+ Concretely, papers cite each other form paper-paper (publication-publication)
+ edges, as datasets can only be cited by papers which denoted by the paper-datas
+et (publication-dataset) edges.
+ As shown in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Network-construction-workflow"
@@ -934,10 +991,60 @@ noprefix "false"
 \end_inset
 
 , we build the paper-paper citation network using COCI and MAG, build the
- paper-dataset edges using GenBank and Figshare independently, then we integrate
- the paper-dataset edges into the paper-paper citation network to form a
- complete citation network.
- The detailed procedures are described in the following sections.
+ paper-dataset edges using GenBank and Figshare independently.
+ Then we integrate the paper-dataset edges into the paper-paper citation
+ network to form a complete citation network.
+ The construction workflow is illustrated in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Network-construction-workflow"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename network_construction.pdf
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Network-construction-workflow"
+
+\end_inset
+
+Citation network construction workflow
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -956,7 +1063,7 @@ name "tab:Statistics-of-network"
 
 \end_inset
 
-Statistics of article citation network
+Statistics of publication citation network.
 \end_layout
 
 \end_inset
@@ -967,17 +1074,18 @@ Statistics of article citation network
 \begin_layout Plain Layout
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="3">
+<lyxtabular version="3" rows="5" columns="4">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+Sources
 \end_layout
 
 \end_inset
@@ -986,7 +1094,7 @@ Statistics of article citation network
 \begin_inset Text
 
 \begin_layout Plain Layout
-COCI
+Filter
 \end_layout
 
 \end_inset
@@ -995,7 +1103,16 @@ COCI
 \begin_inset Text
 
 \begin_layout Plain Layout
-COCI + MAG
+Number of Nodes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Number of Edges
 \end_layout
 
 \end_inset
@@ -1006,7 +1123,7 @@ COCI + MAG
 \begin_inset Text
 
 \begin_layout Plain Layout
-number of nodes
+COCI (original)
 \end_layout
 
 \end_inset
@@ -1015,7 +1132,7 @@ number of nodes
 \begin_inset Text
 
 \begin_layout Plain Layout
-46534730
+N/A
 \end_layout
 
 \end_inset
@@ -1024,18 +1141,7 @@ number of nodes
 \begin_inset Text
 
 \begin_layout Plain Layout
-46534730
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-number of edges
+46,534,424
 \end_layout
 
 \end_inset
@@ -1044,16 +1150,7 @@ number of edges
 \begin_inset Text
 
 \begin_layout Plain Layout
-449842410
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-449842410
+449,840,585
 \end_layout
 
 \end_inset
@@ -1064,7 +1161,7 @@ number of edges
 \begin_inset Text
 
 \begin_layout Plain Layout
-number of nodes with year
+COCI (filtered)
 \end_layout
 
 \end_inset
@@ -1073,7 +1170,7 @@ number of nodes with year
 \begin_inset Text
 
 \begin_layout Plain Layout
-23521643
+contains publication year
 \end_layout
 
 \end_inset
@@ -1082,7 +1179,54 @@ number of nodes with year
 \begin_inset Text
 
 \begin_layout Plain Layout
-44229769
+21,689,394
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+203,884,791
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+COCI & MAG
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+contains publication year
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+45,180,243
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+443,055,788
 \end_layout
 
 \end_inset
@@ -1093,7 +1237,7 @@ number of nodes with year
 \begin_inset Text
 
 \begin_layout Plain Layout
-number of edges with year
+COCI & MAG
 \end_layout
 
 \end_inset
@@ -1102,7 +1246,7 @@ number of edges with year
 \begin_inset Text
 
 \begin_layout Plain Layout
-203883846
+publication year ≤ 2012
 \end_layout
 
 \end_inset
@@ -1111,7 +1255,16 @@ number of edges with year
 \begin_inset Text
 
 \begin_layout Plain Layout
-441432288
+30,304,869
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+212,410,743
 \end_layout
 
 \end_inset
@@ -1134,31 +1287,36 @@ paper-paper citation network
 \end_layout
 
 \begin_layout Standard
-As the our proposed method takes the publication year into account, we need
- first build a large citation network then filter those edges without publicatio
-n year.
+As our proposed method takes the publication year into account, we need
+ first build a vast citation network then remove those edges without publication
+ year.
  The DOI-DOI citation in COCI dataset provides us a skeleton of the citation
- network, however, only the publication date of the citing DOIs are included
- in COCI, leaves lots of cited DOI invalid for our experiments.
- The COCI comes with a field named timespan which originally refer to the
+ network.
+ However, only the publication date of the citing DOIs are included in COCI,
+ leaves lots of cited DOI invalid for our experiments.
+ The COCI comes with a field named timespan which originally refers to the
  publication time span between the citing DOI and cited DOI.
  We tried to use the timespan to calculate the publication date of cited
- DOI, however, due to unit of publication time of citing DOI is not consistent
- across DOIs, ( e.g.
- some publication date contains year-month-date, while some contains only
- year), the recovered publication date inaccurate.
+ DOI, however, we found the recovered publication date is inaccurate.
+ That is because the unit of publication time is not consistent across DOIs
+ ( e.g., some publication date contains year-month-date, while some contain
+ only a year).
  
 \end_layout
 
 \begin_layout Standard
 We solved this problem by using the MAG which provides the DOI and publication
  date explicitly.
- By join the COCI and MAG, we able to build a large paper-paper citation
- network consist of 46534730 nodes and 441432288 edges.
+ By joining the COCI and MAG, we build a large paper-paper citation network
+ consist of 45,180,243 nodes and 443,055,788 edges.
  As the usage data of GenBank is in 2012, we further pruning the network
- by remove the nodes published after 2012 for all experiments for GenBank.
- We use all the nodes and edges for Figshare experiments.
- Some statistics of the network are listed in Table 
+ by removing the nodes published after 2012 for all experiments for GenBank.
+ 
+\strikeout on
+We use all the nodes and edges for Figshare experiments.
+ 
+\strikeout default
+The statistics of the networks described above are listed in Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:Statistics-of-network"
@@ -1178,7 +1336,11 @@ paper-dataset citation network
 
 \begin_layout Enumerate
 extracting paper-dataset citation for Genebank.
- As previously described in 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+As previously described in 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Sayers2019"
@@ -1189,78 +1351,65 @@ literal "false"
 , authors should use GenBank accession number with the version suffix as
  identifier to cite a GenBank data, the accession number usually mentioned
  in the body of the manuscript.
- This practice enables us to extract GenBank dataset mention from full text
+ This practice enables us to extract GenBank dataset mention from full-text
  to build the paper-dataset citation network.
  
 \end_layout
 
+\end_deeper
 \begin_layout Itemize
-Build a XML parser to extracting full text from PubMed Open Access Subset.
+Parsing XML file to extract full-text.
+ 
 \end_layout
 
-\begin_layout Itemize
-Using regular expressions to match the Accession number mentions.
- There are two kind of mention: 1) accession number only, e.g.
- U00096; 2) range of accession number, e.g.
- KK037225-KK037232, we recover every number within the range.
- We then build a paper-dataset citation for each unique accession number.
+\begin_deeper
+\begin_layout Standard
+The parser use XPath expression to extract the PMID and traverse the XML
+ <body> tag recursively to get the full-text.
+ After processing, we get 2,174,782 articles with PMID and full-text from
+ PMC-OAS dataset.
 \end_layout
 
-\begin_layout Enumerate
+\end_deeper
+\begin_layout Itemize
+Matching the accession number to build paper-dataset citation.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+According to the GenBank Accession Prefix Format, accession number composed
+ by fixed-number of letters plus fixed-number of numerals (e.g., 1 letter
+ + 5 numerals, 2 letters + 6 numerals).
+ Based on the format, we composed a regular expression to match the mention
+ of accession number in full-text.
+ There are two kinds of accession number mentions: 1) accession number only
+ (e.g., U00096).
+ 2) range of accession number (e.g., KK037225-KK037232).
+ For case two, we expand the range to recover all the omitted accession
+ numbers.
+ Then, we can pair the article PMID with each unique accession number to
+ form a paper-dataset citation.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate-Resume
 extracting paper-dataset citation for Figshare.
- As there is a string 'figshare' in the figshare DOI, we can using a regular
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+As there is a string 'figshare' in the figshare DOI, we can using a regular
  expression to search for figshare DOIs from COCI and mark those matched
  DOI as dataset.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Network-construction-workflow"
-
-\end_inset
-
-Network construction workflow
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename data_processing.png
-	lyxscale 60
-	scale 60
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
+\end_deeper
 \begin_layout Standard
 For the purpose of exploring this network more intuitively, we sample about
- 1 thousand nodes 1.5 thousand edges from the network and show it in 
+ one thousand nodes and 1.5 thousand edges from the network and show it in
+ Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:network-of-sample"
@@ -1316,7 +1465,7 @@ name "fig:network-of-sample"
 \end_layout
 
 \begin_layout Standard
-From 
+From Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:network-of-sample"
@@ -1372,7 +1521,7 @@ This method simulates a set of researchers traversing publications through
  the citation network.
  It ranks publications by estimating the average path length taken by researcher
 s who traverses the network considering the age of resources and a stopping
- criteria.
+ criterion.
  Mathematically, it defines a traffic function 
 \begin_inset Formula $T_{i}(\tau_{\text{pub}},\alpha)$
 \end_inset
@@ -1542,8 +1691,7 @@ th node as
 \end_layout
 
 \begin_layout Standard
-This initialization process is depicted in Fig.
- 
+This initialization process is depicted in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Initialize-the-value"
@@ -1846,97 +1994,7 @@ literal "false"
 
 \begin_layout Standard
 The importance of a page depends on the number of its in-degree (how many
- pages who has a link into it), and the importance of pages who cite it.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename citation_age_prob_dist.pdf
-	width 100text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:paper_network_age_citation_dist"
-
-\end_inset
-
-Probability density function of downloads.
- Publication age: log10.age_df.age.
- -4.12751 0.07817 -52.80 <2e-16 *** Citations: log10.citation.cited_count.
- -2.16062 0.01290 -167.476 < 2e-16 ***
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename genebank_usage.pdf
-	width 50text%
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename figureshare_usage.pdf
-	width 50text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:pdf-of-figshare"
-
-\end_inset
-
-Probability density function of downloads
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
+ pages have a link to it), and the importance of pages who cite it.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1969,7 +2027,7 @@ where
 \begin_inset Formula $M^{data}(p_{i})$
 \end_inset
 
- is the set of datasets that has a link to page 
+ is the set of datasets that have a link to page 
 \begin_inset Formula $p_{i}$
 \end_inset
 
@@ -2022,6 +2080,57 @@ In our analysis, we aimed at finding whether the estimation of the rank
  Thus, we will investigate which of the methods works best for ranking them.
 \end_layout
 
+\begin_layout Subsection
+Analysis of citation network
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename citation_age_prob_dist.pdf
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:paper_network_age_citation_dist"
+
+\end_inset
+
+Probability density function of downloads.
+ Publication age: log10.age_df.age.
+ -4.12751 0.07817 -52.80 <2e-16 *** Citations: log10.citation.cited_count.
+ -2.16062 0.01290 -167.476 < 2e-16 ***
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+DataRank on GenBank
+\end_layout
+
 \begin_layout Standard
 \begin_inset Float figure
 wide false
@@ -2060,6 +2169,53 @@ DataRank
 \shape default
  is able to predict better the real usage of datasets compared to other
  variants.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename genebank_usage.pdf
+	width 50text%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename figureshare_usage.pdf
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:pdf-of-figshare"
+
+\end_inset
+
+Probability density function of downloads
 \end_layout
 
 \end_inset
@@ -2314,8 +2470,12 @@ noprefix "false"
  In particular, we find that the highest correlation occurs when the difference
  is either -19 or 19, suggesting that both datasets have the same obsolescence
  differences between datasets and publications.
- Concretely, the highest correlation (although negative for GenBank) occurs
+ 
+\strikeout on
+Concretely, the highest correlation (although negative for GenBank) occurs
  when the datasets decay around 20 times slower than publications.
+
+\strikeout default
  Thus the parameters that we find offer some insight into the nature of
  publication–dataset networks.
 \end_layout
@@ -2465,8 +2625,8 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-Previous research has examined ways of normalizing the citations by time,
- field, and quality.
+Previous research has examined the ways of normalizing the citations by
+ time, field, and quality.
  This relates to our 
 \shape smallcaps
 DataRank
@@ -2531,8 +2691,7 @@ literal "false"
 
 \begin_layout Standard
 We also analyze the impact of different decay times.
- In Fig.
- 
+ In Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:difference-in-decay"
@@ -2546,7 +2705,7 @@ noprefix "false"
 \shape smallcaps
 NetworkFlow
 \shape default
- is a special subset the parameters for 
+ is a special subset of the parameters for 
 \shape smallcaps
 DataRank
 \series bold
@@ -2554,8 +2713,12 @@ DataRank
 \series default
 \shape default
  in which paper and dataset have the same decay time.
- The best result shows that the decay time of dataset is 20 years and paper
- is 1 year, meaning that compared with papers, datasets are more durable.
+ The best result 
+\strikeout on
+shows that the decay time of datasets is 20 years and that of papers is
+ one year,
+\strikeout default
+ meaning that compared with papers, datasets are more durable.
  In Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2568,9 +2731,12 @@ noprefix "false"
 
 , the greater the difference in the decay time of paper and datasets, the
  larger the absolute correlation coefficient becomes.
- Though the trend differs in GenBank and Figshare (i.e., one is positive and
- the other is negative), this may be related to some intrinsic attributes
- of the datasets themselves.
+ 
+\strikeout on
+Though the trend differs in GenBank and Figshare (i.e., one is positive and
+ the other is negative),
+\strikeout default
+ this may be related to some intrinsic attributes of the datasets themselves.
 \end_layout
 
 \begin_layout Section
@@ -2675,9 +2841,10 @@ PageRank
 NetworkFlow
 \shape default
  and also it provides interpretable parameters.
- For example, even when the two datasets are of different nature, we consistentl
-y found that the best decay time for publication is around 1 year whereas
- for datasets is around 20 year.
+ For example, even when the two datasets are of different nature,
+\strikeout on
+ we consistently found that the best decay time for publication is around
+ one year whereas for datasets is around 20 year.
 \end_layout
 
 \begin_layout Standard
