@@ -199,7 +199,7 @@ DataRank
 DataRank
 \shape default
  by estimating its accuracy at predicting the usage of real datasets: web
- visits to GenBank datasets and downloads of Figshare datasets.
+ visits to GenBank and downloads of Figshare datasets.
  We show that 
 \shape smallcaps
 DataRank
@@ -245,8 +245,8 @@ literal "false"
  Citation practices and infrastructures are well-developed for journal articles
  and conference proceedings.
  However, there is much less development for dataset citation.
- This gap affects the increasingly important role they play in scientific
- reproducibility 
+ This gap affects the increasingly important role that datasets play in
+ scientific reproducibility 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "task2013out,belter2014measuring,robinson2016analyzing,park2018informal"
@@ -254,7 +254,7 @@ literal "false"
 
 \end_inset
 
-, where studies use dataset to confirm or extend the results of other research
+, where studies use them to confirm or extend the results of other research
  
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -268,20 +268,19 @@ literal "false"
  archiving datasets.
  While these difficulties are less prominent today, the citation practices
  for datasets take time to develop.
- One possible solution to this gap is to develop better algorithmic approaches
- to track dataset usage.
+ One solution to this gap is to develop better algorithmic approaches to
+ track dataset usage.
  In this work, we hypothesize that a network flow algorithm could track
  usage more effectively if it propagates publication and dataset citations
  differently.
  With the implementation of this algorithm, then, it will be possible to
- account for the differences in citation behavior between these two types
- of artifacts, increasing the importance of datasets as first class citizens
- of science.
+ correct differences in citation behavior between these two types of artifacts,
+ increasing the importance of datasets as first class citizens of science.
 \end_layout
 
 \begin_layout Standard
-Citation networks are widely used for evaluating the importance of authors
- 
+Different researchers use citation networks to evaluate the importance of
+ authors 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "ding2009pagerank,ding2011applying,west2013author"
@@ -322,7 +321,7 @@ literal "false"
 \end_inset
 
 .
- Much of this previous work has been based on modifications of the 
+ The 
 \shape smallcaps
 PageRank
 \shape default
@@ -334,8 +333,8 @@ literal "false"
 
 \end_inset
 
-.
- 
+ serves as much of the base for citation network-based evaluations.
+ For example, 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "bollen2006journal"
@@ -347,20 +346,27 @@ literal "false"
 \shape smallcaps
 PageRank 
 \shape default
-to assess the prestige of journals, while Ding proposed another weighted
- 
-\shape smallcaps
-PageRank 
-\shape default
-to measure the prestige of authors 
+to assess the prestige of journals, while 
 \begin_inset CommandInset citation
-LatexCommand citep
-key "ding2009pagerank,ding2011applying"
+LatexCommand citet
+key "ding2009pagerank"
 literal "false"
 
 \end_inset
 
-.
+ and 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "ding2011applying"
+literal "false"
+
+\end_inset
+
+ proposed another weighted 
+\shape smallcaps
+PageRank 
+\shape default
+to measure the prestige of authors.
  
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -373,7 +379,7 @@ literal "false"
 \shape smallcaps
 PageRank 
 \shape default
-method for more accurately ranking the most prominent computer scientists.
+method for accurately ranking the most prominent computer scientists.
  
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -386,7 +392,7 @@ literal "false"
 \shape smallcaps
 TimeRank
 \shape default
- for rating scholars.
+ for rating scholars at different time points.
  This method updates the rating of scholars based on the relative rating
  of the citing and cited scholars at the time of the citation.
  Citation networks are thus an important source of information for ranking
@@ -394,12 +400,10 @@ TimeRank
 \end_layout
 
 \begin_layout Standard
-Historically, the use of citation networks for ranking datasets has been
- significantly more challenging.
- These challenges have social and technical issues alike.
- First, the massive size of research datasets has made them prohibitive
- for archiving and searching.
- Second, datasets cost time and labor to prepare and to share, resulting
+Historically, ranking datasets using citation networks is significantly
+ more challenging.
+ These challenges have technical and social issues alike.
+ First, datasets cost time and labor to prepare and to share, resulting
  in some articles failing to provide datasets 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -409,9 +413,11 @@ literal "false"
 \end_inset
 
 .
+ Second, archiving and searching massive research datasets is prohibitively
+ expensive and difficult.
  Third, scholars are not used to citing datasets.
- Although survey research has suggested that a formal citation is considered
- by scholars to be the way of crediting a dataset 
+ Survey research shows that scholars consider formal citations as the proper
+ way of crediting a dataset 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "kratz2015researcher"
@@ -419,7 +425,8 @@ literal "false"
 
 \end_inset
 
-, scientists tend to cite the 
+.
+ However, scientists tend to cite the 
 \emph on
 article
 \emph default
@@ -433,13 +440,12 @@ literal "false"
 \end_inset
 
 .
- Therefore, these historical reasons have prevented the proper assignment
- of credit to dataset usage.
+ Therefore, these reasons have prevented the proper assignment of credit
+ to dataset usage.
 \end_layout
 
 \begin_layout Standard
-Several attempts to improve citation practices for datasets and to modify
- citation networks have been established.
+Several initiatives attempt to improve citation practices for datasets.
  In 2014, the Joint Declaration Of Data Citation Principles was officially
  released.
  These principles, however, mainly focus on normalizing dataset references
@@ -481,22 +487,19 @@ literal "false"
 
 \begin_layout Standard
 In this article, we develop a method for assigning credit to datasets from
- citation networks of publications, assuming that they have biases.
+ citation networks of publications, assuming that dataset citations have
+ biases.
  Importantly, our method does not modify the source data for the algorithms.
- The method does not rely on scientists explicitly citing a dataset but
- infers their usage, assigning credit based on a modified 
-\shape smallcaps
-PageRank
-\shape default
- approach.
- We adapt the work by 
+ The method does not rely on scientists explicitly citing datasets but infers
+ their usage.
+ The adapts the network flow algorithm of 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "walker2007ranking"
 
 \end_inset
 
- to include two types of nodes: datasets and publications.
+ by including two types of nodes: datasets and publications.
  Our method simulates a random walker that takes into account the differences
  between obsolescence rates of publications and datasets, and estimates
  the score of each dataset—the 
@@ -504,36 +507,53 @@ key "walker2007ranking"
 DataRank
 \shape default
 .
- The data we use to validate this method is the metadata from the National
- Center for Bioinformatics (NCBI) GenBank nucleic acid sequence and Figshare
- datasets.
+ We use the metadata from the National Center for Bioinformatics (NCBI)
+ GenBank nucleic acid sequence and Figshare datasets to validate our method.
  We estimate the relative rank of the datasets with the 
 \shape smallcaps
 DataRank
 \shape default
  algorithm and cross-validate it by predicting the actual usage of them—number
  of visits to the NCBI dataset web pages and downloads of Figshare datasets.
- We show that our method is better at predicting both types of usages.
+ We show that our method is better at predicting both types of usages compared
+ to citations and other qualitative advantages compared to alternatives.
  We discuss interpretations of our results and implications for data citation
- infrastructures and future projects.
+ infrastructures and future work.
 \end_layout
 
 \begin_layout Section
-Conceptual framework and background information
+Why measure dataset impact?
 \end_layout
 
 \begin_layout Standard
-Our work is situated in scientific impact assessment.
- We frame this work from the conceptual lens of impact assessment, specifically,
- studies of usage statistics and crediting scientific works.
+In our work, we are attempting to measure the impact of datasets which promotes
+ better and broader data sharing behavior (e.g., see 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "silvello2018theory"
+literal "true"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "kidwell2016badges"
+literal "false"
+
+\end_inset
+
+).
+ Therefore, we review impact assessment conceptual frameworks in general.
+ We use studies of usage statistics and crediting of scientific works more
+ specifically.
  This area of study aims to develop methods for scientific indicators of
  the usage and impact of scholarly outputs.
  Impact assessment research also derives empirical insights from research
  products by assessing the dynamics and structures of connections between
  the outputs.
- Work in this area informs evidence-based policymaking which benefits from
- usage statistics to inform policy decisions about research data management,
- cyberinfrastructure implementation, and funding allocation.
+ These connections can information better policymaking for the research
+ data management, cyberinfrastructure implementation, and funding allocation.
 \end_layout
 
 \begin_layout Standard
@@ -548,18 +568,24 @@ literal "false"
 
 \end_inset
 
-, such as the area of altmetrics studies the digital traces left by non-traditio
-nal outputs of science and forms of scholarly engagement on social media
- platforms.
- For example, altmetrics are one ways scholars have begun to measure engagement
- with diverse research products and to estimate the impact of non-traditional
- outputs.
- Researchers predict that it will soon become a part of the citation infrastruct
-ure to routinely track — and value — “citations to an online lab notebook,
- contributions to a software library, bookmarks to datasets from content-sharing
- sites such as Pinterest and Delicious” 
+.
+ For example, altmetrics is one way to measure engagement with diverse research
+ products and to estimate the impact of non-traditional outputs 
 \begin_inset CommandInset citation
 LatexCommand citep
+key "priem2014altmetrics"
+literal "false"
+
+\end_inset
+
+.
+ Researchers predict that it will soon become a part of the citation infrastruct
+ure to routinely track and value “citations to an online lab notebook, contribut
+ions to a software library, bookmarks to datasets from content-sharing sites
+ such as Pinterest and Delicious” 
+\begin_inset CommandInset citation
+LatexCommand citep
+before "from "
 key "priem2014altmetrics"
 literal "false"
 
@@ -570,7 +596,7 @@ literal "false"
  of places.
  As such, a correspondingly wider range of metrics are needed to attribute
  credit to the many locations where research works reflect their value.
- For example, datasets contribute to more than 1000 papers in NCBI’s Gene
+ For example, datasets contribute to thousands of papers in NCBI’s Gene
  Expression Omnibus and these attributions will continue to accumulate,
  just like paper accumulate citations, for a number of years after the datasets
  are publicly released 
@@ -582,8 +608,8 @@ literal "false"
 \end_inset
 
 .
- Other efforts to track include ImpactStory, statistics from FigShare, and
- Altmetric.com 
+ Efforts to track these other sources of impact include ImpactStory, statistics
+ from FigShare, and Altmetric.com 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "robinson2017datacite"
@@ -611,10 +637,10 @@ literal "false"
 .
  Datasets, software, and other non-traditional scientific works are now
  considered by the NSF as legitimate contributions to the publication record.
- Furthermore, real-time science is presented in mediums like computational
- lab notebooks and algorithms filter, rank, and disseminate scholarship
- as it happens, and the journal article is being superseded by other scientific
- products 
+ Furthermore, real-time science is presented in several online mediums;
+ algorithms filter, rank, and disseminate scholarship as it happens, and
+ the journal article is being complemented by other scientific products
+ 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "priem2013scholarship"
@@ -623,7 +649,6 @@ literal "false"
 \end_inset
 
 .
- 
 \end_layout
 
 \begin_layout Standard
@@ -637,11 +662,20 @@ literal "true"
 \end_inset
 
 .
- The recent competition on dataset discovery by NYU highlights this problem
- because publishers and funding agencies cannot track where datasets are
- being used in publications, an important source of information to continue
- funding and support for the dataset efforts (cite Tong's chapter).
- This issue leads to biases in the citation network 
+ As an example, consider the recent Rich Context Competition which aimed
+ at detecting dataset mentions in full-text papers so that researchers and
+ funding agencies can track and justify work and funding to support datasets
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "zengnyu"
+literal "false"
+
+\end_inset
+
+.
+ Because these dataset mentions are not tracked by current citation networks,
+ this leads to biases in dataset citations 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "robinson2016analyzing"
@@ -650,9 +684,9 @@ literal "false"
 \end_inset
 
 .
- The FAIR (findable, accessibile, interoperabile, reproducible) principles
- of open research data are one major initiative that is spearheading these
- issues 
+ The FAIR (findable, accessible, interoperable, reproducible) principles
+ of open research data are one major initiative that is spearheading better
+ practices with tracking digital assets such as datasets 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "wilkinson2016fair"
@@ -663,20 +697,8 @@ literal "false"
 .
  However, the initiative is theoretical, and lacks technical implementation
  for data usage and impact assessment.
- That is, datasets have not achieved the FAIR goal of machine-actionability
- — that is, the capacity of computational systems to find, access, interoperate,
- and reuse data with none or minimal human intervention 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "wilkinson2016fair"
-literal "false"
-
-\end_inset
-
-.
- In sum, there remains a need to establish methods to technically implement
- the goals of making datasets first-class citizens.
- 
+ In sum, there remains a need to establish methods to better estimate dataset
+ usage.
 \end_layout
 
 \begin_layout Section
@@ -694,15 +716,15 @@ OpenCitations Index (COCI)
 \end_layout
 
 \begin_layout Standard
-The OpenCitations index is an index of Crossref's open DOI-to-DOI citation
- data.
- We obtained a snapshot of COCI (version November 2018), which contains
+The OpenCitations index (COCI) is an index of Crossref's open DOI-to-DOI
+ citation data.
+ We obtained a snapshot of COCI (November 2018 version), which contains
  approximately 450 million DOI-to-DOI citations.
- Specifically, COCI contains information describing a citation relationship,
- including citing DOI, cited DOI, the publication date of citing DOI.
+ Specifically, COCI contains information including citing DOI, cited DOI,
+ the publication date of citing DOI.
  The algorithm we proposed in the paper requires the publication year.
  However, not all the DOIs in COCI have a publication date.
- We will introduce Microsoft Academic Graph to fill up this gap.
+ We will introduce Microsoft Academic Graph to fill this gap.
 \end_layout
 
 \begin_layout Subsubsection
@@ -712,9 +734,9 @@ Microsoft Academic Graph (MAG)
 \end_layout
 
 \begin_layout Standard
-The Microsoft Academic Graph is a large heterogeneous graph consist of six
- types of entities involved in academic communication activities, including
- the paper, author, institution, venue, event, and field of study 
+The Microsoft Academic Graph is a large heterogeneous graph consisting of
+ six types of entities: paper, author, institution, venue, event, and field
+ of study 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "sinha2015overview"
@@ -723,67 +745,12 @@ literal "false"
 \end_inset
 
 .
- Concretely, the description of paper consist of DOI, title, abstract, published
- year, etc.
- We download a copy of MAG in November 2018, which contains 208,915,369
+ Concretely, the description of a paper consists of DOI, title, abstract,
+ published year among other fields.
+ We downloaded a copy of MAG in November 2018, which contains 208,915,369
  papers.
  As a supplement to COCI, we extract the DOI and published year from MAG
  to extend those DOIs in COCI without a publication date.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename oc_age_distribution.png
-	lyxscale 50
-	scale 50
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Nodes-distribution-by-age"
-
-\end_inset
-
-Nodes distribution by age.
- The x-axis is the age of nodes relative to 2018.
- The y-axis is the number of nodes at a certain age.
- The number of nodes at age 0 is significantly less than age 1, since the
- Open Citation Indexes we use is a November 2018 dump.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsubsection
@@ -798,9 +765,9 @@ The PubMed Central Open Access Subset is a collection of full-text open
  We obtained a snapshot of PMC-OAS in August 2019.
  It consists of about 2.5 million full-text articles organized in well-structured
  XML files.
- The articles are identified by a unique id named PMID.
- We also obtained a mapping list between PMID and DOI from NCBI, it enables
- us to integrate PMC-OAS into the citation network.
+ The articles are identified by a unique id called PMID.
+ We also obtained a mapping list between PMIDs and DOIs from NCBI, which
+ enabled us to integrate PMC-OAS into the citation network.
 \end_layout
 
 \begin_layout Subsubsection
@@ -822,7 +789,7 @@ literal "false"
 
 .
  The information about a nucleotide sequence in GenBank is organized as
- a record consist of many data elements (fields) and stored in a flat-file
+ a record consisting of many data elements (fields) and stored in a flat-file
  (see Fig.
  
 \begin_inset CommandInset ref
@@ -858,10 +825,10 @@ noprefix "false"
 \end_inset
 
 ).
- We obtained a snapshot of the GenBank database (version 230) consist of
- 212,260,377 gene sequences.
- After processing, we are able to retrieve 77,149,105 sequences with a submitted
- date.
+ We obtained a snapshot of the GenBank database (version 230) with 212,260,377
+ gene sequences.
+ We remove those sequences without submission date.
+ This left us with 77,149,105 sequences.
 \end_layout
 
 \begin_layout Standard
@@ -920,8 +887,8 @@ Figshare
 \begin_layout Standard
 Figshare is a multidisciplinary, open access research repository where researche
 rs can deposit and share their research output.
- Figshare allows users uploading various formats of research output, including
- the figures, datasets, and other media 
+ Figshare allows users to upload various formats of research output, including
+ figures, datasets, and other media 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "thelwall2016figshare"
@@ -931,10 +898,12 @@ literal "false"
 
 .
  In order to encourage data sharing, all research data made publicly available
- would have unlimited storage space and would be allocated a DOI, which
- makes the resource citable using traditional citation methods.
+ has unlimited storage space and is allocated a DOI.
+ This DOI is used by scientists to cite Figshare resources using traditional
+ citation methods.
  Figshare makes the research data publicly and permanently available which
- mitigates the resource decay problem, improves research reproducibility
+ mitigate the resource decay problem and improve research reproducibility
+ 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "zeng2019deadscience"
@@ -943,8 +912,7 @@ literal "false"
 \end_inset
 
 .
- The Figshare DOI contains the string 'figshare' in the suffix (e.g., '10.6084/m9.fi
-gshare.6741260').
+ A Figshare DOI contains the string 'figshare' (e.g., '10.6084/m9.figshare.6741260').
  We can leverage this feature to determine whether a publication cites Figshare
  resources by detecting Figshare-generated DOIs.
 \end_layout
@@ -957,6 +925,16 @@ Figshare also keeps track of dataset usages, such as page views and dataset
 \shape italic
 usage
 \shape default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://api.figshare.com
+\end_layout
+
+\end_inset
+
 .
 \end_layout
 
@@ -969,9 +947,9 @@ The citation network in this paper consists of two types of nodes and two
  types of edges.
  The node is represented by the paper and the dataset, the edge represented
  by the citation between two nodes.
- Concretely, papers cite each other form paper-paper (publication-publication)
- edges, as datasets can only be cited by papers which denoted by the paper-datas
-et (publication-dataset) edges.
+ Concretely, papers cite each other to form paper-paper (publication-publication
+) edges, as datasets can only be cited by papers which denoted by the paper-data
+set (publication-dataset) edges.
  As shown in the construction workflow (Fig.
  
 \begin_inset CommandInset ref
@@ -1328,11 +1306,11 @@ Paper-dataset citation network
 \end_layout
 
 \begin_layout Enumerate
-extracting paper-dataset citation for Genebank.
-\end_layout
 
-\begin_deeper
-\begin_layout Standard
+\series bold
+Extracting paper-dataset citation for Genebank.
+ 
+\series default
 As previously described in 
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -1349,29 +1327,22 @@ literal "false"
  
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
 Parsing XML file to extract full-text.
  
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
+\series default
 The parser use XPath expression to extract the PMID and traverse the XML
  <body> tag recursively to get the full-text.
  After processing, we get 2,174,782 articles with PMID and full-text from
  PMC-OAS dataset.
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_layout Enumerate
 Matching the accession number to build paper-dataset citation.
- 
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-According to the GenBank Accession Prefix Format, accession number composed
+ According to the GenBank Accession Prefix Format, accession number composed
  by fixed-number of letters plus fixed-number of numerals (e.g., 1 letter
  + 5 numerals, 2 letters + 6 numerals).
  Based on the format, we composed a regular expression to match the mention
@@ -1387,18 +1358,16 @@ According to the GenBank Accession Prefix Format, accession number composed
 
 \end_deeper
 \begin_layout Enumerate-Resume
-extracting paper-dataset citation for Figshare.
- 
-\end_layout
 
-\begin_deeper
-\begin_layout Standard
+\series bold
+Extracting paper-dataset citation for Figshare.
+ 
+\series default
 As there is a string 'figshare' in the Figshare DOI, we can using a regular
  expression to search for Figshare DOIs from COCI and mark those matched
  DOI as dataset.
 \end_layout
 
-\end_deeper
 \begin_layout Subsubsection
 Visualization of citation network
 \end_layout
