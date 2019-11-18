@@ -1276,7 +1276,7 @@ publication year ≤ 2012
 \end_layout
 
 \begin_layout Subsubsection
-paper-paper citation network
+Paper-paper citation network
 \end_layout
 
 \begin_layout Standard
@@ -1324,7 +1324,7 @@ noprefix "false"
 \end_layout
 
 \begin_layout Subsubsection
-paper-dataset citation network
+Paper-dataset citation network
 \end_layout
 
 \begin_layout Enumerate
@@ -1399,6 +1399,10 @@ As there is a string 'figshare' in the Figshare DOI, we can using a regular
 \end_layout
 
 \end_deeper
+\begin_layout Subsubsection
+Visualization of citation network
+\end_layout
+
 \begin_layout Standard
 For the purpose of exploring this network more intuitively, we sample about
  one thousand nodes and 1.5 thousand edges from the network and show it in
@@ -2105,8 +2109,50 @@ name "fig:paper_network_age_citation_dist"
 \end_inset
 
 Probability density function of downloads.
- Publication age: log10.age_df.age.
- -4.12751 0.07817 -52.80 <2e-16 *** Citations: log10.citation.cited_count.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Publication Age Coefficients: 
+\begin_inset Newline newline
+\end_inset
+
+Estimate Std.
+ Error t value Pr(>|t|)
+\begin_inset Newline newline
+\end_inset
+
+(Intercept) 3.74832 0.17509 21.41 <2e-16 *** 
+\begin_inset Newline newline
+\end_inset
+
+log10.age_df.age.
+ -4.12751 0.07817 -52.80 <2e-16 ***
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Received Citaions Coefficients: 
+\begin_inset Newline newline
+\end_inset
+
+Estimate Std.
+ Error t value Pr(>|t|) 
+\begin_inset Newline newline
+\end_inset
+
+(Intercept) 0.12536 0.04113 3.048 0.00232 **
+\begin_inset Newline newline
+\end_inset
+
+log10.citation.cited_count.
  -2.16062 0.01290 -167.476 < 2e-16 ***
 \end_layout
 
