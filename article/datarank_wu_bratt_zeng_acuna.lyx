@@ -947,9 +947,8 @@ The citation network in this paper consists of two types of nodes and two
  types of edges.
  The node is represented by the paper and the dataset, the edge represented
  by the citation between two nodes.
- Concretely, papers cite each other to form paper-paper (publication-publication
-) edges, as datasets can only be cited by papers which denoted by the paper-data
-set (publication-dataset) edges.
+ Concretely, papers cite each other to form paper-paper edges, as datasets
+ can only be cited by papers which denoted by the paper-dataset edges.
  As shown in the construction workflow (Fig.
  
 \begin_inset CommandInset ref
@@ -961,10 +960,10 @@ noprefix "false"
 
 \end_inset
 
-), we build the paper-paper citation network using COCI and MAG, build the
- paper-dataset edges using GenBank and Figshare independently.
- Then we integrate the paper-dataset edges into the paper-paper citation
- network to form a complete citation network.
+), we build the paper-paper citation network using COCI and MAG and build
+ two separate paper-dataset edge sets using GenBank and Figshare.
+ Then we integrate the paper-dataset edge sets into the paper-paper citation
+ network to form two complete citation networks.
  The construction workflow is illustrated in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1016,6 +1015,41 @@ Citation network construction workflow
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsubsection
+Paper-paper citation network
+\end_layout
+
+\begin_layout Standard
+As our proposed method takes the publication year into account, we need
+ to build a vast citation network then remove those edges without publication
+ year.
+ The DOI-DOI citation in COCI dataset provides us a skeleton of the citation
+ network.
+ Even though COCI comes a field named timespan which originally refers to
+ the publication time span between the citing DOI and cited DOI, this timespan
+ data may lead to different results depending on the time granularity (i.e.,
+ year-only vs year+month).
+ As explained above, therefore, we have to complement COCI dataset with
+ MAG to complete the year of publication of cited and citing articles.
+ By joining the COCI and MAG, we build a large paper-paper citation network
+ consisting of 45,180,243 nodes and 443,055,788 edges.
+ As the usage data of GenBank is in 2012, we pruned the network by removing
+ the nodes published after 2012 for all experiments for GenBank.
+ We use all the nodes and edges for Figshare experiments.
+ The statistics of the networks described above are listed in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Statistics-of-network"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1170,7 +1204,7 @@ contains publication year
 \begin_inset Text
 
 \begin_layout Plain Layout
-COCI & MAG
+COCI & MAG (for Figshare)
 \end_layout
 
 \end_inset
@@ -1208,7 +1242,7 @@ contains publication year
 \begin_inset Text
 
 \begin_layout Plain Layout
-COCI & MAG
+COCI & MAG (for GenBank)
 \end_layout
 
 \end_inset
@@ -1254,61 +1288,13 @@ publication year ≤ 2012
 \end_layout
 
 \begin_layout Subsubsection
-Paper-paper citation network
-\end_layout
-
-\begin_layout Standard
-As our proposed method takes the publication year into account, we need
- first build a vast citation network then remove those edges without publication
- year.
- The DOI-DOI citation in COCI dataset provides us a skeleton of the citation
- network.
- However, only the publication date of the citing DOIs are included in COCI,
- leaves lots of cited DOI invalid for our experiments.
- The COCI comes with a field named timespan which originally refers to the
- publication time span between the citing DOI and cited DOI.
- We tried to use the timespan to calculate the publication date of cited
- DOI, however, we found the recovered publication date is inaccurate.
- That is because the unit of publication time is not consistent across DOIs
- ( e.g., some publication date contains year-month-date, while some contain
- only a year).
- 
-\end_layout
-
-\begin_layout Standard
-We solved this problem by using the MAG which provides the DOI and publication
- date explicitly.
- By joining the COCI and MAG, we build a large paper-paper citation network
- consist of 45,180,243 nodes and 443,055,788 edges.
- As the usage data of GenBank is in 2012, we further pruning the network
- by removing the nodes published after 2012 for all experiments for GenBank.
- 
-\strikeout on
-We use all the nodes and edges for Figshare experiments.
- 
-\strikeout default
-The statistics of the networks described above are listed in Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Statistics-of-network"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Subsubsection
 Paper-dataset citation network
 \end_layout
 
 \begin_layout Enumerate
 
 \series bold
-Extracting paper-dataset citation for Genebank.
+Paper-dataset citation for GenBank.
  
 \series default
 As previously described in 
@@ -1320,40 +1306,43 @@ literal "false"
 \end_inset
 
 , authors should use GenBank accession number with the version suffix as
- identifier to cite a GenBank data, the accession number usually mentioned
- in the body of the manuscript.
- This practice enables us to extract GenBank dataset mention from full-text
- to build the paper-dataset citation network.
+ identifier to cite a GenBank data.
+ The accession number is usually mentioned in the body of the manuscript.
+ This practice enables us to extract GenBank dataset mention from the PMC-OAS
+ dataset to build the paper-dataset citation network.
  
 \end_layout
 
 \begin_deeper
 \begin_layout Enumerate
 
+\emph on
+Parsing XML file to extract full-text
 \series bold
-Parsing XML file to extract full-text.
+\emph default
+.
  
 \series default
-The parser use XPath expression to extract the PMID and traverse the XML
- <body> tag recursively to get the full-text.
- After processing, we get 2,174,782 articles with PMID and full-text from
- PMC-OAS dataset.
+We first parse the XML files using XPath expressions to extract the PMID
+ and the full-text.
+ We get 2,174,782 articles with PMID and full-text from PMC-OAS dataset.
 \end_layout
 
 \begin_layout Enumerate
-Matching the accession number to build paper-dataset citation.
- According to the GenBank Accession Prefix Format, accession number composed
- by fixed-number of letters plus fixed-number of numerals (e.g., 1 letter
- + 5 numerals, 2 letters + 6 numerals).
+
+\emph on
+Matching the accession number to build paper-dataset citation
+\emph default
+s.
+ According to the GenBank Accession Prefix Format, an accession number is
+ composed of a fixed-number of letters plus a fixed-number of numerals (e.g.,
+ 1 letter + 5 numerals, 2 letters + 6 numerals).
  Based on the format, we composed a regular expression to match the mention
- of accession number in full-text.
- There are two kinds of accession number mentions: 1) accession number only
- (e.g., U00096).
- 2) range of accession number (e.g., KK037225-KK037232).
+ of accession number in the full-text.
+ There are two kinds of accession number mentions: accession number only
+ (e.g., U00096) and range of accession number (e.g., KK037225-KK037232).
  For case two, we expand the range to recover all the omitted accession
  numbers.
- Then, we can pair the article PMID with each unique accession number to
- form a paper-dataset citation.
 \end_layout
 
 \end_deeper
@@ -1443,8 +1432,6 @@ noprefix "false"
 
 , we observe four patterns of papers citing datasets (a dataset cannot cite
  anything): one-to-one, one-to-many, many-to-one and many-to-many.
- We also observe the structure of a knowledge diffusion process with the
- direction of knowledge flows.
 \end_layout
 
 \begin_layout Subsection
@@ -1486,7 +1473,7 @@ PageRank
 This method simulates a set of researchers traversing publications through
  the citation network.
  It ranks publications by estimating the average path length taken by researcher
-s who traverses the network considering the age of resources and a stopping
+s who traverse the network considering the age of resources and a stopping
  criterion.
  Mathematically, it defines a traffic function 
 \begin_inset Formula $T_{i}(\tau_{\text{pub}},\alpha)$
@@ -1563,7 +1550,8 @@ th paper.
 \end_layout
 
 \begin_layout Standard
-The average path length to all papers in the network starting from 
+The average path length to all papers in the network starting from a paper
+ sampled from the distribution 
 \begin_inset Formula $\rho$
 \end_inset
 
@@ -1589,9 +1577,10 @@ In practice, this series can be solved iteratively by computing the difference
 \end_inset
 
 .
- For this and all algorithms used in this work, we set the threshold to
- be the root mean squared difference less than 
-\begin_inset Formula $10^{-3}$
+ For this and all algorithms used in this work, we stop the iterations when
+ absolute difference in rank between two consecutive iterations is less
+ than 
+\begin_inset Formula $10^{-2}$
 \end_inset
 
 .
@@ -1622,11 +1611,7 @@ DataRank
 .
  The extension considers that the probability of starting at any single
  node should depend on whether the node is a publication or a dataset.
- This is, publications and datasets may vary in their relevance period—
-\strikeout on
-e.g., publications generally become obsolete sooner than datasets.
-
-\strikeout default
+ This is, publications and datasets may vary in their relevance period.
  Mathematically, we redefine the starting probability in Eq.
  
 \begin_inset CommandInset ref
@@ -1712,15 +1697,11 @@ name "fig:Initialize-the-value"
 
 Node values after initialization.
  The size of the node represents its value, different color means different
- type: red nodes are papers, and green nodes are datasets.
+ node type: red nodes are papers and green nodes are datasets.
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -1773,20 +1754,20 @@ In
 DataRank
 \series default
 \shape default
-, each time the research moves, there are two options, one is to stop with
- a probability 
+, each time the walker moves, there are two options: to stop with a probability
+ 
 \begin_inset Formula $\alpha$
 \end_inset
 
-, the other one is to continue the search through the citation network with
- a probability 
+ or to continue its search through the reference list with a probability
+ 
 \begin_inset Formula $1-\alpha$
 \end_inset
 
 .
- But actually, there may exist a third choice, to continue its search through
+ However, there may exist a third choice: to continue its search through
  paper who cites it.
- In other words, the research can move on in two directions: forwards and
+ In other words, the researcher can move in two directions: forwards and
  backwards.
  We call this modified method 
 \shape smallcaps
@@ -1806,6 +1787,20 @@ In this method, one may stop with a probability
 \end_inset
 
 .
+ To keep them within the simplex, then 
+\begin_inset Formula $\alpha>\beta$
+\end_inset
+
+ and 
+\begin_inset Formula $\alpha>0$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta>0$
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1818,17 +1813,6 @@ Then
 we define another transition matrix from the citation network as follows
  
 \begin_inset Formula 
-\[
-p(j\mid i)\propto\begin{cases}
-w_{d}^{I(j=dataset)}w_{p}^{I(j=pub)}\exp(-\lambda\text{age}) & \text{if \ensuremath{j} is cited by i}\\
-0 & \text{o.w.}
-\end{cases}
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
 \begin{equation}
 M_{ij}=\begin{cases}
 \frac{1}{k_{j}^{\text{in}}} & \text{if \ensuremath{j} cited by \ensuremath{i}}\\
@@ -1838,7 +1822,16 @@ M_{ij}=\begin{cases}
 
 \end_inset
 
-also, we update the average path length to all papers in the network starting
+where 
+\begin_inset Formula $k_{j}^{\text{in}}$
+\end_inset
+
+ is the number of papers that cite 
+\begin_inset Formula $j$
+\end_inset
+
+.
+ We update the average path length to all papers in the network starting
  from 
 \begin_inset Formula $\rho$
 \end_inset
@@ -1884,8 +1877,17 @@ PageRank
 \shape smallcaps
 PageRank
 \shape default
- is a well known and widely used webpage ranking algorithm proposed by Google,
- it uses the topological structure of the web to determine the importance
+ is a well known and widely used webpage ranking algorithm proposed by Google
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "page1999pagerank"
+literal "false"
+
+\end_inset
+
+.
+ It uses the topological structure of the web to determine the importance
  of a webpage, independently of its content 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -1896,13 +1898,13 @@ literal "false"
 
 .
  First, it builds a network of the web through the link between webpages.
- Second, each webpage is assigned an initial value evenly, then updates
- the value of each webpage based on the link relations, which will eventually
- converge on a value.
+ Second, each webpage is assigned a random value, which is then updated
+ based on the link relations, which will eventually converge on a stationary
+ value.
 \end_layout
 
 \begin_layout Standard
-The mathematical formation of 
+The mathematical formulation of 
 \shape smallcaps
 PageRank
 \shape default
@@ -1956,11 +1958,6 @@ literal "false"
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-The importance of a page depends on the number of its in-degree (how many
- pages have a link to it), and the importance of pages who cite it.
 \end_layout
 
 \begin_layout Subsubsection
@@ -2042,12 +2039,8 @@ In our analysis, we aimed at finding whether the estimation of the rank
  We also propose variants to this method, and compare all of them to standard
  ranking algorithms.
  We use the data of visits of GenBank datasets and downloads of Figshare
- datasets.
- Thus, we will investigate which of the methods works best for ranking them.
-\end_layout
-
-\begin_layout Subsection
-Analysis of citation network
+ datasets as measure of real usage.
+ Thus, we will investigate which of the methods work best for ranking them.
 \end_layout
 
 \begin_layout Standard
@@ -2077,52 +2070,16 @@ name "fig:paper_network_age_citation_dist"
 
 \end_inset
 
-Probability density function of downloads.
- 
-\begin_inset Newline newline
+Probability density of age and citations.
+ Power laws describing the growth of both aspects of the network are 
+\begin_inset Formula $k_{\text{age}}\approx-4.1$
 \end_inset
 
-
-\begin_inset Newline newline
+ and 
+\begin_inset Formula $k_{\text{citations}}\approx-2.16$
 \end_inset
 
-Publication Age Coefficients: 
-\begin_inset Newline newline
-\end_inset
-
-Estimate Std.
- Error t value Pr(>|t|)
-\begin_inset Newline newline
-\end_inset
-
-(Intercept) 3.74832 0.17509 21.41 <2e-16 *** 
-\begin_inset Newline newline
-\end_inset
-
-log10.age_df.age.
- -4.12751 0.07817 -52.80 <2e-16 ***
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-Received Citaions Coefficients: 
-\begin_inset Newline newline
-\end_inset
-
-Estimate Std.
- Error t value Pr(>|t|) 
-\begin_inset Newline newline
-\end_inset
-
-(Intercept) 0.12536 0.04113 3.048 0.00232 **
-\begin_inset Newline newline
-\end_inset
-
-log10.citation.cited_count.
- -2.16062 0.01290 -167.476 < 2e-16 ***
+.
 \end_layout
 
 \end_inset
@@ -2133,223 +2090,78 @@ log10.citation.cited_count.
 \end_inset
 
 
-\end_layout
-
-\begin_layout Subsection
-Predicting the real usage
 \end_layout
 
 \begin_layout Standard
-In order to find the best parameter for DataRank, we use a grid search with
- publication decay year in [1, 5, 10, 20, 30, 50, 70, 100], the dataset
- decay year [1, 5, 10, 20, 30, 50, 70, 100], and alpha in [0.05, 0.15] .
- For experiments on GenBank dataset, we found the DataRank model reaches
- its best (DataRank at 0.3336, DataRank-FB 0.3336,) with publication decay
- at 30 years and dataset decay at 100 years.
- As shown in Figure 
+We first examine some statistics of the paper–paper citation network and
+ the paper–dataset citation network.
+ We examine age because it is crucial parameter for our proposed algorithm
+ that initializes the rank of an item and we examine the citations because
+ it controls how this rank diffuses through the network.
+ We model with probability density function of publication age with respect
+ to 2019 as a power law distribution 
+\begin_inset Formula $p(a)\propto a^{-k}$
+\end_inset
+
+ with parameters (
+\begin_inset Formula $k\approx-4.1$
+\end_inset
+
+, SE=
+\begin_inset Formula $0.07$
+\end_inset
+
+, 
+\begin_inset Formula $p<0.001$
+\end_inset
+
+, Fig.
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:Parameter-search"
+reference "fig:paper_network_age_citation_dist"
 plural "false"
 caps "false"
 noprefix "false"
 
 \end_inset
 
-, the performance keep increase while the publication decay time increasing,
- but the momentum slow down rapidly after 20 years and converge around 100
- years.
- In terms of dataset decay, the performance increases significantly before
- 20 years.
- After 20 years, the performance enter into a steady interval.
- It reaches best performance at 20 years for dataset decay for most of the
- different publication decays, then, keep going down slowly.
- In all the cases, the alpha at 0.05 is better than 0.15.
+ left panel).
+ Similarly, the citation count can be modeled by a power law distribution
  
-\end_layout
+\begin_inset Formula $p(d)\propto d^{-k}$
+\end_inset
 
-\begin_layout Standard
-For Figshare dataset, we observed an opposite trends, the performance is
- going down rapidly as the publication decay increases.
- However, the same as GenBank, it lost momentum after 20 years.
- The performance for dataset decay larger than 5 years is very small.
- Different with GenBank, the parameter alpha at 0.15 is better than 0.05.
- Our DataRank models achieve the best performance (DataRank at 0.1273, DataRank-F
-B at 0.0256) at one year for publication decay and 100 years for dataset
- decay (see Fig.
+ with parameters (
+\begin_inset Formula $k\approx-2.16062$
+\end_inset
+
+, SE=
+\begin_inset Formula $0.012$
+\end_inset
+
+, 
+\begin_inset Formula $p<0.001$
+\end_inset
+
+, Fig.
  
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:Parameter-search"
+reference "fig:paper_network_age_citation_dist"
 plural "false"
 caps "false"
 noprefix "false"
 
 \end_inset
 
-).
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename genebank_parameter_search.pdf
-	width 48text%
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename figshare_parameter_search.pdf
-	width 48text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Parameter-search"
-
-\end_inset
-
-Parameter search
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Comparing with other methods, although all the algorithms perform at the
- same level on GenBank dataset, our DataRank perform slightly better (DataRank
- at 0.3336 vs NetworkFlow at 0.3327, PageRank at 0.3324, Modified PageRank
- at 0.3327).
- In terms of Figshare dataset, our DataRank models predicts have positive
- correlation with real dataset usage, while other variants are negatively
- correlated.
- Further, the DataRank is significantly higher in the absolute value.
- More interesting, the DataRank offers insight of how the decay effects
- the performance, and give us the best decay years intuitively.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename correlation.pdf
-	width 100text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:result-r-2"
-
-\end_inset
-
-Model comparison in correlation coefficient.
- 
-\shape smallcaps
-DataRank
-\shape default
- is able to predict better the real usage of datasets compared to other
- variants.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-GenBank Correlation: 
-\end_layout
-
-\begin_layout Plain Layout
-DataRank 0.333577966 
-\end_layout
-
-\begin_layout Plain Layout
-DataRank-FB 0.333555985
-\end_layout
-
-\begin_layout Plain Layout
-NetworkFlow 0.332749079 
-\end_layout
-
-\begin_layout Plain Layout
-PageRank 0.332408042 
-\end_layout
-
-\begin_layout Plain Layout
-Modified PageRank 0.332749079 
-\begin_inset Newline newline
-\end_inset
-
-——————————————————
-\end_layout
-
-\begin_layout Plain Layout
-Figshare Correlation: 
-\end_layout
-
-\begin_layout Plain Layout
-DataRank 0.127300885 
-\end_layout
-
-\begin_layout Plain Layout
-DataRank-FB 0.025624089 
-\end_layout
-
-\begin_layout Plain Layout
-NetworkFlow -0.039362697
-\end_layout
-
-\begin_layout Plain Layout
-PageRank -0.047330371 
-\end_layout
-
-\begin_layout Plain Layout
-Modified PageRank -0.047420754 
-\end_layout
-
-\end_inset
-
-
+ right panel).
+ This means that both distributions are highly skewed.
+ The age distribution is not captured well for small age values because
+ the number of publications is not growing as fast a power law would predict.
+ However, the number of citations is well described by this law.
+ The network thus is expanding fast both in number of age (e.g., nodes) and
+ citations.
 \end_layout
 
 \begin_layout Standard
@@ -2362,6 +2174,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename genebank_usage.pdf
+	lyxscale 50
 	width 50text%
 
 \end_inset
@@ -2369,6 +2182,7 @@ status open
 
 \begin_inset Graphics
 	filename figureshare_usage.pdf
+	lyxscale 50
 	width 50text%
 
 \end_inset
@@ -2401,24 +2215,8 @@ Probability density function of downloads
 
 \begin_layout Standard
 We first wanted to examine differences in usage between Genbank and Figshare.
- We call 
-\emph on
-usage
-\emph default
- to web visits to the GenBank dataset profiles (Fig.
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:sample-data-of"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-) and actual downloads of Figshare datasets.
  We plot the estimated probability density function of this usage for both
- datasets (Fig.
+ datasets as a log-log plot (Fig.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2495,7 +2293,7 @@ p in usage.
 \noun default
 \color inherit
 in Figshare, for 
-\begin_inset Formula $p(d)\propto d^{-k}$
+\begin_inset Formula $p(u)\propto u^{-k}$
 \end_inset
 
 , two-sample t-test 
@@ -2513,28 +2311,23 @@ in Figshare, for
  driving the dataset usage behavior.
 \end_layout
 
+\begin_layout Subsection
+Predicting the real usage
+\end_layout
+
 \begin_layout Standard
 One of the real tests of whether the methods work is to predict how they
  are related to real usage data.
  For each algorithm and set of parameters, we estimated the rank of each
  of the nodes in the network.
- We then used these ranks to predict real usage (i.e., web visits for GenBank
- and downloads for Figshare), obtaining an 
-\begin_inset Formula $R^{2}$
-\end_inset
+ We then used these ranks to correlate them to real usage (i.e., web visits
+ for GenBank and downloads for Figshare).
+ We now describe the experiments to explore the best parameters for these
+ correlations.
+\end_layout
 
- for each of the models (Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:result-r-2"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- Our analysis reveals that 
+\begin_layout Standard
+Our analysis reveals that 
 \shape smallcaps
 DataRank
 \shape default
@@ -2560,6 +2353,88 @@ for both GenBank and Figshare
 \end_layout
 
 \begin_layout Standard
+In order to find the best parameters for 
+\shape smallcaps
+DataRank
+\shape default
+, we performed a grid search with publication decay year 
+\begin_inset Formula $\tau_{\text{pub}}\in\left\{ 1,5,10,20,30,50,70,100\right\} $
+\end_inset
+
+, the dataset decay year 
+\begin_inset Formula $\tau_{\text{dataset}}\in\left\{ 1,5,10,20,30,50,70,100\right\} $
+\end_inset
+
+, and alpha in 
+\begin_inset Formula $\alpha\in\left\{ 0.05,0.15\right\} $
+\end_inset
+
+ .
+ The results across all parameters is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Parameter-search"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ For experiments on GenBank dataset, we found the 
+\shape smallcaps
+DataRank
+\shape default
+ model reaches its best (
+\shape smallcaps
+DataRank
+\shape default
+ at 0.3336, 
+\shape smallcaps
+DataRank-FB
+\shape default
+ at 0.3336) with 
+\begin_inset Formula $\tau_{\text{pub}}=30$
+\end_inset
+
+ and 
+\begin_inset Formula $\tau_{dataset}=100$
+\end_inset
+
+.
+ However, the performance keep reaches a plateau after around 20 years and
+ it reaches its peak at 30 years.
+ In terms of dataset decay, the performance increases significantly before
+ 20 years.
+ After 20 years, the performance enter into a steady interval.
+ It reaches best performance at 20 years for dataset decay for most of the
+ different publication decays, then, keep going down slowly.
+ In all the cases, the alpha at 0.05 is better than 0.15.
+\end_layout
+
+\begin_layout Standard
+For Figshare dataset, we observed an opposite trends: the performance goes
+ down rapidly as the publication decay increases.
+ However, similar to GenBank, it losses momentum after 20 years.
+ The performance for dataset decays larger than 5 years is very small.
+ Different with GenBank, the parameter alpha at 0.15 is better than 0.05.
+ Our DataRank models achieve the best performance (DataRank at 0.1273, DataRank-F
+B at 0.0256) at one year for publication decay and 100 years for dataset
+ decay (see Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Parameter-search"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -2568,19 +2443,17 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename GenBank_Figshare_decay_diff_corr_blue.pdf
-	width 80text%
+	filename genebank_parameter_search.pdf
+	lyxscale 50
+	width 48text%
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
-\align center
 \begin_inset Graphics
-	filename GenBank_Figshare_decay_diff_corr_green.pdf
-	width 80text%
+	filename figshare_parameter_search.pdf
+	lyxscale 50
+	width 48text%
 
 \end_inset
 
@@ -2593,12 +2466,80 @@ status open
 \begin_layout Plain Layout
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:difference-in-decay"
+name "fig:Parameter-search"
 
 \end_inset
 
-Differences in decay time between dataset and publication have a strong
- relationship with the ability of the DataRank to correlate with real usage.
+Parameter search
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Our algorithm DataRank performs slightly better (DataRank at 0.3336 vs NetworkFlo
+w at 0.3327, PageRank at 0.3324, Modified PageRank at 0.3327) in the GenBank
+ dataset.
+ For Figshare, our DataRank models produces substantially better correlations
+ and in fact it is the only method that produces positive correlations (Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:result-r-2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename correlation.pdf
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:result-r-2"
+
+\end_inset
+
+Model comparison in correlation coefficient.
+ 
+\shape smallcaps
+DataRank
+\shape default
+ is able to predict better the real usage of datasets compared to other
+ variants.
 \end_layout
 
 \end_inset
@@ -2637,29 +2578,18 @@ noprefix "false"
 
 \end_inset
 
-) and the correlation coefficient of the rank and usage (Fig.
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:difference-in-decay"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
+) and the correlation coefficient of the rank and usage.
  In particular, we find that the highest correlation occurs when the difference
  is either -19 or 19, suggesting that both datasets have the same obsolescence
  differences between datasets and publications.
- 
-\strikeout on
-Concretely, the highest correlation (although negative for GenBank) occurs
- when the datasets decay around 20 times slower than publications.
-
-\strikeout default
  Thus the parameters that we find offer some insight into the nature of
  publication–dataset networks.
+ [Insert explanation what you were given me]
+\end_layout
+
+\begin_layout Standard
+[Figure with distribution of age and #citations per dataset.
+ Compute mean age for both and entropy of #citations per dataset distribution]
 \end_layout
 
 \begin_layout Section
