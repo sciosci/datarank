@@ -2052,6 +2052,49 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
+	filename GenBank_693_items_ages_hist.pdf
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename GenBank_693_items_citation_hist.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
 	filename citation_and_publication_age_prob_dist.pdf
 	width 100text%
 
