@@ -2327,32 +2327,6 @@ One of the real tests of whether the methods work is to predict how they
 \end_layout
 
 \begin_layout Standard
-Our analysis reveals that 
-\shape smallcaps
-DataRank
-\shape default
- is better than 
-\shape smallcaps
-NetworkFlow, PageRank, 
-\shape default
-and Modified 
-\shape smallcaps
-PageRank 
-\shape default
-for both GenBank and Figshare
-\shape smallcaps
-.
-
-\shape default
- Due to the small size of the datasets, however, the standard errors of
- these 
-\begin_inset Formula $R^{2}$
-\end_inset
-
- are large.
-\end_layout
-
-\begin_layout Standard
 In order to find the best parameters for 
 \shape smallcaps
 DataRank
@@ -2418,9 +2392,20 @@ For Figshare dataset, we observed an opposite trends: the performance goes
  However, similar to GenBank, it losses momentum after 20 years.
  The performance for dataset decays larger than 5 years is very small.
  Different with GenBank, the parameter alpha at 0.15 is better than 0.05.
- Our DataRank models achieve the best performance (DataRank at 0.1273, DataRank-F
-B at 0.0256) at one year for publication decay and 100 years for dataset
- decay (see Fig.
+ Our 
+\shape smallcaps
+DataRank
+\shape default
+ models achieve the best performance (
+\shape smallcaps
+DataRank
+\shape default
+ at 0.1273, 
+\shape smallcaps
+DataRank-FB
+\shape default
+ at 0.0256) at one year for publication decay and 100 years for dataset decay
+ (see Fig.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2488,11 +2473,33 @@ Parameter search
 \end_layout
 
 \begin_layout Standard
-Our algorithm DataRank performs slightly better (DataRank at 0.3336 vs NetworkFlo
-w at 0.3327, PageRank at 0.3324, Modified PageRank at 0.3327) in the GenBank
- dataset.
- For Figshare, our DataRank models produces substantially better correlations
- and in fact it is the only method that produces positive correlations (Fig.
+Our algorithm 
+\shape smallcaps
+DataRank
+\shape default
+ performs slightly better in the GenBank dataset—(
+\shape smallcaps
+DataRank-FB
+\shape default
+ at 0.3336 vs 
+\shape smallcaps
+NetworkFlow
+\shape default
+ at 0.3327, 
+\shape smallcaps
+Pagerank
+\shape default
+ at 0.3324, Modified 
+\shape smallcaps
+PageRank
+\shape default
+ at 0.3327) .
+ For Figshare, our 
+\shape smallcaps
+DataRank
+\shape default
+ models produces substantially better correlations and in fact it is the
+ only method that produces positive correlations (Fig.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2504,6 +2511,7 @@ noprefix "false"
 \end_inset
 
 ).
+ 
 \end_layout
 
 \begin_layout Standard
