@@ -1,7 +1,8 @@
 library(scales)
 
-age_df <-read.csv('data/age_dist_prob.csv')
+
 citation <-read.csv('data/citation_dist_prob.csv')
+
 
 #00BFC4 : green
 #new_citation <- citation[which(citation$cited_count< 50000), ]
@@ -21,20 +22,20 @@ citation_pdf <- ggplot(citation,
   annotation_logticks()
 
 
-citation_log <- data.frame(log10(citation$cited_count),log10(citation$prob),)
-m1 <- lm( log10.citation.prob. ~ log10.citation.cited_count., data=citation_log )  
-summary(m1)
+
+citation_log <- data.frame(log10(citation$cited_count),log10(citation$prob))
+summary(lm( log10.citation.prob. ~ log10.citation.cited_count., data=citation_log ))
 
 
 
 
 
 
-
+age_df <-read.csv('data/age_dist_prob.csv')
 age_pdf <- ggplot(age_df,
        aes(x = age, y = prob)) + 
   geom_point(color="#00BFC4") +
-  geom_abline(intercept=3.74, slope=-4.12, color = '#F9766E')+
+  geom_abline(intercept=3.74832, slope=-4.12751 , color = '#F9766E')+
   scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
                 labels = trans_format("log10", math_format(10^.x))) +
   scale_color_brewer(type = 'qual', palette = 1) +
@@ -46,14 +47,13 @@ age_pdf <- ggplot(age_df,
   annotation_logticks()
 
 age_log <- data.frame(log10(age_df$age),log10(age_df$prob))
-m1 <- lm( log10.age_df.prob. ~ log10.age_df.age., data=age_log[!is.infinite(age_log$log10.age_df.age.), ], na.action = na.omit)  
-summary(m1)
+summary(lm( log10.age_df.prob. ~ log10.age_df.age., data=age_log[!is.infinite(age_log$log10.age_df.age.), ], na.action = na.omit) )
 
-pdf('output/citation_and_publication_age_prob_dist.pdf', width = 12, height = 4)
+#pdf('output/citation_and_publication_age_prob_dist.pdf', width = 12, height = 4)
 
 multiplot(age_pdf, citation_pdf, cols=2)
 
-dev.off()
+#dev.off()
 #ggsave('citation_age_prob_dist.pdf', plot = mp, device = NULL, path = '/home/tozeng/Downloads/datarank_r/tz/',
 #       scale = 1, width = 10, height = 5, units = c("in"),
 #       dpi = 300, limitsize = TRUE)
