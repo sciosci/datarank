@@ -37,7 +37,10 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
 
 
 r2_corr = read.csv("data/best_genbank_2012_corr.csv")
-figshare_r2_corr = read.csv("data/best_figshare_corr.csv")
+#figshare_r2_corr = read.csv("data/best_figshare_corr.csv")
+figshare_r2_corr = read.csv("data/best_figshare_been_cited_355items_corr.csv")
+
+
 r2_corr_df = data.frame(r2_corr)
 figshare_r2_corr_df = data.frame(figshare_r2_corr)
 

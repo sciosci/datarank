@@ -1,4 +1,5 @@
-figshare_corr<-read.csv('data/figshare_2018_1k_128models_downloads_corr.csv')
+#figshare_corr<-read.csv('data/figshare_2018_1k_128models_downloads_corr.csv')
+figshare_corr<-read.csv('data/figshare_corr_been_cited_355items.csv')
 
 
 library(ggplot2)

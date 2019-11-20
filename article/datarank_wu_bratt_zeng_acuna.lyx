@@ -920,22 +920,22 @@ literal "false"
 \begin_layout Standard
 Figshare also keeps track of dataset usages, such as page views and dataset
  downloads.
- We get the downloads statistics of Figshare DOI from the Figshare API and
- use it as a measure of real 
+ We get the downloads statistics of Figshare DOI from the Figshare Stats
+ API and use it as a measure of real 
 \shape italic
 usage
 \shape default
 
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
-https://api.figshare.com
+https://docs.figshare.com/#stats
 \end_layout
 
 \end_inset
 
-.
+ .
 \end_layout
 
 \begin_layout Subsection
@@ -1294,7 +1294,7 @@ Paper-dataset citation network
 \begin_layout Enumerate
 
 \series bold
-Paper-dataset citation for GenBank.
+Constructing paper-dataset citation for GenBank.
  
 \series default
 As previously described in 
@@ -1353,10 +1353,46 @@ Extracting paper-dataset citation for Figshare.
  
 \series default
 As there is a string 'figshare' in the Figshare DOI, we can using a regular
- expression to search for Figshare DOIs from COCI and mark those matched
- DOI as dataset.
+ expression to search for Figshare DOIs from COCI.
+ 
 \end_layout
 
+\begin_deeper
+\begin_layout Enumerate
+
+\shape italic
+Identifying Figshare DOI in the set of cited DOI.
+ 
+\shape default
+This is because a dataset can only be cited by papers.
+ In this step, we extracted 918 Figshare DOIs as dataset candidates.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Filtering by resource type.
+ 
+\shape default
+Not all the Figshare DOIs are datasets, since Figshare supports many kinds
+ of resources.
+ We use Figshare Article API to get the meta-data of a DOI
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+https://docs.figshare.com/#public_article
+\end_layout
+
+\end_inset
+
+.
+ Among the meta-data, there is a field indicating the resource type (type
+ code 3 is dataset).
+ After filtering the candidates by resource type, we get 355 datasets.
+\end_layout
+
+\end_deeper
 \begin_layout Subsubsection
 Visualization of citation network
 \end_layout

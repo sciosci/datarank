@@ -1,4 +1,4 @@
-genbank_corr<-read.csv('data/datarank_corr_2012_been_cited_294items.csv')
+genbank_corr<-read.csv('data/datarank_corr_2012.csv')
 
 
 library(ggplot2)
