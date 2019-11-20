@@ -1352,8 +1352,8 @@ s.
 Extracting paper-dataset citation for Figshare.
  
 \series default
-As there is a string 'figshare' in the Figshare DOI, we can using a regular
- expression to search for Figshare DOIs from COCI.
+As there is a string 'figshare' in a Figshare DOI, we can using a regular
+ expression to search for them in COCI.
  
 \end_layout
 
@@ -1374,7 +1374,7 @@ This is because a dataset can only be cited by papers.
 Filtering by resource type.
  
 \shape default
-Not all the Figshare DOIs are datasets, since Figshare supports many kinds
+Not all the Figshare DOIs are datasets, because Figshare supports many kinds
  of resources.
  We use Figshare Article API to get the meta-data of a DOI
 \begin_inset Foot
@@ -2067,11 +2067,11 @@ Results
 \end_layout
 
 \begin_layout Standard
-In our analysis, we aimed at finding whether the estimation of the rank
- of a dataset based on citation data is related to a real-world measure
- of relevance such as downloads.
- We propose a method for estimating this ranking considering differences
- in citation dynamics for publications and datasets.
+We aim at finding whether the estimation of the rank of a dataset based
+ on citation data is related to a real-world measure of relevance such as
+ page views or downloads.
+ We propose a method for estimating rankings considering differences in
+ citation dynamics for publications and datasets.
  We also propose variants to this method, and compare all of them to standard
  ranking algorithms.
  We use the data of visits of GenBank datasets and downloads of Figshare
@@ -2136,9 +2136,9 @@ Probability density of age and citations.
 \begin_layout Standard
 We first examine some statistics of the paper–paper citation network and
  the paper–dataset citation network.
- We examine age because it is a crucial parameter for our proposed algorithm
- which initializes the rank of an node and we examine the citations because
- it controls how this rank diffuses through the network.
+ We examine dataset age because it determines the initial rank of a node
+ and we examine the citations because they control how ranks diffuse through
+ the network.
  We model publication age with respect to 2019 as a power law distribution
  
 \begin_inset Formula $p(a)\propto a^{-k}$
@@ -2203,7 +2203,8 @@ noprefix "false"
  age values because the number of publications is not growing as fast as
  the power law would predict.
  However, the number of citations is well described by this law.
- The network thus is expanding fast both in number nodes (e.g., age) and citations.
+ The network thus is expanding in nodes (e.g., age) and highly skewed for
+ citations.
 \end_layout
 
 \begin_layout Standard
@@ -2217,15 +2218,19 @@ status open
 \begin_inset Graphics
 	filename genebank_usage.pdf
 	lyxscale 50
-	width 50text%
+	width 70text%
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename figureshare_usage.pdf
 	lyxscale 50
-	width 50text%
+	width 70text%
 
 \end_inset
 
@@ -2272,8 +2277,8 @@ noprefix "false"
 
 ).
  While the scale of usage is significantly different (i.e., overall GenBank
- is more used than Figshare), there seem to be a long-tail power law relationshi
-p in usage.
+ is more used than Figshare), there seems to be a long-tail power law relationsh
+ip in usage.
  The GeneBank dataset had a larger but not significantly different scale
  parameter than Figshare (
 \begin_inset Formula $k\approx-1.416$
@@ -2386,8 +2391,80 @@ DataRank
 \begin_inset Formula $\alpha\in\left\{ 0.05,0.15\right\} $
 \end_inset
 
- .
- The results across all parameters is shown in Figure 
+.
+ The best model of DataRank achieves a correlation of 0.3336 in Genbank which
+ is very slightly better than DataRank-FB 0.3335, Networkflow 0.3327, Pagerank,
+ 0.3324, and modified PageRank 0.3327 (Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:result-correlation"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ The model of DataRank achieves a correlation of 0.1078 in Figshare which
+ is substantially better than DataRank-FB with 0.0723.
+ The best absolute correlation by all the other methods only achieved negative
+ correlation with Figshare downloads (Networkflow -0.072, PageRank = -0.073,
+ and Modified PageRank = -0.073).
+ We select the model with best absolute correlation because it would produce
+ the best predictive performance.
+ Taken together, DataRank has both better absolute correlation performance
+ and highest correlation with real usage.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename correlation.pdf
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:result-correlation"
+
+\end_inset
+
+Model comparison in correlation coefficient.
+ 
+\shape smallcaps
+DataRank
+\shape default
+ is able to predict better the real usage of datasets compared to other
+ variants.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The results across all parameters is shown in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Parameter-search"
@@ -2422,7 +2499,7 @@ DataRank-FB
  
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:result-r-2"
+reference "fig:result-correlation"
 plural "false"
 caps "false"
 noprefix "false"
@@ -2430,8 +2507,8 @@ noprefix "false"
 \end_inset
 
 ).
- However, the performance keep reaches a plateau after around 20 years and
- it reaches its peak at 30 years.
+ However, the performance reaches a plateau after around 20 years and it
+ reaches its peak at 30 years.
  In terms of dataset decay, the performance increases significantly before
  20 years.
  After 20 years, the performance enter into a steady interval.
@@ -2441,56 +2518,10 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename correlation.pdf
-	width 100text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:result-r-2"
-
-\end_inset
-
-Model comparison in correlation coefficient.
- 
-\shape smallcaps
-DataRank
-\shape default
- is able to predict better the real usage of datasets compared to other
- variants.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 For Figshare dataset, we observed an opposite trends: the performance goes
  down rapidly as the publication decay increases.
- However, similar to GenBank, it losses momentum after 20 years.
- The performance for dataset decays larger than 5 years is very small.
+ However, similar to GenBank, it losses momentum after 20 years but still
+ grows steadily.
  Different with GenBank, the parameter alpha at 0.15 is better than 0.05.
  Our 
 \shape smallcaps
@@ -2570,15 +2601,19 @@ status open
 \begin_inset Graphics
 	filename genebank_parameter_search.pdf
 	lyxscale 50
-	width 48text%
+	width 70text%
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename figshare_parameter_search.pdf
 	lyxscale 50
-	width 48text%
+	width 70text%
 
 \end_inset
 
@@ -2595,7 +2630,20 @@ name "fig:Parameter-search"
 
 \end_inset
 
-Parameter search
+Model performance during grid search with publication decay time (years)
+ 
+\begin_inset Formula $\tau_{\text{pub}}\in\left\{ 1,5,10,20,30,50,70,100\right\} $
+\end_inset
+
+, the dataset decay time (years) 
+\begin_inset Formula $\tau_{\text{dataset}}\in\left\{ 1,5,10,20,30,50,70,100\right\} $
+\end_inset
+
+, and alpha in 
+\begin_inset Formula $\alpha\in\left\{ 0.05,0.15\right\} $
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2624,91 +2672,6 @@ The goal of this paper is to better evaluate the importance of datasets
  Acknowledging the long time the practice of citing datasets will take to
  be adopted, our research aims at recovering the true importance of datasets
  even if their citations are biased compared to publications.
-\end_layout
-
-\begin_layout Standard
-Open research datasets have little means for systematic attribution even
- in well-resourced disciplines, such as the biomedical community.
- The lack of systematic, benchmarking tools prevents good policymaking.
- Furthermore, it contributes to the invisibility of digital objects and
- labor, an issue of serious concern 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "scroggins2019labor"
-literal "false"
-
-\end_inset
-
-.
- When digital objects are not well described, they tend to disappear from
- view.
- They fall to the bottom of classic search engine results when there are
- no mechanisms to assign credit to datasets.
- This lack of indexing creates an asymmetrical representation of some kinds
- of objects of science and can be an obstacle to quality evaluation and
- data reuse.
-\end_layout
-
-\begin_layout Standard
-“Impact” is defined differently depending on the goal 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "piwowar2013altmetrics"
-literal "false"
-
-\end_inset
-
-.
- As such, metrics estimating impact can be defined “use” “reuse” “engagement”,
- and have a range of proxies, likewise depending on the context of circulation.
- For example, a downloads might measure use while in another context it
- may only indicate viewing.
- The edifice of citation standards in the realm of journal articles is relativel
-y well-established, with refinements to the interpretation of citation behavior
- such as the relative value of citations 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "stuart2017data"
-literal "false"
-
-\end_inset
-
-, the disciplinary context 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "borgman1989bibliometrics"
-literal "false"
-
-\end_inset
-
-, and the in-text location 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "teplitskiy2018almost"
-literal "false"
-
-\end_inset
-
-.
- Nonetheless, usage serves as a proximal indicator of use, and a first-order
- approximation of the impact of the scientific work.
- Recent work in developing impact assessment tools continue development
- and refinement 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "silvello2018theory"
-literal "false"
-
-\end_inset
-
-.
- However, existing evaluation mechanisms often fail where there are no direct
- or indirect measure for usage, which can be an important indicator of scientifi
-c impact.
- While our approach does not estimate impact, we measure usage which is
- the crucial foundational step toward developing technical and theoretical
- models of impact.
- 
 \end_layout
 
 \begin_layout Standard
@@ -2874,6 +2837,96 @@ There are some shortcomings in our study.
  that they are representative of the nature of citation behavior in general.
  In the future, we will explore other data repositories such as PANGEA,
  Animal QTLdb, and UK Data Archive.
+\end_layout
+
+\begin_layout Standard
+Our approach does not directly estimate true impact but a measure of usage
+ which is the crucial foundational step toward developing technical and
+ theoretical models of impact.
+ In the literature, “Impact” is defined differently depending on the goal
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "piwowar2013altmetrics"
+literal "false"
+
+\end_inset
+
+.
+ As such, metrics estimating impact can be defined “use” “reuse” “engagement”,
+ and have a range of proxies, likewise depending on the context of circulation.
+ For example, a downloads might measure use while in another context it
+ may only indicate viewing.
+ The edifice of citation standards in the realm of journal articles is relativel
+y well-established, with refinements to the interpretation of citation behavior
+ such as the relative value of citations 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "stuart2017data"
+literal "false"
+
+\end_inset
+
+, the disciplinary context 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "borgman1989bibliometrics"
+literal "false"
+
+\end_inset
+
+, and the in-text location 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "teplitskiy2018almost"
+literal "false"
+
+\end_inset
+
+.
+ Nonetheless, usage serves as a proximal indicator of use, and a first-order
+ approximation of the impact of the scientific work.
+ Recent work in developing impact assessment tools continue development
+ and refinement 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "silvello2018theory"
+literal "false"
+
+\end_inset
+
+.
+ However, existing evaluation mechanisms often fail where there are no direct
+ or indirect measure for usage, which can be an important indicator of scientifi
+c impact.
+ 
+\end_layout
+
+\begin_layout Standard
+Open research datasets have little means for systematic attribution even
+ in well-resourced disciplines, such as the biomedical community, and our
+ proposal attempts to systematize this attribution more broadly without
+ requiring changes in behavior.
+ The lack of systematic, benchmarking tools prevents good policymaking.
+ Furthermore, it contributes to the invisibility of digital objects and
+ labor, an issue of serious concern 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "scroggins2019labor"
+literal "false"
+
+\end_inset
+
+.
+ When digital objects are not well described, they tend to disappear from
+ view.
+ They fall to the bottom of classic search engine results when there are
+ no mechanisms to assign credit to datasets.
+ This lack of indexing creates an asymmetrical representation of some kinds
+ of objects of science and can be an obstacle to quality evaluation and
+ data reuse.
+ Thus DataRank can be used to correct these asymmetrical discrepancies between
+ articles and datasets.
 \end_layout
 
 \begin_layout Section
