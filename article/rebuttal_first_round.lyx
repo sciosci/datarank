@@ -1,0 +1,301 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Review rebuttal for 
+\shape smallcaps
+
+\begin_inset Quotes eld
+\end_inset
+
+A
+\shape default
+ssigning credit to scientific datasets using article citation networks
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Tong Zeng, Longfeng Wu, Sarah Bratt, and Daniel E.
+ Acuna
+\end_layout
+
+\begin_layout Standard
+We thank both reviewers for their thoughtful comments.
+ We appreciate that they found the article interesting and readable.
+ We agree that this article would be interesting for researchers, institutions,
+ funders, and publishers, and other entities benefitting from data sharing
+ and open data.
+ If you allow us, we will first address general comments shared across reviewers.
+ Then, we will address more specific comments by each reviewer.
+\end_layout
+
+\begin_layout Section*
+General rebuttal of points of suggestions for improvement
+\end_layout
+
+\begin_layout Subsection*
+Clarifications about the datasets.
+\end_layout
+
+\begin_layout Standard
+We thank the appreciation of the combination of the data from OCC and MAG,
+ as well as the large scale scope of our analysis.
+ However, we should have included details of the different graphs and the
+ construction of the final graph, including the percentages of the nodes
+ without year, for example.
+ One of the reviewers had questions about our statement that Figshare’s
+ data is limited to 2014, and upon further inspection, we realize that this
+ is incorrect.
+ The range of Figshare datasets that are cited is 2011 to 2018.
+ 
+\end_layout
+
+\begin_layout Standard
+We now significantly expand the description of the dataset (Datasets subsection
+ in Materials and methods), including basic statistics about the percentage
+ of nodes that are included in the analysis, and statistics for each of
+ the data sources (i.e., Figshare, Genbank, MAG, OCC).
+ Figure 2 describes how the datasets are constructed from one another from
+ the different data sources.
+ Table 1 describes statistics of nodes and edges and filters of them.
+\end_layout
+
+\begin_layout Subsection*
+Clarifications about the implications of our results and its limitations,
+ and questions about the significance of the study (why is this important)
+\end_layout
+
+\begin_layout Standard
+The reviewers suggested the paper would be improved with greater clarification
+ of the study contributions, implications of the results, and the limitations
+ of the findings.
+ We recognize that the lack of clarity hinders the reader’s understanding
+ of how the study is situated in the literature, and we correct this by
+ articulating more clearly the body of literature we build on and research
+ community we speak to.
+ Mainly, we explicitly state and provide details about the conceptual framework
+ motivating the work.
+ We now have added a section called “Why measue dataset impact?” discussing
+ these points.
+\end_layout
+
+\begin_layout Standard
+Additionally, we discuss in more details of our predictive power and interpretat
+ions of the parameters that better fit the data (Results section).
+\end_layout
+
+\begin_layout Standard
+We now address more specific points raised by individual reviewers.
+ 
+\end_layout
+
+\begin_layout Section*
+Reviewer #1
+\end_layout
+
+\begin_layout Standard
+Thanks for your review.
+ We appreciate that you found the article strongly motivated, with sound
+ methodology, and good results.
+\end_layout
+
+\begin_layout Standard
+I find interesting the combination of the data from the OpenCitation Corpus
+ (OCC) and Microsoft Academic Graph (MAG).
+ The authors say on p.
+ 3 that “all nodes without a year are excluded”.
+ What is the percentage of such nodes? Why is the Figshare database limited
+ by December 2014? (p.
+ 5) Are no newer data available? 
+\end_layout
+
+\begin_layout Standard
+These are important descriptive statistics that we failed to explain.
+ We have significantly expanded the Materials and methods section, especially
+ the Datasets section.
+ As you can see above, we now explain in detail the source of the data,
+ and why and how they get combined and filtered.
+ We cited a paper that only analyzed up to 2014 and we used it to extract
+ statistics about Figshare but in fact we have more data than, which we
+ use to describe it in more detail.
+ We have also added graphical depictions of our publication network (new
+ Fig.
+ 5).
+\end_layout
+
+\begin_layout Standard
+One of the conclusions in the paper (e.g.
+ on p.
+ 13) is the statement that datasets are more “durable” than publications
+ and that they decay about 20 times slower than publications.
+ This is an interesting finding supported by the results..
+ Can the authors give a more “philosophical” explanation of this phenomenon?
+\end_layout
+
+\begin_layout Standard
+We thank the reviewer for suggesting to look at this statement more closely.
+ Due to this, we have significantly expanded our analysis.
+ We have now increased our search grid seven-fold to optimize the DataRank
+ and other method’s performance (Fig.8), which led us to find a more refined
+ an interesting pattern.
+ This expanded grid has reveal that the performance plateaus around 20 years
+ of decay time—which is around the time frames we had explored before—especially
+ for Genbank which is the larger of the two dataset citation networks we
+ analyzed.
+ However, the performance keeps slowly but steadily improving after that
+ time frame, and then drops slightly after 30 years.
+ We have discovered that this is due to the nature of citation dynamics
+ and dataset temporal distribution.
+ Interestingly, the best parameters fit by DataRank hint at these differences
+ whereas Genbank has larger publication decay times compared to Figshare
+ but smaller dataset decay times compared to Figshare.
+ This is due to Figshare dataset only being concentrated very much around
+ recent years.
+ Comparatively, Genbank has much older and wider distribution of age.
+ We have significantly expanded these points of discussion both in the result
+ section and the discussion section.
+ More importantly, this has sharpened our understanding of the dynamics,
+ which we hope to use in future studies.
+\end_layout
+
+\begin_layout Standard
+Thanks for the suggestions about language and typographical errors.
+ We apologize for missing them during our proofreading.
+ We fixed all the comments made by Reviewer #1 regarding these issues.
+ 
+\end_layout
+
+\begin_layout Section*
+Reviewer #2
+\end_layout
+
+\begin_layout Standard
+About conceptual framework and impact assessment.
+ As we mentioned above, we expanded the introduction and include a significant
+ review of the larger environment where this research is situated.
+ Please see the new section “Why measure dataset impact?”.
+\end_layout
+
+\begin_layout Standard
+The actual performance metrics are negligibly better.
+ The reviewer is correct that our performance metrics may need more data
+ to show large improvements in our model comparisons.
+ Due in part to this comment and the comments from Reviewer #1 that forced
+ us take a harder look at the data, we improved the construction of the
+ network, especially the Genbank data.
+ This is a unique dataset that we hope to share with the community soon.
+ This new dataset has improved the predictive performance of our algorithm
+ significantly, for both datasets.
+ In fact, we now do not rely on R-squared to measure performance but rather
+ correlations as DataRank is positively associated with real usage.
+ For Genbank, our results are more nuanced in that the performance is only
+ slightly better than PageRank and other variants.
+ However, in Figshare, the performance of DataRank is the only performance
+ that makes sense.
+ All other methods actually produce negative correlations (please see Figure
+ 7, right panel).
+ 
+\end_layout
+
+\begin_layout Standard
+Thanks to the question by reviewer #2 about the real value of results, we
+ have expanded the discussion about how to measure the impact of scientific
+ artifacts and specifically datasets.
+ However, we wanted to contend that citations do make sense in this context
+ as unfortunately are the only source of impact that 1) is usually considered
+ by peers, funders, and institutions, and 2) is one of the only readily
+ available and usable metrics.
+ It is certainly true that we could explore other more direct measures of
+ impact, but unless the state of tracking dataset improves dramatically,
+ we think our contribution add an important perspective for assigning credit
+ to scientific dataset.
+ It is our hope that better infrastructures appear in the future, and it
+ seems that there are several concrete initiatives to achieving this.
+ We have since the submission of this article become acquainted with APIs
+ for this such as the Web of Science’s Data Citation Index, Google Datasets,
+ and DataCite.
+ Again, please see our new section and discussions of these new possibilities
+ through our new manuscript.
+ Finally, we will make our new constructed dataset and algorithm available
+ to the community.
+\end_layout
+
+\end_body
+\end_document
