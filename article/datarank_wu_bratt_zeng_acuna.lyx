@@ -2092,7 +2092,18 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename citation_and_publication_age_prob_dist.pdf
+	filename Citation_network_publication_age_prob_dist.pdf
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Citation_network_received_citation_prob_dist.pdf
 	width 100text%
 
 \end_inset
@@ -2168,7 +2179,7 @@ noprefix "false"
 \end_inset
 
  left panel).
- Similarly, the citation count can be modeled by a power law distribution
+ Similarly, the citation count can also be modeled by a power law distribution
  
 \begin_inset Formula $p(d)\propto d^{-k}$
 \end_inset
@@ -2216,7 +2227,6 @@ status open
 \align center
 \begin_inset Graphics
 	filename genebank_usage.pdf
-	lyxscale 50
 	width 50text%
 
 \end_inset
@@ -2224,7 +2234,6 @@ status open
 
 \begin_inset Graphics
 	filename figureshare_usage.pdf
-	lyxscale 50
 	width 50text%
 
 \end_inset
@@ -2569,16 +2578,14 @@ status open
 \align center
 \begin_inset Graphics
 	filename genebank_parameter_search.pdf
-	lyxscale 50
-	width 48text%
+	width 50text%
 
 \end_inset
 
 
 \begin_inset Graphics
 	filename figshare_parameter_search.pdf
-	lyxscale 50
-	width 48text%
+	width 50text%
 
 \end_inset
 
