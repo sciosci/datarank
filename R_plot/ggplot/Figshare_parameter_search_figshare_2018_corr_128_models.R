@@ -14,7 +14,8 @@ figshare_fig <- ggplot(figshare_corr, aes(x=figshare_corr$data_decay_time, y=fig
   #  scale_color_viridis(discrete = TRUE,direction = -1, option = "inferno")+
   #scale_colour_brewer(type = "seq", palette=4, direction = -1, aesthetics = "colour")+
   #scale_color_manual(values=(c('#8BC34A','#CDDC39','#FFEB3B','#FFC107','#FFC107','#FF5722','#E64A19','#F44336')))+
-  labs(x="Dataset decay time (year)", y="Correlation coefficient",shape="alpha", color=expr("publication \ndecay time"))
+  labs(title="DataRank performance on Figshare", x="Dataset decay time (year)", y="Correlation coefficient",shape="alpha", color=expr("publication \ndecay time"))+
+  theme(plot.title = element_text(hjust = 0.5)) 
 
 pdf('output/figshare_parameter_search.pdf', width = 6, height = 4)
 figshare_fig

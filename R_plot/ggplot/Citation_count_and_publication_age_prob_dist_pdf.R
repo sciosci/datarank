@@ -49,9 +49,19 @@ age_pdf <- ggplot(age_df,
 age_log <- data.frame(log10(age_df$age),log10(age_df$prob))
 summary(lm( log10.age_df.prob. ~ log10.age_df.age., data=age_log[!is.infinite(age_log$log10.age_df.age.), ], na.action = na.omit) )
 
+
+pdf('output/Citation_network_publication_age_prob_dist.pdf', width = 6.75, height = 4.5)
+age_pdf
+dev.off()
+
+pdf('output/Citation_network_received_citation_prob_dist.pdf', width = 6.75, height = 4.5)
+citation_pdf
+dev.off()
+
+
 #pdf('output/citation_and_publication_age_prob_dist.pdf', width = 12, height = 4)
 
-multiplot(age_pdf, citation_pdf, cols=2)
+#multiplot(age_pdf, citation_pdf, cols=2)
 
 #dev.off()
 #ggsave('citation_age_prob_dist.pdf', plot = mp, device = NULL, path = '/home/tozeng/Downloads/datarank_r/tz/',
