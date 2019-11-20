@@ -99,10 +99,10 @@ Tong Zeng
 
 
 \begin_inset Foot
-status collapsed
+status open
 
 \begin_layout Plain Layout
-These authors contributed equally to this work
+Both authors contributed equally to this work
 \end_layout
 
 \end_inset
@@ -2043,47 +2043,8 @@ In our analysis, we aimed at finding whether the estimation of the rank
  Thus, we will investigate which of the methods work best for ranking them.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename GenBank_693_items_ages_hist.pdf
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename GenBank_693_items_citation_hist.pdf
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
+\begin_layout Subsection
+Citation network properties
 \end_layout
 
 \begin_layout Standard
@@ -2114,7 +2075,8 @@ name "fig:paper_network_age_citation_dist"
 \end_inset
 
 Probability density of age and citations.
- Power laws describing the growth of both aspects of the network are 
+ Power laws describing the growth of both aspects of the network have parameters
+ 
 \begin_inset Formula $k_{\text{age}}\approx-4.1$
 \end_inset
 
@@ -2138,19 +2100,19 @@ Probability density of age and citations.
 \begin_layout Standard
 We first examine some statistics of the paper–paper citation network and
  the paper–dataset citation network.
- We examine age because it is crucial parameter for our proposed algorithm
- that initializes the rank of an item and we examine the citations because
+ We examine age because it is a crucial parameter for our proposed algorithm
+ which initializes the rank of an node and we examine the citations because
  it controls how this rank diffuses through the network.
- We model with probability density function of publication age with respect
- to 2019 as a power law distribution 
+ We model publication age with respect to 2019 as a power law distribution
+ 
 \begin_inset Formula $p(a)\propto a^{-k}$
 \end_inset
 
- with parameters (
+ and we find the best parameter to be 
 \begin_inset Formula $k\approx-4.1$
 \end_inset
 
-, SE=
+ (SE=
 \begin_inset Formula $0.07$
 \end_inset
 
@@ -2175,11 +2137,11 @@ noprefix "false"
 \begin_inset Formula $p(d)\propto d^{-k}$
 \end_inset
 
- with parameters (
+ with parameter 
 \begin_inset Formula $k\approx-2.16062$
 \end_inset
 
-, SE=
+ (SE=
 \begin_inset Formula $0.012$
 \end_inset
 
@@ -2199,12 +2161,13 @@ noprefix "false"
 \end_inset
 
  right panel).
- This means that both distributions are highly skewed.
- The age distribution is not captured well for small age values because
- the number of publications is not growing as fast a power law would predict.
+ Both distributions are highly skewed because power law describes these
+ datasets well.
+ The age distribution has, however, some out-of-trend dynamics for small
+ age values because the number of publications is not growing as fast as
+ the power law would predict.
  However, the number of citations is well described by this law.
- The network thus is expanding fast both in number of age (e.g., nodes) and
- citations.
+ The network thus is expanding fast both in number nodes (e.g., age) and citations.
 \end_layout
 
 \begin_layout Standard
@@ -2243,7 +2206,8 @@ name "fig:pdf-of-figshare"
 
 \end_inset
 
-Probability density function of downloads
+Probability density function of usage (website visits for Genbank and downloads
+ for Figshare)
 \end_layout
 
 \end_inset
@@ -2257,7 +2221,7 @@ Probability density function of downloads
 \end_layout
 
 \begin_layout Standard
-We first wanted to examine differences in usage between Genbank and Figshare.
+We then wanted to examine differences in usage between Genbank and Figshare.
  We plot the estimated probability density function of this usage for both
  datasets as a log-log plot (Fig.
  
@@ -2355,7 +2319,7 @@ in Figshare, for
 \end_layout
 
 \begin_layout Subsection
-Predicting the real usage
+Predicting real usage
 \end_layout
 
 \begin_layout Standard
@@ -2418,7 +2382,18 @@ DataRank-FB
 \begin_inset Formula $\tau_{dataset}=100$
 \end_inset
 
-.
+ (Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:result-r-2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
  However, the performance keep reaches a plateau after around 20 years and
  it reaches its peak at 30 years.
  In terms of dataset decay, the performance increases significantly before
@@ -2427,6 +2402,52 @@ DataRank-FB
  It reaches best performance at 20 years for dataset decay for most of the
  different publication decays, then, keep going down slowly.
  In all the cases, the alpha at 0.05 is better than 0.15.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename correlation.pdf
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:result-r-2"
+
+\end_inset
+
+Model comparison in correlation coefficient.
+ 
+\shape smallcaps
+DataRank
+\shape default
+ is able to predict better the real usage of datasets compared to other
+ variants.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2460,6 +2481,46 @@ noprefix "false"
 \end_inset
 
 ).
+\end_layout
+
+\begin_layout Standard
+One explanation for the differences between the best parameters for Genbank
+ and Figshare is dataset age and citation distribution differences between
+ GenBank and Figshare.
+ We perform an analysis of these values to confirm this findings.
+ Indeed, we found that Figshare datasets are significantly younger than
+ Genbank datasets (bootstrapped difference between average age = -4.80, SE
+ = 0.24, 
+\begin_inset Formula $p<0.001$
+\end_inset
+
+).
+ We also found that Figshare dataset citations are more uniform than Genbank
+ dataset citations although not significantly different (bootstrapped difference
+ in dataset citation kurtosis = -44.34, SE = 48.74, 
+\begin_inset Formula $p=0.25$
+\end_inset
+
+).
+ The 
+\shape smallcaps
+DataRank
+\shape default
+ algorithm uses large values of dataset decay to propagate publication citations
+ over a longer time and small values of data decay to steer those citations
+ towards a concentrated set datasets.
+ This is the case of Genbank dynamics.
+ Figshare, comparatively, obeys opposite age and citation dynamics which
+ DataRank attempts to accommodate by using small values of publication decay
+ and large values of dataset decays.
+ Concretely, the best publication decay for Genbank is 100 and for Figshare
+ is 1, and the best dataset decay for Genbank is 30 and for Figshare is
+ 100.
+ Taken together, 
+\shape smallcaps
+DataRank
+\shape default
+'s parameters offer inferential interpretation of the citation network dynamics.
 \end_layout
 
 \begin_layout Standard
@@ -2513,134 +2574,6 @@ Parameter search
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-Our algorithm 
-\shape smallcaps
-DataRank
-\shape default
- performs slightly better in the GenBank dataset—(
-\shape smallcaps
-DataRank-FB
-\shape default
- at 0.3336 vs 
-\shape smallcaps
-NetworkFlow
-\shape default
- at 0.3327, 
-\shape smallcaps
-Pagerank
-\shape default
- at 0.3324, Modified 
-\shape smallcaps
-PageRank
-\shape default
- at 0.3327) .
- For Figshare, our 
-\shape smallcaps
-DataRank
-\shape default
- models produces substantially better correlations and in fact it is the
- only method that produces positive correlations (Fig.
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:result-r-2"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename correlation.pdf
-	width 100text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:result-r-2"
-
-\end_inset
-
-Model comparison in correlation coefficient.
- 
-\shape smallcaps
-DataRank
-\shape default
- is able to predict better the real usage of datasets compared to other
- variants.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-The parameters that 
-\shape smallcaps
-DataRank
-\shape default
- is finding as best can inform our understanding of the nature of the datasets.
- We find that there is an interesting relationship between the difference
- in dataset–publication decays (parameters 
-\begin_inset Formula $\tau_{\text{data}}$
-\end_inset
-
- and 
-\begin_inset Formula $\tau_{\text{publications}}$
-\end_inset
-
- in Eq.
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:data-rank-starting"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-) and the correlation coefficient of the rank and usage.
- In particular, we find that the highest correlation occurs when the difference
- is either -19 or 19, suggesting that both datasets have the same obsolescence
- differences between datasets and publications.
- Thus the parameters that we find offer some insight into the nature of
- publication–dataset networks.
- [Insert explanation what you were given me]
-\end_layout
-
-\begin_layout Standard
-[Figure with distribution of age and #citations per dataset.
- Compute mean age for both and entropy of #citations per dataset distribution]
 \end_layout
 
 \begin_layout Section
@@ -2853,53 +2786,58 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-We also analyze the impact of different decay times.
- In Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:difference-in-decay"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, 
-\shape smallcaps
-NetworkFlow
-\shape default
- is a special subset of the parameters for 
+We also interpret the effect of different decay times.
+ The best-fitting parameters show that 
 \shape smallcaps
 DataRank
-\series bold
-,
-\series default
 \shape default
- in which paper and dataset have the same decay time.
- The best result 
-\strikeout on
-shows that the decay time of datasets is 20 years and that of papers is
- one year,
-\strikeout default
- meaning that compared with papers, datasets are more durable.
- In Figure 
+ attempts to model the network temporal structure and topological dynamics
+ differently for Genbank and Figshare.
+ Because Genbank tends to have older datasets that have more concentrated
+ citations compared to Figshare, the large value in publication decay times
+ and small value in dataset decay time produces rank distributions that
+ match the underlying dynamics of Genbank (Fig.
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:difference-in-decay"
+reference "fig:Parameter-search"
 plural "false"
 caps "false"
 noprefix "false"
 
 \end_inset
 
-, the greater the difference in the decay time of paper and datasets, the
- larger the absolute correlation coefficient becomes.
+).
+ Similarly, the alpha parameter, which controls the probability of the random
+ walk to stop is larger for Figshare, intuitively suggesting that due to
+ the smaller network size and shorter temporal paths a higher probability
+ of stopping should be in place (Fig.
  
-\strikeout on
-Though the trend differs in GenBank and Figshare (i.e., one is positive and
- the other is negative),
-\strikeout default
- this may be related to some intrinsic attributes of the datasets themselves.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Parameter-search"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ Thus, DataRank offers room for interpretability about the dataset citation
+ behavior.
+\end_layout
+
+\begin_layout Standard
+There are some shortcomings in our study.
+ In our GenBank dataset, we do not have a great deal of information on actual
+ usage.
+ There are 1000 records but we only located 255 in the publication network.
+ For the Figshare dataset, while we do have a significantly larger dataset
+ of usage, the datasets do not seem to be cited as often as in GenBank.
+ However, the dynamics of both datasets are similar, leading us to believe
+ that they are representative of the nature of citation behavior in general.
+ In the future, we will explore other data repositories such as PANGEA,
+ Animal QTLdb, and UK Data Archive.
 \end_layout
 
 \begin_layout Section
@@ -2922,48 +2860,6 @@ ion of scientific discoveries.
  In sum, our study provides a prescriptive model to understand how citations
  interact in publication and dataset citation networks and gives a concrete
  method for producing ranks that are predictive of actual usage.
-\end_layout
-
-\begin_layout Standard
-There are some shortcomings in our study.
- In our GenBank dataset, we do not have a great deal of information on actual
- usage.
- There are 1000 records but we only located 255 in the publication network.
- For the Figshare dataset, while we do have a significantly larger dataset
- of usage, the datasets do not seem to be cited as often as in GenBank.
- However, the dynamics of both datasets are similar, leading us to believe
- that they are representative of the nature of citation behavior in general.
- In the future, we will explore other data repositories such as PANGEA,
- Animal QTLdb, and UK Data Archive.
-\end_layout
-
-\begin_layout Standard
-We found that the nature of the correlation between 
-\shape smallcaps
-DataRank
-\shape default
- and usage was predictive but somewhat puzzling.
- Specifically, for some parameter choices, 
-\shape smallcaps
-DataRank
-\shape default
- had the effect of finding a high but negative correlation between the rank
- and the usage amount.
- We use a predictive model to avoid this issue but we would like to explore
- the reasons behind the negative correlation.
- We think that datasets that are well cited and have high 
-\shape smallcaps
-DataRank
-\shape default
- are moved to their own data repositories.
- Therefore, some high 
-\shape smallcaps
-DataRank
-\shape default
- dataset might have low usage on the official repositories we examined,
- leading to the puzzling result.
- In the future, we will confirm whether this high-datarank datasets are
- available elsewhere.
 \end_layout
 
 \begin_layout Standard
@@ -3004,14 +2900,7 @@ PageRank
 NetworkFlow
 \shape default
  and also it provides interpretable parameters.
- For example, even when the two datasets are of different nature,
-\strikeout on
- we consistently found that the best decay time for publication is around
- one year whereas for datasets is around 20 year.
-\end_layout
-
-\begin_layout Standard
-Science needs better ways to keep track of dataset usage.
+ Science needs better ways to keep track of dataset usage.
  While scientists might potentially take a great amount of time to change
  their citation behavior, we could use techniques such as the one put forth
  in this article to accelerate the credit assignment for datasets.
