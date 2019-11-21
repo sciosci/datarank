@@ -204,12 +204,8 @@ DataRank
 \shape smallcaps
 DataRank
 \shape default
- is better at predicting this usage compared to simple citations while offering
- additional interpretable outcomes compared to 
-\shape smallcaps
-PageRank
-\shape default
- and other variants.
+ is better at predicting this usage compared to alternatives while offering
+ additional interpretable outcomes.
  We discuss improvements to citation behavior and algorithms to properly
  track and assign credit to datasets.
 \end_layout
@@ -264,12 +260,11 @@ literal "false"
 \end_inset
 
 .
- One possible cause of this gap has been the historical difficulty with
- archiving datasets.
- While these difficulties are less prominent today, the citation practices
- for datasets take time to develop.
- One solution to this gap is to develop better algorithmic approaches to
- track dataset usage.
+ One historical cause of this gap is the difficulty in archiving datasets.
+ While less problematic today, the citation practices for datasets take
+ time to develop.
+ Better algorithmic approaches to track dataset usage could improve this
+ state.
  In this work, we hypothesize that a network flow algorithm could track
  usage more effectively if it propagates publication and dataset citations
  differently.
@@ -333,7 +328,7 @@ literal "false"
 
 \end_inset
 
- serves as much of the base for citation network-based evaluations.
+ serves as a base for much of these citation network-based evaluations.
  For example, 
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -362,7 +357,7 @@ literal "false"
 
 \end_inset
 
- proposed another weighted 
+ proposed a weighted 
 \shape smallcaps
 PageRank 
 \shape default
@@ -393,8 +388,12 @@ literal "false"
 TimeRank
 \shape default
  for rating scholars at different time points.
- This method updates the rating of scholars based on the relative rating
- of the citing and cited scholars at the time of the citation.
+ 
+\shape smallcaps
+TimeRank
+\shape default
+ updates the rating of scholars based on the relative rating of the citing
+ and cited scholars at the time of the citation.
  Citation networks are thus an important source of information for ranking
  homogenous types of nodes.
 \end_layout
@@ -413,11 +412,10 @@ literal "false"
 \end_inset
 
 .
- Second, archiving and searching massive research datasets is prohibitively
- expensive and difficult.
+ Second, archiving and searching massive datasets is prohibitively expensive
+ and difficult.
  Third, scholars are not used to citing datasets.
- Survey research shows that scholars consider formal citations as the proper
- way of crediting a dataset 
+ Survey research shows that scholars value citing dataset 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "kratz2015researcher"
@@ -425,8 +423,7 @@ literal "false"
 
 \end_inset
 
-.
- However, scientists tend to cite the 
+ yet they tend to cite the 
 \emph on
 article
 \emph default
@@ -492,7 +489,7 @@ In this article, we develop a method for assigning credit to datasets from
  Importantly, our method does not modify the source data for the algorithms.
  The method does not rely on scientists explicitly citing datasets but infers
  their usage.
- The adapts the network flow algorithm of 
+ We adapt the network flow algorithm of 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "walker2007ranking"
@@ -516,7 +513,7 @@ DataRank
  algorithm and cross-validate it by predicting the actual usage of them—number
  of visits to the NCBI dataset web pages and downloads of Figshare datasets.
  We show that our method is better at predicting both types of usages compared
- to citations and other qualitative advantages compared to alternatives.
+ to citations and has other qualitative advantages compared to alternatives.
  We discuss interpretations of our results and implications for data citation
  infrastructures and future work.
 \end_layout
@@ -526,8 +523,9 @@ Why measure dataset impact?
 \end_layout
 
 \begin_layout Standard
-In our work, we are attempting to measure the impact of datasets which promotes
- better and broader data sharing behavior (e.g., see 
+Scientists may be incentivized to adopt better and broader data sharing
+ behaviors if they, their peers, and institutions are able to measure the
+ impact of datasets (e.g., see 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "silvello2018theory"
@@ -544,16 +542,15 @@ literal "false"
 \end_inset
 
 ).
- Therefore, we review impact assessment conceptual frameworks in general.
- We use studies of usage statistics and crediting of scientific works more
- specifically.
- This area of study aims to develop methods for scientific indicators of
+ In this context, we review impact assessment conceptual frameworks and
+ studies of usage statistics and crediting of scientific works more specifically.
+ These areas of study aim to develop methods for scientific indicators of
  the usage and impact of scholarly outputs.
  Impact assessment research also derives empirical insights from research
  products by assessing the dynamics and structures of connections between
  the outputs.
- These connections can information better policymaking for the research
- data management, cyberinfrastructure implementation, and funding allocation.
+ These connections can inform better policymaking for research data management,
+ cyberinfrastructure implementation, and funding allocation.
 \end_layout
 
 \begin_layout Standard
@@ -622,7 +619,7 @@ literal "false"
 
 \begin_layout Standard
 Credit attribution efforts include those by federal agencies to expand the
- definition of scientific works that were not publications.
+ definition of scientific works that are not publications.
  For example, in 2013 the National Science Foundation (NSF) recognized the
  importance of measuring scientific artifacts other than publications by
  asking researchers for “products” rather than just publications .
@@ -638,9 +635,9 @@ literal "false"
  Datasets, software, and other non-traditional scientific works are now
  considered by the NSF as legitimate contributions to the publication record.
  Furthermore, real-time science is presented in several online mediums;
- algorithms filter, rank, and disseminate scholarship as it happens, and
- the journal article is being complemented by other scientific products
- 
+ algorithms filter, rank, and disseminate scholarship as it happens.
+ In sum, the traditional journal article is increasingly being complemented
+ by other scientific products 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "priem2013scholarship"
@@ -662,10 +659,10 @@ literal "true"
 \end_inset
 
 .
- As an example, consider the recent Rich Context Competition which aimed
- at detecting dataset mentions in full-text papers so that researchers and
- funding agencies can track and justify work and funding to support datasets
- 
+ Researchers and funding agencies can use this credit to track and justify
+ work and funding to support datasets—consider the recent Rich Context Competiti
+on which aimed at to filling this gap by detecting dataset mentions in full-text
+ papers 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "zengnyu"
@@ -697,8 +694,7 @@ literal "false"
 .
  However, the initiative is theoretical, and lacks technical implementation
  for data usage and impact assessment.
- In sum, there remains a need to establish methods to better estimate dataset
- usage.
+ There remains a need to establish methods to better estimate dataset usage.
 \end_layout
 
 \begin_layout Section
@@ -746,7 +742,7 @@ literal "false"
 
 .
  Concretely, the description of a paper consists of DOI, title, abstract,
- published year among other fields.
+ published year, among other fields.
  We downloaded a copy of MAG in November 2018, which contains 208,915,369
  papers.
  As a supplement to COCI, we extract the DOI and published year from MAG
@@ -766,8 +762,8 @@ The PubMed Central Open Access Subset is a collection of full-text open
  It consists of about 2.5 million full-text articles organized in well-structured
  XML files.
  The articles are identified by a unique id called PMID.
- We also obtained a mapping list between PMIDs and DOIs from NCBI, which
- enabled us to integrate PMC-OAS into the citation network.
+ We also obtained a mapping between PMIDs and DOIs from NCBI, which enabled
+ us to integrate PMC-OAS into the citation network.
 \end_layout
 
 \begin_layout Subsubsection
@@ -832,9 +828,10 @@ noprefix "false"
 \end_layout
 
 \begin_layout Standard
-The National Institutes of Health (NIH) provided us with download data for
- the month of September 2012 for the top 1000 Nucleotide sequence.
- We use these downloads as a measure of real 
+The National Institutes of Health (NIH) provided us with number of visits
+ to a sequence's landing page for the top 1000 Nucleotide sequence during
+ the month of September 2012.
+ We use these visits as a measure of real 
 \emph on
 usage.
 \end_layout
@@ -843,7 +840,7 @@ usage.
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -921,11 +918,7 @@ literal "false"
 Figshare also keeps track of dataset usages, such as page views and dataset
  downloads.
  We get the downloads statistics of Figshare DOI from the Figshare Stats
- API and use it as a measure of real 
-\shape italic
-usage
-\shape default
-
+ API
 \begin_inset Foot
 status collapsed
 
@@ -935,7 +928,11 @@ https://docs.figshare.com/#stats
 
 \end_inset
 
- .
+ and use it as a measure of real 
+\shape italic
+usage
+\shape default
+.
 \end_layout
 
 \begin_layout Subsection
@@ -943,12 +940,13 @@ Construction of citation network
 \end_layout
 
 \begin_layout Standard
-The citation network in this paper consists of two types of nodes and two
+The citation networks in this paper consist of two types of nodes and two
  types of edges.
- The node is represented by the paper and the dataset, the edge represented
+ The node is represented by the paper and the dataset, the edge is represented
  by the citation between two nodes.
  Concretely, papers cite each other to form paper-paper edges, as datasets
- can only be cited by papers which denoted by the paper-dataset edges.
+ can only be cited by papers which are represented by the paper-dataset
+ edges.
  As shown in the construction workflow (Fig.
  
 \begin_inset CommandInset ref
@@ -981,13 +979,13 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename network_construction.pdf
-	scale 40
+	width 100col%
 
 \end_inset
 
@@ -1023,21 +1021,20 @@ Paper-paper citation network
 
 \begin_layout Standard
 As our proposed method takes the publication year into account, we need
- to build a vast citation network then remove those edges without publication
- year.
+ to remove those edges without publication year.
  The DOI-DOI citation in COCI dataset provides us a skeleton of the citation
  network.
  Even though COCI comes a field named timespan which originally refers to
  the publication time span between the citing DOI and cited DOI, this timespan
- data may lead to different results depending on the time granularity (i.e.,
+ data leads to different results depending on the time granularity (i.e.,
  year-only vs year+month).
- As explained above, therefore, we have to complement COCI dataset with
- MAG to complete the year of publication of cited and citing articles.
+ As explained above, we have to complement the COCI dataset with MAG to
+ complete the year of publication of cited and citing articles.
  By joining the COCI and MAG, we build a large paper-paper citation network
  consisting of 45,180,243 nodes and 443,055,788 edges.
- As the usage data of GenBank is in 2012, we pruned the network by removing
- the nodes published after 2012 for all experiments for GenBank.
- We use all the nodes and edges for Figshare experiments.
+ As the usage data of GenBank only covers 2012 (see Genbank above), we pruned
+ the network to remove papers and datasets published after 2012.
+ For Figshare, we use all the nodes and edges.
  The statistics of the networks described above are listed in Table 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1049,7 +1046,6 @@ noprefix "false"
 \end_inset
 
 .
- 
 \end_layout
 
 \begin_layout Standard
@@ -1068,7 +1064,7 @@ name "tab:Statistics-of-network"
 
 \end_inset
 
-Statistics of publication citation network.
+Statistics of article citation networks
 \end_layout
 
 \end_inset
@@ -1294,10 +1290,10 @@ Paper-dataset citation network
 \begin_layout Enumerate
 
 \series bold
-Constructing paper-dataset citation for GenBank.
+Constructing paper-dataset citations for GenBank.
  
 \series default
-As previously described in 
+As previously described by 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Sayers2019"
@@ -1331,17 +1327,17 @@ We first parse the XML files using XPath expressions to extract the PMID
 \begin_layout Enumerate
 
 \emph on
-Matching the accession number to build paper-dataset citation
+Matching the accession number to build paper-dataset citations
 \emph default
-s.
+.
  According to the GenBank Accession Prefix Format, an accession number is
  composed of a fixed-number of letters plus a fixed-number of numerals (e.g.,
  1 letter + 5 numerals, 2 letters + 6 numerals).
- Based on the format, we composed a regular expression to match the mention
- of accession number in the full-text.
+ Based on the format, we composed a regular expression to match individual
+ mentions of accession numbers in the full-text.
  There are two kinds of accession number mentions: accession number only
  (e.g., U00096) and range of accession number (e.g., KK037225-KK037232).
- For case two, we expand the range to recover all the omitted accession
+ For case two, we expanded the range to recover all the omitted accession
  numbers.
 \end_layout
 
@@ -1352,7 +1348,7 @@ s.
 Extracting paper-dataset citation for Figshare.
  
 \series default
-As there is a string 'figshare' in a Figshare DOI, we can using a regular
+As there is a string 'figshare' in a Figshare DOI, we can use a regular
  expression to search for them in COCI.
  
 \end_layout
@@ -1364,8 +1360,7 @@ As there is a string 'figshare' in a Figshare DOI, we can using a regular
 Identifying Figshare DOI in the set of cited DOI.
  
 \shape default
-This is because a dataset can only be cited by papers.
- In this step, we extracted 918 Figshare DOIs as dataset candidates.
+In this step, we extracted 918 Figshare DOIs as dataset candidates.
 \end_layout
 
 \begin_layout Enumerate
@@ -1374,11 +1369,11 @@ This is because a dataset can only be cited by papers.
 Filtering by resource type.
  
 \shape default
-Not all the Figshare DOIs are datasets, because Figshare supports many kinds
+Not all the Figshare DOIs are datasets because Figshare supports many kinds
  of resources.
- We use Figshare Article API to get the meta-data of a DOI
+ We use Figshare Article API
 \begin_inset Foot
-status collapsed
+status open
 
 \begin_layout Plain Layout
 https://docs.figshare.com/#public_article
@@ -1386,7 +1381,7 @@ https://docs.figshare.com/#public_article
 
 \end_inset
 
-.
+ to get the meta-data of a DOI.
  Among the meta-data, there is a field indicating the resource type (type
  code 3 is dataset).
  After filtering the candidates by resource type, we get 355 datasets.
@@ -1399,8 +1394,10 @@ Visualization of citation network
 
 \begin_layout Standard
 For the purpose of exploring this network more intuitively, we sample about
- one thousand nodes and 1.5 thousand edges from the network and show it in
- Figure 
+ one thousand nodes and 1.5 thousand edges from the network.
+ We observe four patterns of papers citing datasets (a dataset cannot cite
+ anything): one-to-one, one-to-many, many-to-one and many-to-many (Fig.
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:network-of-sample"
@@ -1410,7 +1407,7 @@ noprefix "false"
 
 \end_inset
 
-.
+).
 \end_layout
 
 \begin_layout Standard
@@ -1455,21 +1452,6 @@ name "fig:network-of-sample"
 
 \end_layout
 
-\begin_layout Standard
-From Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:network-of-sample"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, we observe four patterns of papers citing datasets (a dataset cannot cite
- anything): one-to-one, one-to-many, many-to-one and many-to-many.
-\end_layout
-
 \begin_layout Subsection
 Network models for scientific artifacts
 \end_layout
@@ -1495,11 +1477,11 @@ literal "false"
 \shape smallcaps
 NetworkFlow
 \shape default
-, is inspired by 
+ here, is inspired by 
 \shape smallcaps
 PageRank
 \shape default
- by addressing the issue that citation networks are always directed back
+ and addresses the issue that citation networks are always directed back
  in time.
  In this model, each vertex in the graph is a publication.
  The goal of this method is to propagate a vertex's impact through its citations.
@@ -1603,7 +1585,16 @@ T=I\cdot\rho+(1-\alpha)W\cdot\rho+(1-\alpha)^{2}W^{2}\rho+\cdots\label{eq:averag
 \end_layout
 
 \begin_layout Standard
-In practice, this series can be solved iteratively by computing the difference
+The parameters 
+\begin_inset Formula $\tau_{\text{paper}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ are found by cross validation, predicting real traffic.
+ In practice, this series can be solved iteratively by computing the difference
  between 
 \begin_inset Formula $T_{t+1}$
 \end_inset
@@ -1614,21 +1605,12 @@ In practice, this series can be solved iteratively by computing the difference
 
 .
  For this and all algorithms used in this work, we stop the iterations when
- absolute difference in rank between two consecutive iterations is less
- than 
+ the total absolute difference in rank between two consecutive iterations
+ is less than 
 \begin_inset Formula $10^{-2}$
 \end_inset
 
-.
- The parameters 
-\begin_inset Formula $\tau_{\text{paper}}$
-\end_inset
-
- and 
-\begin_inset Formula $\alpha$
-\end_inset
-
- are found by cross validation, predicting real traffic.
+ which typically required around 30 iterations.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1639,15 +1621,19 @@ DataRank
 \end_layout
 
 \begin_layout Standard
-In this article, we extend the previously described procedure in what we
- call 
+In this article, we extend
+\shape smallcaps
+ NetworkFlow
+\shape default
+ to accommodate different kinds of nodes.
+ The extension considers that the probability of starting at any single
+ node should depend on whether the node is a publication or a dataset.
+ This is, publications and datasets may vary in their relevance period.
+ We call this new algorithm 
 \shape smallcaps
 DataRank
 \shape default
 .
- The extension considers that the probability of starting at any single
- node should depend on whether the node is a publication or a dataset.
- This is, publications and datasets may vary in their relevance period.
  Mathematically, we redefine the starting probability in Eq.
  
 \begin_inset CommandInset ref
@@ -1708,7 +1694,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1795,14 +1781,14 @@ DataRank
 \begin_inset Formula $\alpha$
 \end_inset
 
- or to continue its search through the reference list with a probability
+ or to continue the search through the reference list with a probability
  
 \begin_inset Formula $1-\alpha$
 \end_inset
 
 .
- However, there may exist a third choice: to continue its search through
- paper who cites it.
+ However, there may exist a third choice: to continue the search through
+ papers who cite the current paper.
  In other words, the researcher can move in two directions: forwards and
  backwards.
  We call this modified method 
@@ -1814,8 +1800,8 @@ In this method, one may stop with a probability
 \begin_inset Formula $\alpha-\beta$
 \end_inset
 
-, continue the search forward with a probability 1 - 
-\begin_inset Formula $\alpha$
+, continue the search forward with a probability 
+\begin_inset Formula $1-\alpha$
 \end_inset
 
 , and backward with a probability 
@@ -1823,20 +1809,19 @@ In this method, one may stop with a probability
 \end_inset
 
 .
- To keep them within the simplex, then 
-\begin_inset Formula $\alpha>\beta$
-\end_inset
-
- and 
+ To keep them within the unity simplex, the parameters must satisfy 
 \begin_inset Formula $\alpha>0$
 \end_inset
 
- and 
+, 
 \begin_inset Formula $\beta>0$
 \end_inset
 
-.
- 
+, and 
+\begin_inset Formula $\alpha>\beta$
+\end_inset
+
+,
 \end_layout
 
 \begin_layout Standard
@@ -1886,17 +1871,6 @@ T=I\cdot\rho+(1-\alpha)W\cdot\rho+\beta M\cdot\rho+(1-\alpha)^{2}W^{2}\rho+\beta
 
 \end_layout
 
-\begin_layout Standard
-In 
-\series bold
-\shape smallcaps
-DataRank-FB
-\series default
-\shape default
-, we assume that the researcher is either forward or backward, without the
- intersection between them.
-\end_layout
-
 \begin_layout Subsection
 Other network models
 \end_layout
@@ -1913,7 +1887,7 @@ PageRank
 \shape smallcaps
 PageRank
 \shape default
- is a well known and widely used webpage ranking algorithm proposed by Google
+ is a well-known and widely used webpage ranking algorithm proposed by Google
  
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -1935,8 +1909,8 @@ literal "false"
 .
  First, it builds a network of the web through the link between webpages.
  Second, each webpage is assigned a random value, which is then updated
- based on the link relations, which will eventually converge on a stationary
- value.
+ based on the link relationships—an iterative process that will eventually
+ converge to a stationary value.
 \end_layout
 
 \begin_layout Standard
@@ -1944,13 +1918,13 @@ The mathematical formulation of
 \shape smallcaps
 PageRank
 \shape default
- is:
+ is
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-PR(p_{i})=\frac{1-d}{N}+d\underset{p_{j}\in M(p_{i})}{\sum\frac{PR(p_{j})}{L(p_{j})}}\label{eq:pagerank-algorithm}
+PR(p_{i})=\frac{1-d}{N}+d\underset{p_{j}\in M(p_{i})}{\sum\frac{PR(p_{j})}{L(p_{j})}},\label{eq:pagerank-algorithm}
 \end{equation}
 
 \end_inset
@@ -2005,15 +1979,21 @@ PageRank
 \end_layout
 
 \begin_layout Standard
-Considering that we have two types of resources in the network, we use the
- following method to modify the iterative process of the classical PageRank
- algorithm:
+Considering that we have two types of resources in the network, we modify
+ the standard 
+\series bold
+\shape smallcaps
+PageRank
+\series default
+\shape default
+ to allow a different damping factor for publication and for dataset.
+ This amounts to modifying the update equation to
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-PR(p_{i})=\frac{1-d_{data}}{N_{data}}+\frac{1-d_{pub}}{N_{pub}}+d_{data}\underset{p_{j}\in M^{data}(p_{i})}{\sum\frac{PR(p_{j})}{L(p_{j})}}+d_{pub}\underset{p_{k}\in M^{pub}(p_{i})}{\sum\frac{PR(p_{k})}{L(p_{k})}}\label{eq:modified-pagerank}
+PR(p_{i})=\frac{1-d_{data}}{N_{data}}+\frac{1-d_{pub}}{N_{pub}}+d_{data}\underset{p_{j}\in M^{data}(p_{i})}{\sum\frac{PR(p_{j})}{L(p_{j})}}+d_{pub}\underset{p_{k}\in M^{pub}(p_{i})}{\sum\frac{PR(p_{k})}{L(p_{k})}},\label{eq:modified-pagerank}
 \end{equation}
 
 \end_inset
@@ -2070,24 +2050,29 @@ Results
 We aim at finding whether the estimation of the rank of a dataset based
  on citation data is related to a real-world measure of relevance such as
  page views or downloads.
- We propose a method for estimating rankings considering differences in
- citation dynamics for publications and datasets.
- We also propose variants to this method, and compare all of them to standard
- ranking algorithms.
+ We propose a method for estimating rankings that we call 
+\series bold
+\shape smallcaps
+DataRank,
+\series default
+\shape default
+ which considers differences in citation dynamics for publications and datasets.
+ We also propose some variants to this method, and compare all of them to
+ standard ranking algorithms.
  We use the data of visits of GenBank datasets and downloads of Figshare
  datasets as measure of real usage.
  Thus, we will investigate which of the methods work best for ranking them.
 \end_layout
 
 \begin_layout Subsection
-Citation network properties
+Properties of the citation networks
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2145,17 +2130,17 @@ Probability density of age and citations.
 \end_layout
 
 \begin_layout Standard
-We first examine some statistics of the paper–paper citation network and
+We first examined some statistics of the paper–paper citation network and
  the paper–dataset citation network.
- We examine dataset age because it determines the initial rank of a node
- and we examine the citations because they control how ranks diffuse through
- the network.
- We model publication age with respect to 2019 as a power law distribution
+ Specifically, we examined dataset age because it determines the initial
+ rank of a node and we examine the citations because they control how ranks
+ diffuse through the network.
+ We modeled publication age with respect to 2019 as a power law distribution
  
 \begin_inset Formula $p(a)\propto a^{-k}$
 \end_inset
 
- and we find the best parameter to be 
+ and we found the best parameter to be 
 \begin_inset Formula $k\approx-4.1$
 \end_inset
 
@@ -2178,8 +2163,8 @@ noprefix "false"
 
 \end_inset
 
- left panel).
- Similarly, the citation count can also be modeled by a power law distribution
+ top panel).
+ Similarly, the citation count can be modeled by a power law distribution
  
 \begin_inset Formula $p(d)\propto d^{-k}$
 \end_inset
@@ -2207,22 +2192,19 @@ noprefix "false"
 
 \end_inset
 
- right panel).
- Both distributions are highly skewed because power law describes these
- datasets well.
- The age distribution has, however, some out-of-trend dynamics for small
- age values because the number of publications is not growing as fast as
- the power law would predict.
- However, the number of citations is well described by this law.
- The network thus is expanding in nodes (e.g., age) and highly skewed for
- citations.
+ bottom panel).
+ While both distributions can be well described by power laws, the age distribut
+ion had some out-of-trend dynamics for small age values because the number
+ of publications is not growing as fast as the power law would predict.
+ The networks thus is expanding fast in nodes (e.g., age) and highly skewed
+ for citations.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2272,8 +2254,8 @@ Probability density function of usage (website visits for Genbank and downloads
 
 \begin_layout Standard
 We then wanted to examine differences in usage between Genbank and Figshare.
- We plot the estimated probability density function of this usage for both
- datasets as a log-log plot (Fig.
+ We plotted the estimated probability density function of this usage for
+ both datasets as a log-log plot (Fig.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2363,32 +2345,28 @@ in Figshare, for
 
 ).
  There is a significant bias for downloads below a certain threshold, where
- smaller number of downloads are less frequent than expected.
+ smaller number of downloads are less frequent than expected by the power
+ laws.
  However, both datasets show similar patterns suggesting a common mechanism
  driving the dataset usage behavior.
 \end_layout
 
 \begin_layout Subsection
-Predicting real usage
+Prediction of real usage
 \end_layout
 
 \begin_layout Standard
 One of the real tests of whether the methods work is to predict how they
  are related to real usage data.
- For each algorithm and set of parameters, we estimated the rank of each
- of the nodes in the network.
- We then used these ranks to correlate them to real usage (i.e., web visits
- for GenBank and downloads for Figshare).
- We now describe the experiments to explore the best parameters for these
- correlations.
+ For each algorithm and set of parameters, we estimated the rank of networks'
+ nodes.
+ We then correlated these ranks with real usage (i.e., web visits for GenBank
+ and downloads for Figshare).
+ We now describe the best performance after these parameter search.
 \end_layout
 
 \begin_layout Standard
-In order to find the best parameters for 
-\shape smallcaps
-DataRank
-\shape default
-, we performed a grid search with publication decay year 
+We performed a grid search with publication decay year 
 \begin_inset Formula $\tau_{\text{pub}}\in\left\{ 1,5,10,20,30,50,70,100\right\} $
 \end_inset
 
@@ -2401,9 +2379,30 @@ DataRank
 \end_inset
 
 .
- The best model of DataRank achieves a correlation of 0.3336 in Genbank which
- is very slightly better than DataRank-FB 0.3335, Networkflow 0.3327, Pagerank,
- 0.3324, and modified PageRank 0.3327 (Fig.
+ The best model of 
+\shape smallcaps
+DataRank
+\shape default
+ achieved a correlation of 0.3336 in Genbank which is slightly better than
+ 
+\shape smallcaps
+DataRank-FB
+\shape default
+ 0.3335, 
+\series bold
+\shape smallcaps
+NetworkFlow
+\series default
+\shape default
+ 0.3327, 
+\shape smallcaps
+PageRank
+\shape default
+, 0.3324, and Modified 
+\shape smallcaps
+PageRank
+\shape default
+ 0.3327 (Fig.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2415,22 +2414,61 @@ noprefix "false"
 \end_inset
 
 ).
- The model of DataRank achieves a correlation of 0.1078 in Figshare which
- is substantially better than DataRank-FB with 0.0723.
- The best absolute correlation by all the other methods only achieved negative
- correlation with Figshare downloads (Networkflow -0.072, PageRank = -0.073,
- and Modified PageRank = -0.073).
- We select the model with best absolute correlation because it would produce
+ The best model of 
+\series bold
+\shape smallcaps
+DataRank
+\series default
+\shape default
+ achieves a correlation of 0.1078 in Figshare, which is substantially better
+ than 
+\shape smallcaps
+DataRank-FB
+\shape default
+ with 0.0723.
+ The best absolute correlations by all the other methods only achieved negative
+ correlations (
+\shape smallcaps
+NetworkFlow
+\series bold
+=
+\series default
+\shape default
+
+\begin_inset Formula $-0.072$
+\end_inset
+
+, 
+\shape smallcaps
+PageRank
+\shape default
+=
+\begin_inset Formula $-0.073$
+\end_inset
+
+, and Modified 
+\shape smallcaps
+PageRank
+\shape default
+=
+\begin_inset Formula $-0.073$
+\end_inset
+
+)—we selected models based on absolute correlation because it would produce
  the best predictive performance.
- Taken together, DataRank has both better absolute correlation performance
- and highest correlation with real usage.
+ Taken together, 
+\shape smallcaps
+DataRank
+\shape default
+ has both better absolute correlation performance and highest correlation,
+ suggesting a superior ability to predict real usage.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2455,8 +2493,10 @@ name "fig:result-correlation"
 
 Model comparison in correlation coefficient.
  
+\series bold
 \shape smallcaps
 DataRank
+\series default
 \shape default
  is able to predict better the real usage of datasets compared to other
  variants.
@@ -2472,8 +2512,22 @@ DataRank
 
 \end_layout
 
+\begin_layout Subsection
+Interpretation of best-fit model
+\end_layout
+
 \begin_layout Standard
-The results across all parameters is shown in Figure 
+We wanted to explore how 
+\shape smallcaps
+DataRank
+\shape default
+ changes in performance across the different parameters.
+ This exploration allowed us to understand how the parameters tell us something
+ about the underlying characteristics of the citation networks.
+\end_layout
+
+\begin_layout Standard
+The results across all parameters are shown in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Parameter-search"
@@ -2488,20 +2542,12 @@ noprefix "false"
 \shape smallcaps
 DataRank
 \shape default
- model reaches its best (
-\shape smallcaps
-DataRank
-\shape default
- at 0.3336, 
-\shape smallcaps
-DataRank-FB
-\shape default
- at 0.3336) with 
-\begin_inset Formula $\tau_{\text{pub}}=30$
+ model reaches its best with 
+\begin_inset Formula $\tau_{\text{pub}}=100$
 \end_inset
 
  and 
-\begin_inset Formula $\tau_{dataset}=100$
+\begin_inset Formula $\tau_{\text{dataset}}=30$
 \end_inset
 
  (Fig.
@@ -2515,58 +2561,46 @@ noprefix "false"
 
 \end_inset
 
-).
- However, the performance reaches a plateau after around 20 years and it
- reaches its peak at 30 years.
- In terms of dataset decay, the performance increases significantly before
- 20 years.
- After 20 years, the performance enter into a steady interval.
- It reaches best performance at 20 years for dataset decay for most of the
- different publication decays, then, keep going down slowly.
+ top panel).
+ However, for dataset decay, the performance reaches a plateau after around
+ 20 years and it reaches its peak at 30 years.
+ After 30 years, performance goes down slowly.
+ In terms of publication decay, the performance increases significantly
+ before 20 years.
+ After 20 years, the performance enters into a steady but marginal increase.
  In all the cases, the alpha at 0.05 is better than 0.15.
-\end_layout
-
-\begin_layout Standard
-For Figshare dataset, we observed an opposite trends: the performance goes
- down rapidly as the publication decay increases.
- However, similar to GenBank, it losses momentum after 20 years but still
- grows steadily.
- Different with GenBank, the parameter alpha at 0.15 is better than 0.05.
- Our 
-\shape smallcaps
-DataRank
-\shape default
- models achieve the best performance (
-\shape smallcaps
-DataRank
-\shape default
- at 0.1273, 
-\shape smallcaps
-DataRank-FB
-\shape default
- at 0.0256) at one year for publication decay and 100 years for dataset decay
- (see Fig.
+ For Figshare dataset, dataset decay has divergent patterns: for small publicati
+on decays, dataset decay increases the performance.
+ For large publication decays, dataset decay decreases the performance.
+ For publication decay, more specifically, we observed an opposite trend
+ compared to GenBank: the performance goes down rapidly as the publication
+ decay increases (Fig.
  
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:Parameter-search"
+reference "fig:result-correlation"
 plural "false"
 caps "false"
 noprefix "false"
 
 \end_inset
 
-).
+ bottom panel).
+ However, similar to GenBank, it losses momentum after 20 years but still
+ decreases steadily.
 \end_layout
 
 \begin_layout Standard
 One explanation for the differences between the best parameters for Genbank
- and Figshare is dataset age and citation distribution differences between
- GenBank and Figshare.
- We perform an analysis of these values to confirm this findings.
+ and Figshare is that dataset age and citation distribution have different
+ patterns.
+ We perform an analysis to confirm this hypothesis.
  Indeed, we found that Figshare datasets are significantly younger than
- Genbank datasets (bootstrapped difference between average age = -4.80, SE
- = 0.24, 
+ Genbank datasets (bootstrapped difference between average age = 
+\begin_inset Formula $-4.80$
+\end_inset
+
+, SE = 0.24, 
 \begin_inset Formula $p<0.001$
 \end_inset
 
@@ -2584,11 +2618,15 @@ DataRank
 \shape default
  algorithm uses large values of dataset decay to propagate publication citations
  over a longer time and small values of data decay to steer those citations
- towards a concentrated set datasets.
- This is the case of Genbank dynamics.
+ towards a concentrated set of top cited datasets.
+ This is the case of GenBank dataset dynamics.
  Figshare, comparatively, obeys opposite age and citation dynamics which
- DataRank attempts to accommodate by using small values of publication decay
- and large values of dataset decays.
+ 
+\shape smallcaps
+DataRank
+\shape default
+ attempts to accommodate by using small values of publication decay and
+ large values of dataset decays.
  Concretely, the best publication decay for Genbank is 100 and for Figshare
  is 1, and the best dataset decay for Genbank is 30 and for Figshare is
  100.
@@ -2596,7 +2634,9 @@ DataRank
 \shape smallcaps
 DataRank
 \shape default
-'s parameters offer inferential interpretation of the citation network dynamics.
+'s parameters offer inferential interpretation of the citation network dynamics,
+ which can help us understand how they are distributed in time and credit
+ spaces.
 \end_layout
 
 \begin_layout Standard
@@ -2672,9 +2712,9 @@ Discussion
 \end_layout
 
 \begin_layout Standard
-The goal of this paper is to better evaluate the importance of datasets
- through the citation network.
- Compared with the mature citation mechanism of articles, referencing datasets
+The goal of this article is to better evaluate the importance of datasets
+ through article citation network analysis.
+ Compared with the mature citation mechanisms of articles, referencing datasets
  is still in its infancy.
  Acknowledging the long time the practice of citing datasets will take to
  be adopted, our research aims at recovering the true importance of datasets
@@ -2723,12 +2763,12 @@ literal "false"
  flow that is able to successfully predict real usage better than other
  methods.
  While citations are not a perfect measure of credit, having a method that
- can estimate true citations is advantageous.
+ can at least attempt to predict usage is advantageous.
 \end_layout
 
 \begin_layout Standard
-Previous research has examined the ways of normalizing the citations by
- time, field, and quality.
+Previous research has examined ways of normalizing citations by time, field,
+ and quality.
  This relates to our 
 \shape smallcaps
 DataRank
@@ -2759,7 +2799,7 @@ literal "false"
 
 \end_inset
 
- .
+.
  However, a control like this requires significantly more manual curation.
 \end_layout
 
@@ -2774,7 +2814,7 @@ DataRank-FB
  model (see Methods) did not produce higher predictability.
  This lack of improvement could suggest that when scientists traverse the
  network of citations, they seem to only follow one direction of the graph
- (who cites what).
+ (i.e., the reference list).
  This could be perhaps a limitation of the tools available to scientists
  to explore the citation network or because backward propagation changes
  constantly year after year.
@@ -2792,15 +2832,20 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-We also interpret the effect of different decay times.
+We find it useful to interpret the effect of different decay times on the
+ performance of 
+\shape smallcaps
+DataRank
+\shape default
+.
  The best-fitting parameters show that 
 \shape smallcaps
 DataRank
 \shape default
- attempts to model the network temporal structure and topological dynamics
- differently for Genbank and Figshare.
+ attempts to model the network temporal and topological dynamics differently
+ for Genbank and Figshare.
  Because Genbank tends to have older datasets that have more concentrated
- citations compared to Figshare, the large value in publication decay times
+ citations compared to Figshare, the large value in publication decay time
  and small value in dataset decay time produces rank distributions that
  match the underlying dynamics of Genbank (Fig.
  
@@ -2815,8 +2860,8 @@ noprefix "false"
 
 ).
  Similarly, the alpha parameter, which controls the probability of the random
- walk to stop is larger for Figshare, intuitively suggesting that due to
- the smaller network size and shorter temporal paths a higher probability
+ walk to stop, is larger for Figshare, intuitively suggesting that due to
+ the smaller network size and shorter temporal paths, a higher probability
  of stopping should be in place (Fig.
  
 \begin_inset CommandInset ref
@@ -2829,84 +2874,24 @@ noprefix "false"
 \end_inset
 
 ).
- Thus, DataRank offers room for interpretability about the dataset citation
- behavior.
+ Thus, 
+\shape smallcaps
+DataRank
+\shape default
+ offers room for interpretability about the dataset citation behavior.
 \end_layout
 
 \begin_layout Standard
 There are some shortcomings in our study.
- In our GenBank dataset, we do not have a great deal of information on actual
- usage.
- There are 1000 records but we only located 255 in the publication network.
- For the Figshare dataset, while we do have a significantly larger dataset
- of usage, the datasets do not seem to be cited as often as in GenBank.
- However, the dynamics of both datasets are similar, leading us to believe
- that they are representative of the nature of citation behavior in general.
+ For GenBank and Fighsare, we do not have a great deal of information on
+ actual usage.
+ There are 1000 records but we only located 693 in the publication network
+ of Genbank and 355 datasets from Figshare.
+ Also, there are significant different in the information, with Figshare
+ dataset being cited less often than GenBank.
  In the future, we will explore other data repositories such as PANGEA,
- Animal QTLdb, and UK Data Archive.
-\end_layout
-
-\begin_layout Standard
-Our approach does not directly estimate true impact but a measure of usage
- which is the crucial foundational step toward developing technical and
- theoretical models of impact.
- In the literature, “Impact” is defined differently depending on the goal
- 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "piwowar2013altmetrics"
-literal "false"
-
-\end_inset
-
-.
- As such, metrics estimating impact can be defined “use” “reuse” “engagement”,
- and have a range of proxies, likewise depending on the context of circulation.
- For example, a downloads might measure use while in another context it
- may only indicate viewing.
- The edifice of citation standards in the realm of journal articles is relativel
-y well-established, with refinements to the interpretation of citation behavior
- such as the relative value of citations 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "stuart2017data"
-literal "false"
-
-\end_inset
-
-, the disciplinary context 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "borgman1989bibliometrics"
-literal "false"
-
-\end_inset
-
-, and the in-text location 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "teplitskiy2018almost"
-literal "false"
-
-\end_inset
-
-.
- Nonetheless, usage serves as a proximal indicator of use, and a first-order
- approximation of the impact of the scientific work.
- Recent work in developing impact assessment tools continue development
- and refinement 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "silvello2018theory"
-literal "false"
-
-\end_inset
-
-.
- However, existing evaluation mechanisms often fail where there are no direct
- or indirect measure for usage, which can be an important indicator of scientifi
-c impact.
- 
+ Animal QTLdb, and UK Data Archive, and well as we will request updates
+ about web visits to other GenBank sequences.
 \end_layout
 
 \begin_layout Standard
@@ -2932,8 +2917,78 @@ literal "false"
  This lack of indexing creates an asymmetrical representation of some kinds
  of objects of science and can be an obstacle to quality evaluation and
  data reuse.
- Thus DataRank can be used to correct these asymmetrical discrepancies between
- articles and datasets.
+ Thus 
+\shape smallcaps
+DataRank
+\shape default
+ can be used to correct these asymmetrical discrepancies between articles
+ and datasets.
+\end_layout
+
+\begin_layout Standard
+Our approach does not directly estimate true impact but predicts one possible
+ measure of usage.
+ However, this prediction could be crucial foundational step toward developing
+ technical and theoretical models of impact.
+ Also, in the literature, “impact” is defined differently depending on the
+ goal 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "piwowar2013altmetrics"
+literal "false"
+
+\end_inset
+
+.
+ Metrics estimating impact can be defined through “use”, “reuse”, or “engagement
+”, and have a range of proxies.
+ For example, a download might measure use while in another context it may
+ only indicate viewing.
+ Comparatively, the edifice of citation standards in the realm of journal
+ articles is relatively well-established, with refinements to the interpretation
+ of citation behavior such as the relative value of citations 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "stuart2017data"
+literal "false"
+
+\end_inset
+
+, the disciplinary context 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "borgman1989bibliometrics"
+literal "false"
+
+\end_inset
+
+, and the in-text location 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "teplitskiy2018almost"
+literal "false"
+
+\end_inset
+
+.
+ Nonetheless, usage serves as a proximal indicator of influence, and a first-ord
+er approximation of the impact of the scientific work.
+ Recent work in developing impact assessment tools continue development
+ and refinement 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "silvello2018theory"
+literal "false"
+
+\end_inset
+
+.
+ However, existing evaluation mechanisms often fail where there are no direct
+ or indirect measure for usage, which can be an important indicator of scientifi
+c impact.
+ Clearly, our approach serves not only as a concrete tool to measure impact—albe
+it imperfectly—but also as a vehicle to discuss why and how to measure impact
+ on datasets.
 \end_layout
 
 \begin_layout Section
@@ -2947,20 +3002,19 @@ ion of scientific discoveries.
  Scientists, however, tend to dismiss citing datasets and therefore there
  is no proper measurement of how impactful datasets are.
  Our method uses the publication-publication citation network to propagate
- the impact of the publication-dataset citation network.
+ the impact to the publication-dataset citation network.
  Using two databases of real dataset networks, we demonstrate how our method
  is able to predict actual usage more accurately than other methods.
  Our results suggest that datasets have different citation dynamics to those
  of publications.
- In particular, they have a longer decay time.
  In sum, our study provides a prescriptive model to understand how citations
  interact in publication and dataset citation networks and gives a concrete
  method for producing ranks that are predictive of actual usage.
 \end_layout
 
 \begin_layout Standard
-Our study advances an analysis of datasets and publications with novel ideas
- from network analysis.
+Our study advances an investigation of datasets and publications with novel
+ ideas from network analysis.
  Our work puts together concepts from other popular network flow estimation
  algorithms such as 
 \shape smallcaps
@@ -2974,7 +3028,7 @@ literal "false"
 
 \end_inset
 
- and Dylan Walker's algorithm 
+ and 
 \shape smallcaps
 NetworkFlow
 \shape default
@@ -2987,16 +3041,6 @@ literal "false"
 \end_inset
 
 .
- Our method predicts better the usage of datasets compared to 
-\shape smallcaps
-PageRank
-\shape default
- and 
-\shape smallcaps
-NetworkFlow
-\shape default
- and also it provides interpretable parameters.
- Science needs better ways to keep track of dataset usage.
  While scientists might potentially take a great amount of time to change
  their citation behavior, we could use techniques such as the one put forth
  in this article to accelerate the credit assignment for datasets.
